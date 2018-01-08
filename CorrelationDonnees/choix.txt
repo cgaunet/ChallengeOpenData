@@ -1,0 +1,135 @@
+aptotal_hebdo : Activité physique TOTALE hebdo (en mn) : 301
+bmi : IMC : 284
+bonalim : bonne alim (auto eval) : onsp : 47
+colmata : Freq goûter semaine : colmata : 3
+distbar : Achat distrib barre choco : onsp : 189
+distsoda : sodas : onsp : 187
+distsoli : sodaslight : onsp : 7
+distgat : onsp : 190
+distconf : onsp : 5
+distbiss : onsp : 191
+entrerep : freq conso entre 3 repas : entrerep : 2
+fastfood : fastfood : 8
+fqfec : Fréquence de consommation de pain, céréales, PDT, lég.  
+secs : b11f : 104
+fqfl : Fréquence de consommation de fruits, légumes : b12f : 107
+fqpl : Fréquence de consommation de lait, pdts laitiers : b11f : 106
+fqvpo : Fréquence de consommation de viandes, volailles, : b11f : 105
+poissons, oeufs
+intalicuisi : Intérêt pour faire à manger soi-même : onsp : 173
+mfrom : fromage : aime : 139
+mfruit: aime : 137
+mglace: aime : 138 
+mjus : aime : 144
+mlait : aime : 142
+mleg : aime : 135
+mpois : aime : 140
+msoda : aime : 141
+mvian : aime : 136
+myao : aime : 143
+autregmedic_cod : autregme : 158 
+selassent : entrée : sel : 10
+selassfec: PDT, pâtes, riz etc : sel : 12
+selassleg : lgumes verts: sel : 11
+selassoeuf : omelette... : sel : 15
+selassvp : viandes poissons ... : sel : 13
+sellassvps : en sauce : sel : 14
+tage : classe d'âge : age : 278
+tele : temps télé en mn : 289
+v2_age : âge de la personne : 273 
+
+
+onsp : 
+           0 [plusieurs réponses] 
+           1 oui 
+           2 non 
+           3 ne sait pas  
+           4 [refus] 
+           9 [pas de réponse] 
+colmata:
+	   0 [plusieurs réponses] 
+           1 6 à 7 jours/semaine 
+           2 4 à 5 jours/semaine 
+           3 1 à 3 jours/semaine 
+           4 <1 jour/semaine 
+           5 jamais  
+           6 ne sait pas  
+           9 [pas de réponse] 
+entrerep:
+           0 [plusieurs réponses] 
+           1 4 fois/jour ou +  
+           2 2 à 3 fois/jour  
+           3 1 fois/jour  
+           4 <1 fois/jour, ms au moins 1 fois/semaine  
+           5 <1 fois/semaine 
+           6 jamais  
+           7 ne sait pas  
+           9 [pas de réponse] 
+fastfood:
+           0 [plusieurs réponses] 
+           1 tous les jours ou presque  
+           2 4 à 5 jours/semaine 
+           3 2 à 3 jours/semaine 
+           4 1 jour/semaine 
+           5 1 à 3 jours/mois 
+           6 <1 jour/mois 
+           7 jamais  
+           8 ne sait pas  
+           9 [pas de réponse] 
+b11f:
+           1 jamais  
+           2 1-2 fois/sem 
+           3 3-4 fois/sem 
+           4 5-6 fois/sem 
+           5 1 fois/jour  
+           6 2 fois/jour  
+           7 3 fois/jour  
+           8 4 fois/jour ou +  
+           9 ne sait pas  
+          99 [pas de réponse] 
+aime:
+           0 [plusieurs réponses] 
+           1 beaucoup 
+           2 assez 
+           3 un peu 
+           4 pas du tout 
+           5 ne sait pas  
+           9 [pas de réponse]
+
+autregme:
+           0 pas de réponse 
+           1 cholestérolémie  
+           2 diabète  
+           3 problèmes cardiovasculaires 
+           4 allergie ou intolérance alimentaire 
+           5 problèmes intestinaux/digestifs  
+           6 multipathologie  
+           7 hypertension  
+           8 divers 
+           9 régime sans sel 
+          10 problèmes de dos 
+          11 colopathie  
+          12 problèmes rénaux  
+          13 chirurgie intestinale 
+          14 régime sans sel, sans gras, sans sucre  
+          15 régime sans sucre 
+          16 traitement corticoïde  
+          17 triglycéridémie 
+          18 hernie hiatale  
+          19 opérations
+sel:
+           0 [plusieurs réponses] 
+           1 jamais  
+           2 rarement  
+           3 souvent  
+           4 toujours 
+           9 [pas de réponse] 
+age:
+           1 3-10 ans
+           2 11-14 ans 
+           3 15-17 ans 
+           4 18-24 ans 
+           5 25-34 ans 
+           6 35-49 ans 
+           7 50-64 ans 
+           8 65 ans et +  
