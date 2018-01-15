@@ -2,7 +2,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Calculator calculator = new Calculator(LoaderData.readBooksFromCSV("Table_indiv.csv"));
-		calculator.calc();
+		calculator.showResults();
 		// TODO Auto-generated method stub
 //		for (List<String> human : LoaderData.readBooksFromCSV("Table_indiv.csv")){
 //			int i = 0;
