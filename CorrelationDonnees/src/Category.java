@@ -4,7 +4,7 @@ public class Category {
 	private int indexCategory;
 	private double coefCorrel;
 	private String typeCategory;
-        private int compteurAge;
+    private int compteur;
 	
 	public Category(String nameCategory, int indexCategory, double coefCorrel, String typeCategory) {
 		super();
@@ -12,7 +12,7 @@ public class Category {
 		this.indexCategory = indexCategory;
 		this.coefCorrel = coefCorrel;
 		this.typeCategory = typeCategory;
-                this.compteurAge = 0;
+        this.compteur = 0;
 	}
 
 	public String getTypeCategory() {
@@ -56,6 +56,7 @@ public class Category {
 					}else {
 						this.coefCorrel--;
 					}
+					this.compteur++;
 				}
 				break;
 			case "num":
@@ -74,6 +75,7 @@ public class Category {
 					}else if (valToAdd < 3.1) {
 						this.coefCorrel += 0.25;
 					}
+					this.compteur++;
 				}
 				break;
 			case "sel":
@@ -85,6 +87,7 @@ public class Category {
 					}else if (valToAdd < 4.1) {
 						this.coefCorrel++;
 					}
+					this.compteur++;
 				}
 				break;
 			case "b11f":
@@ -104,6 +107,7 @@ public class Category {
 					}else {
 						this.coefCorrel += 28;
 					}
+					this.compteur++;
 				}
 				break;
 			case "b12f":
@@ -127,6 +131,7 @@ public class Category {
 					}else{
 						this.coefCorrel += 42;
 					}
+					this.compteur++;
 				}
 				break;
 			case "colmata":
@@ -140,6 +145,7 @@ public class Category {
 					}else {
 						this.coefCorrel += 0.5;
 					}
+					this.compteur++;
 				}
 				break;
 			case "entrerep":
@@ -155,6 +161,7 @@ public class Category {
 					}else {
 						this.coefCorrel += 0.5;
 					}
+					this.compteur++;
 				}
 				break;
 			case "fastfood":
@@ -172,6 +179,7 @@ public class Category {
 					}else {
 						this.coefCorrel += 0.5;
 					}
+					this.compteur++;
 				}
 				break;
 			case "autreregme":
@@ -179,7 +187,6 @@ public class Category {
 			case "age":
 				break;
 		}
-		this.coefCorrel += valToAdd;
 	}
 	
 	@Override
