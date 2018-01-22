@@ -26,16 +26,11 @@ public class LoaderData {
         //Path pathToFile = Paths.get(fileName);
         try {
         	
-	        //FileInputStream input = new FileInputStream(new File(fileName));
+	        FileInputStream input = new FileInputStream(new File(fileName));
 	        CharsetDecoder decoder = Charset.forName("UTF-8").newDecoder();
 	        decoder.onMalformedInput(CodingErrorAction.IGNORE);
 	        
-        	
-            Class cls = Class.forName("ClassLoaderDemo");
-            ClassLoader cLoader = cls.getClassLoader();
-            InputStream i = cLoader.getResourceAsStream(fileName);
-	        //InputStream inp = new ClassLoader.getResourceAsStream(fileName);
-	        InputStreamReader reader = new InputStreamReader(i, decoder);
+	        InputStreamReader reader = new InputStreamReader(input, decoder);
 	        
 	        // create an instance of BufferedReader
 	        BufferedReader bufferedReader = new BufferedReader(reader);
