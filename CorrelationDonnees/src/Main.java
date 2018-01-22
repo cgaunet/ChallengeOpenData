@@ -2,6 +2,8 @@ public class Main {
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		Calculator calculator = new Calculator(LoaderData.readBooksFromCSV("Table_indiv.csv"));
+
+
 		calculator.showResults();
 		// TODO Auto-generated method stub
 //		for (List<String> human : LoaderData.readBooksFromCSV("Table_indiv.csv")){
