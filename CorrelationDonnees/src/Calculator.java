@@ -24,8 +24,10 @@ public class Calculator {
 	public void showResults(){
 		this.calc();
 		this.weightCorrelations();
-		for (Category categoryToPrint : this.mapCorrelations.get("Underweight").values()) {
-			System.out.println(categoryToPrint.getNameCategory() + ": " + categoryToPrint.getCoefCorrel());
+		for (Category categoryToPrint : this.mapCorrelations.get("Overweight").values()) {
+                    //System.out.println(this.mapCorrelations.get("Obesity").size());
+                    //System.out.println(this.mapCounter.get("Obesity"));
+                    System.out.println(categoryToPrint.getNameCategory() + ": " + categoryToPrint.getCoefCorrel());
 		}
 	}
 	

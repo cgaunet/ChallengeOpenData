@@ -1,0 +1,189 @@
+
+public class Category {
+	private String nameCategory;
+	private int indexCategory;
+	private double coefCorrel;
+	private String typeCategory;
+        private int compteurAge;
+	
+	public Category(String nameCategory, int indexCategory, double coefCorrel, String typeCategory) {
+		super();
+		this.nameCategory = nameCategory;
+		this.indexCategory = indexCategory;
+		this.coefCorrel = coefCorrel;
+		this.typeCategory = typeCategory;
+                this.compteurAge = 0;
+	}
+
+	public String getTypeCategory() {
+		return typeCategory;
+	}
+
+	public void setTypeCategory(String typeCategory) {
+		this.typeCategory = typeCategory;
+	}
+
+	public String getNameCategory() {
+		return nameCategory;
+	}
+
+	public void setNameCategory(String nameCategory) {
+		this.nameCategory = nameCategory;
+	}
+
+	public int getIndexCategory() {
+		return indexCategory;
+	}
+
+	public void setIndexCategory(int indexCategory) {
+		this.indexCategory = indexCategory;
+	}
+
+	public double getCoefCorrel() {
+		return coefCorrel;
+	}
+
+	public void setCoefCorrel(double coefCorrel) {
+		this.coefCorrel = coefCorrel;
+	}
+	
+	public void addValueToCoefCorrel(double valToAdd) {
+		switch(this.typeCategory) {
+			case "onsp":
+				if (valToAdd > 0.9 && valToAdd < 2.1) {
+					if (valToAdd < 1.1) {
+						this.coefCorrel++;
+					}else {
+						this.coefCorrel--;
+					}
+				}
+				break;
+			case "num":
+                                //if (this.typeCategory.equals("v2_age") && valToAdd > 0.1){
+                                  //  compteurAge++;
+                                    //System.out.println(compteurAge);
+                                //}
+				this.coefCorrel += valToAdd;
+				break;
+			case "aime":
+				if (valToAdd > 0.9 && valToAdd < 3.1) {
+					if (valToAdd < 1.1) {
+						this.coefCorrel++;
+					}else if (valToAdd < 2.1) {
+						this.coefCorrel += 0.5;
+					}else if (valToAdd < 3.1) {
+						this.coefCorrel += 0.25;
+					}
+				}
+				break;
+			case "sel":
+				if (valToAdd > 1.1 && valToAdd < 4.1) {
+					if (valToAdd < 2.1) {
+						this.coefCorrel += 0.25;
+					}else if (valToAdd < 3.1) {
+						this.coefCorrel += 0.75;
+					}else if (valToAdd < 4.1) {
+						this.coefCorrel++;
+					}
+				}
+				break;
+			case "b11f":
+				if (valToAdd > 1.1 && valToAdd < 8.1) {
+					if (valToAdd < 2.1) {
+						this.coefCorrel += 1.5;
+					}else if (valToAdd < 3.1) {
+						this.coefCorrel += 3.5;
+					}else if (valToAdd < 4.1) {
+						this.coefCorrel += 5.5;
+					}else if (valToAdd < 5.1) {
+						this.coefCorrel += 7.0;
+					}else if (valToAdd < 6.1) {
+						this.coefCorrel += 14;
+					}else if (valToAdd < 7.1) {
+						this.coefCorrel += 21;
+					}else {
+						this.coefCorrel += 28;
+					}
+				}
+				break;
+			case "b12f":
+				if (valToAdd > 1.1 && valToAdd < 10.1) {
+					if (valToAdd < 2.1) {
+						this.coefCorrel += 1.5;
+					}else if (valToAdd < 3.1) {
+						this.coefCorrel += 3.5;
+					}else if (valToAdd < 4.1) {
+						this.coefCorrel += 5.5;
+					}else if (valToAdd < 5.1) {
+						this.coefCorrel += 7.0;
+					}else if (valToAdd < 6.1) {
+						this.coefCorrel += 14;
+					}else if (valToAdd < 7.1) {
+						this.coefCorrel += 21;
+					}else if (valToAdd < 8.1) {
+						this.coefCorrel += 28;
+					}else if (valToAdd < 9.1) {
+						this.coefCorrel += 35;
+					}else{
+						this.coefCorrel += 42;
+					}
+				}
+				break;
+			case "colmata":
+				if (valToAdd > 0.9 && valToAdd < 4.1) {
+					if (valToAdd < 1.1) {
+						this.coefCorrel += 6.5;
+					}else if (valToAdd < 2.1) {
+						this.coefCorrel += 4.5;
+					}else if (valToAdd < 3.1) {
+						this.coefCorrel += 2;
+					}else {
+						this.coefCorrel += 0.5;
+					}
+				}
+				break;
+			case "entrerep":
+				if (valToAdd > 0.9 && valToAdd < 5.1) {
+					if (valToAdd < 1.1) {
+						this.coefCorrel += 28;
+					}else if (valToAdd < 2.1) {
+						this.coefCorrel += 15;
+					}else if (valToAdd < 3.1) {
+						this.coefCorrel += 7;
+					}else if (valToAdd < 4.1) {
+						this.coefCorrel += 2;
+					}else {
+						this.coefCorrel += 0.5;
+					}
+				}
+				break;
+			case "fastfood":
+				if (valToAdd > 0.9 && valToAdd < 6.1) {
+					if (valToAdd < 1.1) {
+						this.coefCorrel += 28;
+					}else if (valToAdd < 2.1) {
+						this.coefCorrel += 18;
+					}else if (valToAdd < 3.1) {
+						this.coefCorrel += 10;
+					}else if (valToAdd < 4.1) {
+						this.coefCorrel += 4;
+					}else if (valToAdd < 5.1) {
+						this.coefCorrel += 2;
+					}else {
+						this.coefCorrel += 0.5;
+					}
+				}
+				break;
+			case "autreregme":
+				break;
+			case "age":
+				break;
+		}
+		this.coefCorrel += valToAdd;
+	}
+	
+	@Override
+    public int hashCode() {
+      return nameCategory.hashCode();
+    }
+}
