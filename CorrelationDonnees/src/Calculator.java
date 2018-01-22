@@ -1,7 +1,5 @@
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 
 public class Calculator {
 	private HashMap<String, HashMap<String, Category>> mapCorrelations;
@@ -33,8 +31,6 @@ public class Calculator {
 	
 	public void calc() {
 		double imc = 0.0;
-		int counterUnderweight, counterNormalWeight, counterOverweight, counterObesity;
-		counterUnderweight = counterNormalWeight = counterOverweight = counterObesity = 0;
 		for (List<String> human : this.listHumans){
 			try{
 				imc = Double.parseDouble(human.get(284));
