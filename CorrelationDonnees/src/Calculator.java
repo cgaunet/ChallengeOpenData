@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,11 +23,16 @@ public class Calculator {
 	public void showResults(){
 		this.calc();
 		this.weightCorrelations();
-		for (Category categoryToPrint : this.mapCorrelations.get("Overweight").values()) {
-                    //System.out.println(this.mapCorrelations.get("Obesity").size());
-                    //System.out.println(this.mapCounter.get("Obesity"));
-                    System.out.println(categoryToPrint.getNameCategory() + ": " + categoryToPrint.getCoefCorrel());
+		try {
+			CSVWriter.TabToCSV(this.mapCorrelations, this.mapCategories);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+//		for (Category categoryToPrint : this.mapCorrelations.get("Normal weight").values()) {
+//                    //System.out.println(this.mapCorrelations.get("Obesity").size());
+//                    //System.out.println(this.mapCounter.get("Obesity"));
+//                    System.out.println(categoryToPrint.getNameCategory() + ": " + categoryToPrint.getCoefCorrel());
+//		}
 	}
 	
 	public void calc() {
@@ -133,8 +139,8 @@ public class Calculator {
 	public void weightCorrelations() {
 		for (String categoryIbm : mapCorrelations.keySet()) {
 			for (Category categoryToUpdate : mapCorrelations.get(categoryIbm).values()) {
-				int numberInThisIBMCategory = this.mapCounter.get(categoryIbm.toString());
-				categoryToUpdate.setCoefCorrel(categoryToUpdate.getCoefCorrel() / numberInThisIBMCategory);
+				//int numberInThisIBMCategory = this.mapCounter.get(categoryIbm.toString());
+				categoryToUpdate.setCoefCorrel(categoryToUpdate.getCoefCorrel() / categoryToUpdate.getCompteur());
 			}
 		}
 	}
