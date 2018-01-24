@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
@@ -18,13 +19,17 @@ public class LoaderData {
 //	public LoaderData() {
 //	}
 	
-	public static List<List<String>> readBooksFromCSV(String fileName) {
+	public static List<List<String>> readBooksFromCSV(String fileName) throws ClassNotFoundException {
         List<List<String>> humans = new ArrayList<>();
-        Path pathToFile = Paths.get(fileName);
+        //URL url = getClass().getResource(fileName);
+        //File file = new File(url.getPath());
+        //Path pathToFile = Paths.get(fileName);
         try {
-	        FileInputStream input = new FileInputStream(new File(pathToFile.toString()));
+        	
+	        FileInputStream input = new FileInputStream(new File(fileName));
 	        CharsetDecoder decoder = Charset.forName("UTF-8").newDecoder();
 	        decoder.onMalformedInput(CodingErrorAction.IGNORE);
+	        
 	        InputStreamReader reader = new InputStreamReader(input, decoder);
 	        
 	        // create an instance of BufferedReader
