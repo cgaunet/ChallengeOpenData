@@ -46,7 +46,7 @@ public class LoaderData {
                 // use string.split to load a string array with the values from
                 // each line of
                 // the file, using a semicolon as the delimiter
-                String[] attributes = line.split(";");
+                String[] attributes = line.split(",");
                 List<String> human = new ArrayList<>(Arrays.asList(attributes));
                 // adding  into ArrayList
                 humans.add(human);

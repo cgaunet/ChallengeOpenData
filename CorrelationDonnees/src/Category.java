@@ -5,6 +5,8 @@ public class Category {
 	private double coefCorrel;
 	private String typeCategory;
     private int compteur;
+    private int counterNo;
+    private int counterYes;
 	
 	public Category(String nameCategory, int indexCategory, double coefCorrel, String typeCategory) {
 		super();
@@ -12,7 +14,7 @@ public class Category {
 		this.indexCategory = indexCategory;
 		this.coefCorrel = coefCorrel;
 		this.typeCategory = typeCategory;
-        this.compteur = 0;
+        this.compteur = this.counterNo = this.counterYes = 0;
 	}
 
 	public String getTypeCategory() {
@@ -55,14 +57,32 @@ public class Category {
 		this.compteur = compteur;
 	}
 
+	public int getCounterNo() {
+		return counterNo;
+	}
+
+	public void setCounterNo(int counterNo) {
+		this.counterNo = counterNo;
+	}
+	
+	public int getCounterYes() {
+		return counterYes;
+	}
+
+	public void setCounterYes(int counterYes) {
+		this.counterYes = counterYes;
+	}
+
 	public void addValueToCoefCorrel(double valToAdd) {
 		switch(this.typeCategory) {
 			case "onsp":
 				if (valToAdd > 0.9 && valToAdd < 2.1) {
 					if (valToAdd < 1.1) {
 						this.coefCorrel++;
+						this.counterYes++;
 					}else {
 						this.coefCorrel--;
+						this.counterNo++;
 					}
 					this.compteur++;
 				}

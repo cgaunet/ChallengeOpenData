@@ -28,15 +28,11 @@ public class Calculator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		for (Category categoryToPrint : this.mapCorrelations.get("Normal weight").values()) {
-//                    //System.out.println(this.mapCorrelations.get("Obesity").size());
-//                    //System.out.println(this.mapCounter.get("Obesity"));
-//                    System.out.println(categoryToPrint.getNameCategory() + ": " + categoryToPrint.getCoefCorrel());
-//		}
 	}
 	
 	public void calc() {
 		double imc = 0.0;
+		double age = 0.0;
 		for (List<String> human : this.listHumans){
 			try{
 				imc = Double.parseDouble(human.get(284));
@@ -54,6 +50,11 @@ public class Calculator {
 					mapCounter.put("Overweight", mapCounter.get("Overweight") + 1);
 				}else{
 					//case Obesity
+//					if (Double.parseDouble(human.get(273)) < 35) {
+//						if (Double.parseDouble(human.get(8)) < 6.1 && Double.parseDouble(human.get(8)) > 0.9) {
+//							System.out.println(Double.parseDouble(human.get(8).toString()));
+//						}
+//					}
 					calcCorrelations("Obesity", human);
 					mapCounter.put("Obesity", mapCounter.get("Obesity") + 1);
 				}
