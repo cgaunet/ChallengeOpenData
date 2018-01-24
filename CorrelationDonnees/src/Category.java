@@ -47,6 +47,14 @@ public class Category {
 		this.coefCorrel = coefCorrel;
 	}
 	
+	public int getCompteur() {
+		return compteur;
+	}
+
+	public void setCompteur(int compteur) {
+		this.compteur = compteur;
+	}
+
 	public void addValueToCoefCorrel(double valToAdd) {
 		switch(this.typeCategory) {
 			case "onsp":
@@ -60,11 +68,10 @@ public class Category {
 				}
 				break;
 			case "num":
-                                //if (this.typeCategory.equals("v2_age") && valToAdd > 0.1){
-                                  //  compteurAge++;
-                                    //System.out.println(compteurAge);
-                                //}
-				this.coefCorrel += valToAdd;
+                if (valToAdd > 0.1){
+    				this.coefCorrel += valToAdd;
+    				this.compteur++;
+                }
 				break;
 			case "aime":
 				if (valToAdd > 0.9 && valToAdd < 3.1) {
@@ -193,4 +200,11 @@ public class Category {
     public int hashCode() {
       return nameCategory.hashCode();
     }
+
+	@Override
+	public String toString() {
+		return ((Double)this.coefCorrel).toString();
+	}
+	
+	
 }
