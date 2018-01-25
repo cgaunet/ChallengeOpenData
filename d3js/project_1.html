@@ -6,29 +6,120 @@
   </head>
   <body>
     <p>Hello!</p>
-    <script type="text/javascript">
-	
-	
-        d3.select("body").append("p").text("IMC Individus:");
-
-	
-
-        d3.csv("Table_indiv.csv")
-	  .row(function(d) {
-	    return {
-	      x: d.bmi
-	    };
-	  })
-	  .get(function(e, data) {
-	    console.log(data[0]);
-	    d3.selectAll("body")
-	      .data(data)
-	      .enter().append("p")
-	      .text(function(d) { return d.x; });
-	  });
-	
-    </script>
+    <div id="graph1">Graphe de l'IMC en fonction de l'âge </div>
   </body>
+<svg width="960" height="500"></svg>
+<script type="text/javascript">
+
+	d3.select("body").append("p").text("IMC Individus:");
+
+
+	/*
+	d3.csv("Table_indiv2.csv")
+		.row(function(d) {
+	    		return {
+	      			x: d.bmi,
+				y: d.v2_age
+	    		};
+	  	})
+	  	.get(function(e, data) {
+			d3.select("body")
+	      	 	  .data(data)
+		  	  .enter().append("p")
+		  	  .text(function(d) { return "IMC: " +d.x +"	AGE: "+d.y; });
+		//scale the axis range
+	
+		x.domain(d3.extent(function(d) { return d.y; }));
+		y.domain(d3.extent(function(d) { return d.x; }));
+		console.log(x);
+		console.log(y);
+
+	
+	});
+
+
+	d3.csv("Table_indiv2.csv")
+		.row(function(d) {
+	    		return {
+	      			x: d.bmi,
+				y: d.v2_age
+	    		};
+	  	})
+	});
+
+
+	d3.csv("Table_indiv2.csv", function(d) {
+	  return {   
+	    age: d.v2_age,
+	    imc: d.bmi,
+	  };
+	}, function(error, rows) {
+	  console.log(rows);
+	});
+
+	*/
+
+	var svg = d3.select("svg"),
+	    margin = {top: 20, right: 20, bottom: 30, left: 50},
+	    width = +svg.attr("width") - margin.left - margin.right,
+	    height = +svg.attr("height") - margin.top - margin.bottom,
+	    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	
+	var x = d3.scaleLinear()
+	.range([0, 100]);
+
+	var y = d3.scaleLinear()
+	.range([0, 50]);
+
+
+	
+	var line = d3.line()
+	     .x(function(d) { return x(d.age); })
+	     .y(function(d) { return y(d.imc); });
+	
+	console.log(d3.extent("Table_indiv2.csv", function(d) {}));
+	
+	d3.csv("Table_indiv2.csv", function(d) {	
+		return {   
+	    		age: d.v2_age,
+	    		imc: d.bmi,
+	 	}, 
+		function(error, data) {
+			if (error) throw error; 
+		
+	 	x.domain(d3.extent(data, function(d) { return d.v2_age; }));
+	 	y.domain(d3.extent(data, function(d) { return d.bmi; }));	
+
+		g.append("g")
+		    .attr("transform", "translate(0," + height + ")")
+		    .call(d3.axisBottom(x))
+		    .select(".domain")
+		    .remove();
+
+		g.append("g")
+		      .call(d3.axisLeft(y))
+		      .append("text")
+		      .attr("fill", "#000")
+		      .attr("transform", "rotate(-90)")
+		      .attr("y", 6)
+		      .attr("dy", "0.71em")
+		      .attr("text-anchor", "end")
+		      .text("imc");	
+
+
+		g.append("path")
+		    .datum(data)
+		    .attr("fill", "none")
+		    .attr("stroke", "steelblue")
+		    .attr("stroke-linejoin", "round")
+		    .attr("stroke-linecap", "round")
+		    .attr("stroke-width", 1.5)
+		    .attr("d", line);
+	}});
+
+</script>
+  
 </html>
 
 
