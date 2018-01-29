@@ -134,8 +134,8 @@ function loadData(callback, toBeUpdated){
         })
         // console.log(window);
         if (toBeUpdated){
-            window.myScatter.clear();
-            window.myScatter.destroy();
+            // window.myScatter.clear();
+            // window.myScatter.destroy();
             // window.myScatter.update();
         }
         callback("test");
@@ -155,7 +155,25 @@ function reduceData(){
         }
     }
     personnes = personnesTemp;
-    myDataIsReady();
+    makeAverage(personnes);
+    var abscisses = [];
+    var ordonnees = [];
+    for (var key in personnes){
+        abscisses.push((personnes[key].x).toString());
+        ordonnees.push(personnes[key].y);
+    }
+
+    var newDataset = {
+        label: 'Dataset 2',
+        backgroundColor: window.chartColors.blue,
+        borderColor: window.chartColors.blue,
+        data: ordonnees,
+        fill: false
+    };
+
+    window.myScatter.config.data.datasets.push(newDataset);
+    window.myScatter.update();
+    // myDataIsReady();
     //console.log(criteres["age"].min);
 }
 function Personne(age, bmi, entrerep, mfruit, bonalim, tele, mvian, mpois, fastfood, aptotal_hebdo, region) {
@@ -210,6 +228,44 @@ function myDataIsReady() {
     makeAverage(personnes);
     var color = Chart.helpers.color;
     //console.log(personnes);
+
+    // var testData = {
+    //     // labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+    //
+    // }
+    var abscisses = [];
+    var ordonnees = [];
+    for (var key in personnes){
+        abscisses.push((personnes[key].x).toString());
+        ordonnees.push(personnes[key].y);
+    }
+
+    var config = {
+        type: 'line',
+        data: {
+            labels : abscisses,
+            datasets: [{
+                label: "Cubic interpolation (monotone)",
+                data: ordonnees,
+                borderColor: window.chartColors.red,
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                fill: false,
+                cubicInterpolationMode: 'monotone'
+            }]
+        },
+        options: {
+            responsive: true,
+            title:{
+                display:true,
+                text:'Chart.js Line Chart - Cubic interpolation mode'
+            },
+            tooltips: {
+                mode: 'index'
+            }
+        }
+    };
+
+
     var scatterChartData = {
         datasets: [{
             label: "My First dataset",
@@ -219,15 +275,18 @@ function myDataIsReady() {
         }]
     };
     var ctx = document.getElementById("lineChart").getContext("2d");
-    window.myScatter = Chart.Scatter(ctx,{
-        data: scatterChartData,
-        options: {
-            title: {
-                display: true,
-                text: 'Chart.js Scatter Chart'
-            },
-        }
-    });
+    window.myScatter = new Chart(ctx,config); //.Scatter
+
+
+    // window.myScatter = Chart.Scatter(ctx,{
+    //     data: scatterChartData,
+    //     options: {
+    //         title: {
+    //             display: true,
+    //             text: 'Chart.js Scatter Chart'
+    //         },
+    //     }
+    // });
     window.myScatter.update();
 };
 </script>
