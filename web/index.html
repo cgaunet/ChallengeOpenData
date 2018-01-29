@@ -3,31 +3,28 @@
 <head>
     <meta charset="utf-8">
     <title>Obésité et Alimentation</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src"AdminLTE/plugins/jQueryUI/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="AdminLTE/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="AdminLTE/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- bootstrap slider -->
+    <link rel="stylesheet" href="AdminLTE/plugins/bootstrap-slider/slider.css">
+    <link rel="stylesheet" href="AdminLTE/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="AdminLTE/dist/css/skins/_all-skins.min.css">
     <script src="https://d3js.org/d3.v4.min.js"></script>    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
-    <script src="js/jquery-csv/src/jquery.csv.min.js"></script>
     <script src="js/utils.js"></script>
     <link href="indexstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-  <!-- The Modal -->
-  <div id="myModal" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>
-        <h2>Challenge Open Data 2017-2018 </h2> </br>
-        Deux onglets de Navigation : Graphes et Carte qui permettent de visualiser les causes de l'obésité en France. </br>
-      </p>
-    </div>
 
-  </div>
+
+
+
 
   <div class="tab">
     <button class="tablinks" onclick="openTab(event, 'Graphe')" id="defaultOpen">Graphes</button>
@@ -36,7 +33,7 @@
   </div>
 
   <div id="Graphe" class="tabcontent">
-    <h3>IMC en fonction de l'age</h3>
+    <h3><center>IMC en fonction de l'age</center></h3>
     <div class="row">
         <div class="col-lg-1">
         </div>
@@ -58,10 +55,63 @@
   </div>
 
   <div id="About" class="tabcontent">
-    <h3>Challenge Open Data</h3>
-    <p>Projet ENSIMAG 2017-2018</p>
+
+    <h1>Challenge Open Data</h1></br>
+    <div class="container-fluid">
+      <div class="col-lg-6">
+        <h3>Projet ENSIMAG 2017-2018</h3>
+        <p>Bienvenue sur notre étude des causes de l'obésité en France. L'ensemble des résultats provient de l'étude  <a href="https://www.anses.fr/fr/content/inca-2-les-r%C3%A9sultats-dune-grande-%C3%A9tude">INCA2</a>,
+          étude de 2006-2007 portée sur un échantillon diversifié de Français en métropole. L'étude originale à un but plus large que les causes de l'obésité, et contient des centaines de critères remplis par les personnes sondées.
+        </br></br>Cependant, pour ce projet nous souhaitions nous concentrer sur les causes possibles de l'obésité en France, en permettant la visualtion de critères par zone démographique et sous forme de graphes.
+        </p>
+
+      </div>
+      <div class="col-lg-3">
+        <h3>INCA_2 - 2006/2007</h3>
+        <p>
+          Le dataset utilisé est disponible ici à cette<a href="https://www.data.gouv.fr/fr/datasets/donnees-de-consommations-et-habitudes-alimentaires-de-letude-inca-2-3/"> adresse</a> .
+        </p>
+      </div>
+      <div class="col-lg-3">
+        <a href="https://www.data.gouv.fr/fr/datasets/donnees-de-consommations-et-habitudes-alimentaires-de-letude-inca-2-3/"><img src="logo-600x600.png" alt="Data Gouv Logo" style="float:center;width:200px;height:200px;"> </a>
+      </div>
+    </div>
+    <div class="col-xs-12" style="height: 40px;"></div>
+    <div class="container-fluid">
+      <a style="color:#939393 ">Cyril Gaunet - Nicolas Follet - Samy Beyou - 2018</a>
+    </div>
+    <div class="col-xs-12" style="height: 40px;"></div>
+  </div>
+  <script src="AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
+  <script src="AdminLTE/dist/js/adminlte.min.js"></script>
+  <script src="AdminLTE/plugins/bootstrap-slider/bootstrap-slider.js"></script>
+  <script src="js/index.js"></script>
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-body">
+          <div class="box box-primary">
+              <div class="box-header with-border">
+                  <h2 class="box-title">Challenge Open Data 2018</h2>
+              </div><!-- /.box-header -->
+              <div class="box-body">
+                <p>
+                  Deux onglets de Navigation : Graphes et Carte qui permettent de visualiser les causes de l'obésité en France. </br>
+                </p>
+                <p>
+                  Pour une explication détaillée de notre outil de visualisation, se reporter à la page <h2>à propos</h2>.
+                </p>
+                 <img src="logo-600x600.png" alt="Data Gouv Logo" style="float:right;width:50px;height:50px;">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <script src="js/index.js"></script>
+
 </body>
 </html>
