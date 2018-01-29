@@ -10,9 +10,9 @@ body {
 /* Style the tab */
 .tab {
    overflow: hidden;
-   border: 1px solid #ffffff;
+   border: 1px solid #000000;
    background-color: #000000;
-   opacity: 0.6;
+   opacity: 0.8;
    font-style: normal;
    font-size: 24px;
    color: white;
