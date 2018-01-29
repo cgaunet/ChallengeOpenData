@@ -304,89 +304,66 @@ $(document).ready(function(){
   }
 
   function remplirTab() {
-  	d3.csv("src/Table_indiv.csv", function(data) {
-  	    data.forEach(function(d) {
+    d3.csv("src/Table_indiv.csv", function(data) {
+      data.forEach(function(d) {
 
-          d.bmi = +d.bmi
-          d["v2_age"] = +d["v2_age"]
-          d["entrerep"] = +d["entrerep"]
-          d["mfruit"] = +d["mfruit"]
-          d["bonalim"] = +d["bonalim"]
-          d["tele"] = +d["tele"]
-          d["mvian"] = +d["mvian"]
-          d["mpois"] = +d["mpois"]
-          d["fastfood"] = +d["fastfood"]
-          d["aptotal_hebdo"] = +d["aptotal_hebdo"]
+        d.bmi = +d.bmi
+        d["v2_age"] = +d["v2_age"]
+        d["entrerep"] = +d["entrerep"]
+        d["mfruit"] = +d["mfruit"]
+        d["bonalim"] = +d["bonalim"]
+        d["tele"] = +d["tele"]
+        d["mvian"] = +d["mvian"]
+        d["mpois"] = +d["mpois"]
+        d["fastfood"] = +d["fastfood"]
+        d["aptotal_hebdo"] = +d["aptotal_hebdo"]
 
-  	      if(!isNaN(d.bmi) && d.bmi.toString().indexOf('.') != -1){
-  	        if (d.bmi < 18) {
-              ajoutData(d, "sousPoids")
-            } else if (d.bmi < 25) {
-              ajoutData(d, "poidsNormal")
-            } else if (d.bmi < 30) {
-              ajoutData(d, "surPoids")
-            } else {
-              ajoutData(d, "obesite")
-            }
+        if(!isNaN(d.bmi) && d.bmi.toString().indexOf('.') != -1){
+          if (d.bmi < 18) {
+            ajoutData(d, "sousPoids")
+          } else if (d.bmi < 25) {
+            ajoutData(d, "poidsNormal")
+          } else if (d.bmi < 30) {
+            ajoutData(d, "surPoids")
+          } else {
+            ajoutData(d, "obesite")
           }
+        }
+      })
+
+
+      d3.json('data/regions.geojson', function(req, geojson) {
+        regions.selectAll("path")
+        .data(geojson.features)
+        .enter()
+        .append("path")
+        .attr('class', 'region')
+        .attr("d", path)
+
+
+        .on("mouseover", function(d) {
+          div.transition()
+          .duration(200)
+          .style("opacity", 0.75);
+
+          div.html("Région : " + d.properties.nom + "<br>"+
+          "Pourcentage obésité: " + ((map[getNumeroRegion(d.properties.nom)]["nombreIndividus"].obesite / map[getNumeroRegion(d.properties.nom)]["nombreIndividus"].total)*100).toFixedDown(2))
+          .style("left", (d3.event.pageX + 30) + "px")
+          .style("top", (d3.event.pageY - 30) + "px")
+          .style("color", "white")
+          console.log("je suis sur une region");
         })
+        .on("mouseout", function(d) {
+          div.transition()
+          .duration(0)
+          .style("opacity", 0);
+          div.html("")
+          .style("left", "0px")
+          .style("top", "0px");
+        })
+      });
 
-
-        d3.json('data/regions.geojson', function(req, geojson) {
-      	   regions.selectAll("path")
-                  .data(geojson.features)
-                  .enter()
-                  .append("path")
-                  .attr('class', 'region')
-                  .attr("d", path)
-
-
-                  .on("mouseover", function(d) {
-                       div.transition()
-                              .duration(200)
-                              .style("opacity", 0.75);
-
-                       div.html("Région : " + d.properties.nom + "<br>"+
-                  			        "Pourcentage obésité: " + ((map[getNumeroRegion(d.properties.nom)]["nombreIndividus"].obesite / map[getNumeroRegion(d.properties.nom)]["nombreIndividus"].total)*100).toFixedDown(2))
-                              .style("left", (d3.event.pageX + 30) + "px")
-                              .style("top", (d3.event.pageY - 30) + "px")
-                              .style("color", "white")
-                       console.log("je suis sur une region");
-                  })
-                  .on("mouseout", function(d) {
-                  		div.transition()
-                              .duration(0)
-                              .style("opacity", 0);
-                  		div.html("")
-                              .style("left", "0px")
-                              .style("top", "0px");
-                  })
-                  /*.style("fill", function(d) {
-                    if(getRegionNumber(d.properties.nom) != 0){
-                      console.log(mapObese[getRegionNumber(d.properties.nom)]);
-                      if (((map[getRegionNumber(d.properties.nom)]["nombreIndividus"].obesite / map[getRegionNumber(d.properties.nom)]["nombreIndividus"].total)*100).toFixedDown(2) < 8){
-                        return tabCouleur[0];
-                      }
-                      if (((mapObese[getRegionNumber(d.properties.nom)]["nombreIndividus"].obesite / map[getRegionNumber(d.properties.nom)]["nombreIndividus"].total)*100).toFixedDown(2) >= 8 &&
-                          ((mapObese[getRegionNumber(d.properties.nom)]["nombreIndividus"].obesite / map[getRegionNumber(d.properties.nom)]["nombreIndividus"].total)*100).toFixedDown(2) < 10){
-                        return tabCouleur[1];
-                      }
-                      if (((mapObese[getRegionNumber(d.properties.nom)]["nombreIndividus"].obesite / map[getRegionNumber(d.properties.nom)]["nombreIndividus"].total)*100).toFixedDown(2) >= 10 &&
-                          ((mapObese[getRegionNumber(d.properties.nom)]["nombreIndividus"].obesite / map[getRegionNumber(d.properties.nom)]["nombreIndividus"].total)*100).toFixedDown(2) < 13){
-                        return tabCouleur[2];
-                      }
-                      if (((mapObese[getRegionNumber(d.properties.nom)]["nombreIndividus"].obesite / map[getRegionNumber(d.properties.nom)]["nombreIndividus"].total)*100).toFixedDown(2) >= 13 &&
-                          ((mapObese[getRegionNumber(d.properties.nom)]["nombreIndividus"].obesite / map[getRegionNumber(d.properties.nom)]["nombreIndividus"].total)*100).toFixedDown(2) < 15){
-                        return tabCouleur[3];
-                      }
-                      if (((mapObese[getRegionNumber(d.properties.nom)]["nombreIndividus"].obesite / map[getRegionNumber(d.properties.nom)]["nombreIndividus"].total)*100).toFixedDown(2) > 15){
-                        return tabCouleur[4];
-                      }
-                    }
-                  });*/
-          });
-
-  	})
+    })
     //ajout de la légende :
 
   }
@@ -396,7 +373,7 @@ $(document).ready(function(){
   function getNumeroRegion(nomRegion){
     for (var i = 1; i < 22; i++) {
       if (map[i].region == nomRegion) {
-	       return i;
+        return i;
       }
     }
   }
@@ -407,85 +384,28 @@ $(document).ready(function(){
   var path = d3.geoPath();
 
   var projection = d3.geoConicConformal()
-	.center([2.454071, 46.279229])
-	.scale(2600)
-	.translate([width / 2, height / 2]);
+  .center([2.454071, 46.279229])
+  .scale(2600)
+  .translate([width / 2, height / 2]);
 
   path.projection(projection);
 
   var svg = d3.select('#map').append("svg")
-	.attr("id", "svg")
-	.attr("width", width)
-	.attr("height", height);
+  .attr("id", "svg")
+  .attr("width", width)
+  .attr("height", height);
 
   var regions = svg.append("g");
 
-
-  //<8        #5B0000
-  // 8 < 10   #AF0000
-  // 10 < 13  #D80000
-  // 13 < 15     #FE345D
-  // >15
   Number.prototype.toFixedDown = function(digits) {
     var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
-        m = this.toString().match(re);
+    m = this.toString().match(re);
     return m ? parseFloat(m[1]) : this.valueOf();
   };
 
-  // d3.json('data/regions.geojson', function(req, geojson) {
-	//    regions.selectAll("path")
-  //           .data(geojson.features)
-  //           .enter()
-  //           .append("path")
-  //           .attr('class', 'region')
-  //           .attr("d", path)
-  //           .style("fill", function(d) {
-  //             if(getRegionNumber(d.properties.nom) != 0){
-  //               console.log(mapObese[getRegionNumber(d.properties.nom)]);
-  //               if (((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) < 8){
-  //                 return '#5B0000';
-  //               }
-  //               if (((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) >= 8 &&
-  //                   ((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) < 10){
-  //                 return '#AF0000';
-  //               }
-  //               if (((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) >= 10 &&
-  //                   ((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) < 13){
-  //                 return '#D80000';
-  //               }
-  //               if (((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) >= 13 &&
-  //                   ((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) < 15){
-  //                 return '#FE345D';
-  //               }
-  //               if (((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) > 15){
-  //                 return '#ff6bb0';
-  //               }
-  //             }
-  //           })
-  //
-  //           .on("mouseover", function(d) {
-  //                div.transition()
-  //                       .duration(200)
-  //                       .style("opacity", .9);
-  //                div.html("Région : " + d.properties.nom + "<br>"+
-  //           			        "Pourcentage obésité: " + ((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2))
-  //                       .style("left", (d3.event.pageX + 30) + "px")
-  //                       .style("top", (d3.event.pageY - 30) + "px")
-  //
-  //           })
-  //           .on("mouseout", function(d) {
-  //           		div.transition()
-  //                       .duration(0)
-  //                       .style("opacity", 0);
-  //           		div.html("")
-  //                       .style("left", "0px")
-  //                       .style("top", "0px");
-  //           });
-  //
-  //   });
 
-    var div = d3.select("body").append("div")
-	   .attr("class", "tooltip")
-	    .style("opacity", 0);
+  var div = d3.select("body").append("div")
+  .attr("class", "tooltip")
+  .style("opacity", 0);
 
 })
