@@ -112,7 +112,7 @@ document.getElementById("defaultOpen").click();
     type: 'line',
     data: {
       datasets: [{
-        
+
         label: "Data Gouv INCA2",
         borderColor: window.chartColors.red,
         backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
@@ -150,7 +150,6 @@ document.getElementById("defaultOpen").click();
 
 
   function myDataIsReady() {
-      console.log(personnes);
       var ctx = document.getElementById("lineChart").getContext("2d");
       //window.myLine = new Chart(ctx, config);
 
