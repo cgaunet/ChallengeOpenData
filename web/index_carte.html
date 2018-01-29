@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>D3 Test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
+    <script src="js/jquery-csv/src/jquery.csv.min.js"></script>
+    <script src="js/utils.js"></script>
+    <style>
+       canvas {
+           -moz-user-select: none;
+           -webkit-user-select: none;
+           -ms-user-select: none;
+       }
+   </style>
+</head>
+<body>
+    <!-- <div class="row">
+        <div class="col-lg-6">
+            <p>My first paragraph.</p>
+        </div>
+        <div class="col-lg-6">
+            <p>My first paragraph2</p>
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="width:75%; text-align: center;">
+                <canvas id="canvas"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5" style="text-align: right">
+            <button type="button" class="btn btn-success" id="display">Display data</button>
+        </div>
+        <div class="col-lg-6">
+
+        </div>
+    </div>
+    <link rel="stylesheet" type="text/css" href="css/regions.css">
+    <div id="map">
+    </div>
+    <script src="js/map.js"></script>
+    <script type="text/javascript">
+        window.onload = function(){
+            var scatterChartData = {
+                datasets: [{
+                    label: "My First dataset",
+                    // borderColor: window.chartColors.red,
+                    // backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
+                    data: []
+                }]
+            };
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myScatter = Chart.Scatter(ctx, {
+                data: scatterChartData,
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Chart.js Scatter Chart'
+                    },
+                }
+            });
+        }
+        function Personne(age, bmi) {
+            this.x = age;
+            this.y = bmi;
+        }
+        var personnes = [];
+        $("#display").click(function () {
+            personnes = [];
+            d3.csv("src/Table_indiv.csv", function(data) {
+                data.forEach(function(d) {
+                    d.bmi = +d.bmi;
+                    d["v2_age"] = +d["v2_age"];
+                    if(!isNaN(d.bmi) && d.bmi.toString().indexOf('.') != -1 && !isNaN(d.bmi) && d.bmi.toString().indexOf('.') != -1){
+                        var personneTemp = new Personne(d["v2_age"], d.bmi);
+                        personnes.push(personneTemp);
+                    }
+                });
+                personnes.sort(function(a, b) {
+                    return a.x - b.x;
+                })
+                makeAverage(personnes);
+                myDataIsReady();
+            });
+        });
+
+        function makeAverage(tabToMakeAverage){
+            var currentAge = tabToMakeAverage[0].x;
+            //var newPersonnes = [];
+            personnes = []
+            var counter = 1;
+            var sum = tabToMakeAverage[0].y;
+            for (var key in tabToMakeAverage){
+                var ageCour = tabToMakeAverage[key].x;
+                var imcCour = tabToMakeAverage[key].y;
+                if (ageCour != currentAge){
+                    personnes.push({x: currentAge, y: sum / counter});
+                    currentAge = ageCour;
+                    sum = imcCour;
+                    counter = 1;
+                }else{
+                    sum += imcCour;
+                    counter++;
+                }
+            }
+        }
+
+        function myDataIsReady() {
+            var color = Chart.helpers.color;
+            //console.log(personnes);
+            var scatterChartData = {
+                datasets: [{
+                    label: "My First dataset",
+                    borderColor: window.chartColors.red,
+                    backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
+                    data: personnes
+                }]
+            };
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myScatter = Chart.Scatter(ctx,{
+                data: scatterChartData,
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Chart.js Scatter Chart'
+                    },
+                }
+            });
+        };
+    </script>
+</body>
+</html>
