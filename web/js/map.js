@@ -35,7 +35,7 @@ $(document).ready(function(){
             })
             .on("mouseout", function(d) {
 		div.transition()
-                    .duration(500)
+                    .duration(000)
                     .style("opacity", 0);
 		div.html("")
                     .style("left", "0px")
