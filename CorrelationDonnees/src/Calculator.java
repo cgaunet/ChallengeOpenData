@@ -32,7 +32,6 @@ public class Calculator {
 	
 	public void calc() {
 		double imc = 0.0;
-		double age = 0.0;
 		for (List<String> human : this.listHumans){
 			try{
 				imc = Double.parseDouble(human.get(284));
