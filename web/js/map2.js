@@ -11,8 +11,7 @@ function numeroRegion(nomRegion){
     return 0
 }
 
-function pourcentageParRapportMoyenne(moy, numeroRegion){
-    val = pourcentageObesite(numeroRegion)
+function pourcentageParRapportMoyenne(moy, val){
     if(val - moy > 0){
         return "+"+(((val - moy) / val) * 100).toFixedDown(2);
     }else {
