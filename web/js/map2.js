@@ -1,9 +1,48 @@
+var map = creerMap()
+
+var tabCouleur = ["#adccff","#77aaff","#478cff","#0562ff", "#001e82"];
+
+function numeroRegion(nomRegion){
+    for (var i = 1; i < 22; i++) {
+        if (map[i].region == nomRegion) {
+            return i
+        }
+    }
+    return 0
+}
+
+function pourcentageParRapportMoyenne(moy, numeroRegion){
+    val = pourcentageObesite(numeroRegion)
+    if(val - moy > 0){
+        return "+"+(((val - moy) / val) * 100).toFixedDown(2);
+    }else {
+        return "-"+(((val - moy) / val) * 100).toFixedDown(2);
+    }
+}
+
+function calculerMoyenneObeses(){
+    var moy = 0;
+    for (var i = 1; i < 22; i++) {
+        moy += pourcentageObesite(i);
+    }
+    moy = moy/21;
+    return moy;
+}
+
+function pourcentageObesite(numeroRegion) {
+    return ((map[numeroRegion]["nombreIndividus"].obesite / map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
+}
+
+Number.prototype.toFixedDown = function(digits) {
+    var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
+    m = this.toString().match(re);
+    return m ? parseFloat(m[1]) : this.valueOf();
+};
+
 $(document).ready(function(){
-    var map = creerMap()
 
     remplirTab();
 
-    var tabCouleur = ["#adccff","#77aaff","#478cff","#0562ff", "#001e82"];
 
     function ajoutData(data, categorie) {
         map[data.region]["nombreIndividus"].total += 1
@@ -68,7 +107,6 @@ $(document).ready(function(){
                 }
             })
 
-
             d3.json('data/regions.geojson', function(req, geojson) {
                 regions.selectAll("path")
                 .data(geojson.features)
@@ -104,6 +142,7 @@ $(document).ready(function(){
 
     }
 
+
     //fonction retournant le text à afficher lors du passage sur une région
     function textMouseOver(numeroRegion, nomRegion) {
         return htmlPourcentageObesite(numeroRegion, nomRegion)
@@ -114,18 +153,11 @@ $(document).ready(function(){
         return couleurObesite(numeroRegion, nomRegion)
     }
 
-    function pourcentageObesite(numeroRegion) {
-        return ((map[numeroRegion]["nombreIndividus"].obesite / map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
-    }
 
-    function numeroRegion(nomRegion){
-        for (var i = 1; i < 22; i++) {
-            if (map[i].region == nomRegion) {
-                return i
-            }
-        }
-        return 0
-    }
+
+
+    var legendRectSize = 18;
+    var legendSpacing = 4;
 
 
     var width = 750, height = 750;
@@ -134,7 +166,7 @@ $(document).ready(function(){
 
     var projection = d3.geoConicConformal()
     .center([2.454071, 46.279229])
-    .scale(2600)
+    .scale(3100)
     .translate([width / 2, height / 2]);
 
     path.projection(projection);
@@ -146,15 +178,12 @@ $(document).ready(function(){
 
     var regions = svg.append("g");
 
-    Number.prototype.toFixedDown = function(digits) {
-        var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
-        m = this.toString().match(re);
-        return m ? parseFloat(m[1]) : this.valueOf();
-    };
 
 
     var div = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
+
+
 
 })

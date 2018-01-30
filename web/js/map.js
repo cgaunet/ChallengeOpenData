@@ -98,34 +98,12 @@ $(document).ready(function(){
                               .style("left", "0px")
                               .style("top", "0px");
                   })
-                  .style("fill", function(d) {
-                    if(getRegionNumber(d.properties.nom) != 0){
-                      console.log(mapObese[getRegionNumber(d.properties.nom)]);
-                      if (((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) < 8){
-                        return tabCouleur[0];
-                      }
-                      if (((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) >= 8 &&
-                          ((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) < 10){
-                        return tabCouleur[1];
-                      }
-                      if (((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) >= 10 &&
-                          ((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) < 13){
-                        return tabCouleur[2];
-                      }
-                      if (((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) >= 13 &&
-                          ((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) < 15){
-                        return tabCouleur[3];
-                      }
-                      if (((mapObese[getRegionNumber(d.properties.nom)].percentage)*100).toFixedDown(2) > 15){
-                        return tabCouleur[4];
-                      }
-                    }
-                  });
+
           });
 
   	})
     //ajout de la légende :
-    
+
   }
 
   function updateRegionAverage() {
