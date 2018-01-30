@@ -5867,12 +5867,10 @@ button.close {
   overflow: hidden;
 }
 .modal {
-  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1050;
   display: none;
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
@@ -5886,12 +5884,17 @@ button.close {
       -ms-transform: translate(0, -25%);
        -o-transform: translate(0, -25%);
           transform: translate(0, -25%);
+  z-index: -1050;
 }
 .modal.in .modal-dialog {
   -webkit-transform: translate(0, 0);
       -ms-transform: translate(0, 0);
        -o-transform: translate(0, 0);
           transform: translate(0, 0);
+}
+.modal.fade.in{
+  z-index:1050;
+  top:50%;
 }
 .modal-open .modal {
   overflow-x: hidden;

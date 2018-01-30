@@ -28,23 +28,105 @@ document.getElementById("defaultOpen").click();
       this.y = bmi;
   }
 
+
+  window.onload = function(){
+
+  }
+  /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+  function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("titreCarte").style.marginLeft = "250px";
+      document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+  }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+  function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+      document.body.style.backgroundColor = "white";
+  }
   // Get the modal
   //var modal = document.getElementById('#myModal');
 
   // Get the <span> element that closes the modal
   //var span = document.getElementsByClassName("close")[0];
-  window.onload = function(){
-
-  }
-
-
   //  window.onclick = function(event) {
   //      if (event.target == modal) {
   //         modal.style.display = "none";
   //     }
   // }
+
+  var titredeCarte = "l'obésité";
+
+  function htmlFuncMouseOver(numeroRegion, nomRegion) { return htmlPourcentageObesite(numeroRegion, nomRegion)}
+  function couleurCarte (numeroRegion, nomRegion) {return couleurObesite(numeroRegion, nomRegion)}
+
+  function choixObesite(){
+    titredeCarte = "l'obésité"
+    updateTitreCarte();
+    htmlFuncMouseOver = function (numeroRegion, nomRegion) {return htmlPourcentageObesite(numeroRegion, nomRegion)}
+    couleurCarte = function (numeroRegion, nomRegion) {return couleurObesite(numeroRegion, nomRegion)}
+    updateCouleurCarte();
+
+  }
+  function choixFastFood(){
+    titredeCarte = "la consommation de Fast food"
+    updateTitreCarte();
+    htmlFuncMouseOver = function (numeroRegion, nomRegion) {return htmlFastFood(numeroRegion, nomRegion)}
+    couleurCarte = function (numeroRegion, nomRegion) {return couleurFastFood(numeroRegion, nomRegion)}
+    updateCouleurCarte();
+  }
+  
+  function choixViande(){
+    titredeCarte = "la consommation de viande"
+    updateTitreCarte();
+    updateCouleurCarte();
+
+  }
+  function choixPoisson(){
+    titredeCarte = "la consommation de poisson"
+    updateTitreCarte();
+    htmlFuncMouseOver = function (numeroRegion, nomRegion) {return htmlMPois(numeroRegion, nomRegion)}
+    couleurCarte = function (numeroRegion, nomRegion) {return couleurPoisson(numeroRegion, nomRegion)}
+    updateCouleurCarte();
+  }
+  function choixFruit(){
+    titredeCarte = "la consommation de fruits"
+    updateTitreCarte();
+    updateCouleurCarte();
+  }
+
+
+
+  function updateTitreCarte(){
+    var text = "";
+    text += "<b>Carte de ";
+    text += titredeCarte;
+    text += "</b>";
+    document.getElementById("titreCarte").innerHTML = text;
+
+  }
+
+
+
   $(document).ready(function() {
-    $('#myModal').modal('show');
+    //$('#myModal').modal('show');
+
+    // $("#sidebar").mCustomScrollbar({
+    //  theme: "minimal"
+    // });
+    //
+    // $('#sidebarCollapse').on('click', function () {
+    //     $('#sidebar').toggleClass('active');
+    //     $('.collapse.in').toggleClass('in');
+    //     // and also adjust aria-expanded attributes we use for the open/closed arrows
+    //     // in our CSS
+    //     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    // });
+
+
+    console.log(document.getElementById("titreCarte").innerHTML);
+
     personnes = [];
     d3.csv("src/Table_indiv.csv", function(data) {
         data.forEach(function(d) {

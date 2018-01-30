@@ -1,32 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Obésité et Alimentation</title>
-    <link rel="stylesheet" href="AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <script src="AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src"AdminLTE/plugins/jQueryUI/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="AdminLTE/bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="AdminLTE/bower_components/Ionicons/css/ionicons.min.css">
-    <!-- bootstrap slider -->
-    <link rel="stylesheet" href="AdminLTE/plugins/bootstrap-slider/slider.css">
-    <link rel="stylesheet" href="AdminLTE/dist/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="AdminLTE/dist/css/skins/_all-skins.min.css">
-    <script src="https://d3js.org/d3.v4.min.js"></script>    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
-    <script src="js/utils.js"></script>
-    <!--
-    <script src="https://raw.githubusercontent.com/susielu/d3-legend/master/d3-legend.min.js"></script>
--->
-    <link href="indexstyle.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <title>Obésité et Alimentation</title>
+
+  <link rel="stylesheet" href="AdminLTE/bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="AdminLTE/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="AdminLTE/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- bootstrap slider -->
+  <link rel="stylesheet" href="AdminLTE/plugins/bootstrap-slider/slider.css">
+  <link rel="stylesheet" href="AdminLTE/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="AdminLTE/dist/css/skins/_all-skins.min.css">
+  <link href="indexstyle.css" rel="stylesheet" type="text/css">
+  <!-- <link href="css/scrollbar.css" rel="stylesheet"  type="text/css"> -->
+
 </head>
 
 <body>
-
-
-
-
 
 
   <div class="tab">
@@ -38,28 +28,47 @@
   <div id="Graphe" class="tabcontent">
     <h3><center>IMC en fonction de l'age</center></h3>
     <div class="row">
-        <div class="col-lg-1">
+      <div class="col-lg-2">
+      </div>
+
+      </div>
+      <div class="col-lg-10">
+        <div style="width:100%; text-align: center;">
+          <canvas id="lineChart"></canvas>
         </div>
-        <div class="col-lg-10">
-            <div style="width:100%; text-align: center;">
-                <canvas id="lineChart"></canvas>
-            </div>
-        </div>
+      </div>
     </div>
-
-
   </div>
 
   <div id="Carte" class="tabcontent">
-    <h3>Carte de l'obésité</h3>
+    <center><h3><div id="titreCarte"></h3></center>
     <link rel="stylesheet" type="text/css" href="css/regions.css">
+    <div class="container clearfix">
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main pull-right">
 
-    <div id="map"></div>
-    <script src="js/mapDefinition.js"></script>
-    <script src="js/map2.js"></script>
-    <script src="js/couleursCarte.js"></script>
-    <script src="js/textMouseOver.js"></script>
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#" onclick="choixObesite()" id="defaultChoix">Obésité</a>
+            <a href="#" onclick="choixFastFood()">Fast food</a>
+            <a href="#" onclick="choixViande()">Viandes</a>
+            <a href="#" onclick="choixPoisson()">Poisson</a>
+            <a href="#" onclick="choixFruit()">Fruits</a>
+          </div>
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Critères </span>
+          <div id="map"></div>
+        </div>
+      <!-- <div class="col-lg-4"> -->
+        <!-- sidebar!-->
 
+          <!-- <div class="w3-sidebar w3-bar-block" style="width:25%">
+            <h3 class="w3-bar-item">Critères</h3>
+            <a href="#" class="w3-bar-item w3-button">Link 1</a>
+            <a href="#" class="w3-bar-item w3-button">Link 2</a>
+            <a href="#" class="w3-bar-item w3-button">Link 3</a>
+          </div> -->
+      </div>
+    </div>
   </div>
 
   <div id="About" class="tabcontent">
@@ -74,35 +83,35 @@
           <p>Bienvenue sur notre étude des causes de l'obésité en France. L'ensemble des résultats provient de l'étude  <a href="https://www.anses.fr/fr/content/inca-2-les-r%C3%A9sultats-dune-grande-%C3%A9tude">INCA2</a>,
             étude de 2006-2007 portée sur un échantillon diversifié de Français en métropole. L'étude originale à un but plus large que les causes de l'obésité, et contient des centaines de critères remplis par les personnes sondées.
           </br></br>Cependant, pour ce projet nous souhaitions nous concentrer sur les causes possibles de l'obésité en France, en permettant la visualtion de critères par zone démographique et sous forme de graphes.
-          </p>
+        </p>
 
-        </div>
-        <div class="col-lg-3">
-          <h3>INCA_2 - 2006/2007</h3>
-          <p>
-            Le dataset utilisé est disponible ici à cette<a href="https://www.data.gouv.fr/fr/datasets/donnees-de-consommations-et-habitudes-alimentaires-de-letude-inca-2-3/"> adresse</a> .
-          </p>
-        </div>
-        <div class="col-lg-3">
-          <a href="https://www.data.gouv.fr/fr/datasets/donnees-de-consommations-et-habitudes-alimentaires-de-letude-inca-2-3/"><img src="logo-600x600.png" alt="Data Gouv Logo" style="float:center;width:200px;height:200px;"> </a>
-        </div>
       </div>
-      <div class="row">
-        <div class="col-lg-6">
-          <h3>Prévalence Obésité</h3>
-          <p>
-            La prévalence d'obésité reflète de la proportion par région de nombre de personnes obèses. Une personne est dite obèse si son IMC est supérieur à 30. </br>
-            L'IMC se calcule en divisant le poids de la personne par sa taille au carré. </br>
-            Il est important de noter que les causes de l'obésité sont diverses et que l'IMC est un <b>indicateur très simple </b> ne reflétant pas tout le temps la réalité.
-            Il s'est imposé grâce à sa simplicité de calcul, et car il permet un regard totalement objectif sur la corpulence de l'individu. </br>
-            De nouvelles alternatives sont apparus récemment, on peut citer notamment le <a href="https://www.calculersonimc.fr/articles/nouvel-imc-nick-trefethen">nouvel IMC</a>, qui permet de ne pas creuser les écarts entre les personnes de petite taille et de grande taille.
-          </p>
-        </div>
-        <div class="col-lg-6">
-          <h3>Prévalence Obésité</h3>
-          <p>
-            
-          </p>
+      <div class="col-lg-3">
+        <h3>INCA_2 - 2006/2007</h3>
+        <p>
+          Le dataset utilisé est disponible ici à cette<a href="https://www.data.gouv.fr/fr/datasets/donnees-de-consommations-et-habitudes-alimentaires-de-letude-inca-2-3/"> adresse</a> .
+        </p>
+      </div>
+      <div class="col-lg-3">
+        <a href="https://www.data.gouv.fr/fr/datasets/donnees-de-consommations-et-habitudes-alimentaires-de-letude-inca-2-3/"><img src="logo-600x600.png" alt="Data Gouv Logo" style="float:center;width:200px;height:200px;"> </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h3>Prévalence Obésité</h3>
+        <p>
+          La prévalence d'obésité reflète de la proportion par région de nombre de personnes obèses. Une personne est dite obèse si son IMC est supérieur à 30. </br>
+          L'IMC se calcule en divisant le poids de la personne par sa taille au carré. </br>
+          Il est important de noter que les causes de l'obésité sont diverses et que l'IMC est un <b>indicateur très simple </b> ne reflétant pas tout le temps la réalité.
+          Il s'est imposé grâce à sa simplicité de calcul, et car il permet un regard totalement objectif sur la corpulence de l'individu. </br>
+          De nouvelles alternatives sont apparus récemment, on peut citer notamment le <a href="https://www.calculersonimc.fr/articles/nouvel-imc-nick-trefethen">nouvel IMC</a>, qui permet de ne pas creuser les écarts entre les personnes de petite taille et de grande taille.
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <h3>Prévalence Obésité</h3>
+        <p>
+
+        </p>
       </div>
     </div>
 
@@ -113,35 +122,54 @@
     </div>
     <div class="col-xs-12" style="height: 40px;"></div>
   </div>
-  <script src="AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
-  <script src="AdminLTE/dist/js/adminlte.min.js"></script>
-  <script src="AdminLTE/plugins/bootstrap-slider/bootstrap-slider.js"></script>
-  <script src="js/index.js"></script>
+
+
+
   <div class="modal fade" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
 
         <div class="modal-body">
           <div class="box box-primary">
-              <div class="box-header with-border">
-                  <h2 class="box-title">Challenge Open Data 2018</h2>
-              </div><!-- /.box-header -->
-              <div class="box-body">
-                <p>
-                  Deux onglets de Navigation : Graphes et Carte qui permettent de visualiser les causes de l'obésité en France. </br>
-                </p>
-                <p>
-                  Pour une explication détaillée de notre outil de visualisation, se reporter à la page <h2>à propos</h2>.
-                </p>
-                 <img src="logo-600x600.png" alt="Data Gouv Logo" style="float:right;width:50px;height:50px;">
-              </div>
+            <div class="box-header with-border">
+              <h2 class="box-title">Challenge Open Data 2018</h2>
+            </div>
+            <div class="box-body">
+              <p>
+                Deux onglets de Navigation : Graphes et Carte qui permettent de visualiser les causes de l'obésité en France. </br>
+              </p>
+              <p>
+                Pour une explication détaillée de notre outil de visualisation, se reporter à la page <h2>à propos</h2>.
+              </p>
+              <img src="logo-600x600.png" alt="Data Gouv Logo" style="float:right;width:50px;height:50px;">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <script src="AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src"AdminLTE/plugins/jQueryUI/jquery-ui.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
+  <script src="js/utils.js"></script>
+  <!--
+  <script src="https://raw.githubusercontent.com/susielu/d3-legend/master/d3-legend.min.js"></script>
+-->
+<!-- <script src="js/scrollbar.js"></script> -->
+<script src="AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="AdminLTE/dist/js/adminlte.min.js"></script>
+<script src="AdminLTE/plugins/bootstrap-slider/bootstrap-slider.js"></script>
+
+<script src="js/index.js"></script>
+<script src="js/mapDefinition.js"></script>
+<script src="js/map2.js"></script>
+<script src="js/couleursCarte.js"></script>
+<script src="js/textMouseOver.js"></script>
 
 
 </body>
