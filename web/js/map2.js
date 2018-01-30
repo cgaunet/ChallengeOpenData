@@ -82,7 +82,7 @@ function remplirTab() {
         .duration(200)
         .style("opacity", 0.75);
 
-        div.html(textMouseOver(numeroRegion(d.properties.nom),d.properties.nom))
+        div.html(htmlMouseOver(numeroRegion(d.properties.nom),d.properties.nom))
         .style("left", (d3.event.pageX + 30) + "px")
         .style("top", (d3.event.pageY - 30) + "px")
         .style("color", "white")
@@ -95,7 +95,7 @@ function remplirTab() {
         .style("left", "0px")
         .style("top", "0px");
       })
-      .style("fill", function(d) { return couleurRegion(numeroRegion(d.properties.nom),d.properties.nom) })
+      .style("fill", function(d) { return couleurCarte(numeroRegion(d.properties.nom),d.properties.nom) })
     });
 
   })
@@ -103,16 +103,6 @@ function remplirTab() {
 
 }
 
-
-//fonction retournant le text à afficher lors du passage sur une région
-function textMouseOver(numeroRegion, nomRegion) {
-  return htmlFuncMouseOver(numeroRegion, nomRegion)
-}
-
-//fonction déterminant la couleur des régions
-function couleurRegion(numeroRegion, nomRegion) {
-  return couleurCarte(numeroRegion, nomRegion)
-}
 
 function updateCouleurCarte(){
   var divs = document.getElementsByTagName("path");
