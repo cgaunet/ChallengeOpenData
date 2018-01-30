@@ -23,6 +23,8 @@
     <!-- bootstrap slider -->
     <link rel="stylesheet" href="AdminLTE/plugins/bootstrap-slider/slider.css">
     <!-- Theme style -->
+    <!-- <link rel="stylesheet" href="AdminLTE/bower_components/select2/dist/css/select2.min.css"> -->
+    <link rel="stylesheet" href="AdminLTE/plugins/iCheck/all.css">
     <link rel="stylesheet" href="AdminLTE/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="AdminLTE/dist/css/skins/_all-skins.min.css">
     <!-- FastClick -->
@@ -65,13 +67,38 @@
     <button type="button" class="btn btn-success" id="display">Display data</button>
 </div> -->
 <div class="col-lg-6">
-    <p><b>Âge :</b></p>
-    <input type="text" id="slider-age" value="" class="slider form-control" data-slider-min="3" data-slider-max="78" data-slider-step="1" data-slider-value="[3,78]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="red">
+    <p><b>Activité physique totale hebdomaire (en minutes) :</b></p>
+    <input type="text" id="slider-aptotalhebdo" value="" class="slider form-control" data-slider-min="0" data-slider-max="2000" data-slider-step="100" data-slider-value="[0,2000]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="red">
 </div>
 <div class="col-lg-6">
+    <p><b>Temps passé devant la télévision (en minutes/semaine) :</b></p>
+    <input type="text" id="slider-tele" value="" class="slider form-control" data-slider-min="0" data-slider-max="500" data-slider-step="5" data-slider-value="[0,500]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="yellow">
+</div>
+</div>
+<div class="row margin">
+    <div class="col-lg-6">
+        <p><b>Considère qu'il/elle possède une bonne alimentation :</b></p>
+        <div class="form-group">
+            <fieldset id="checkboxesBonAlim">
+                <label>
+                    <input type="checkbox" name="ouiBonAlim" class="flat-red" value="1" checked>
+                    Oui
+                </label>
+                <label>
+                    <input type="checkbox" name="nspBonAlim" class="flat-red" value="3" checked>
+                    Ne sait pas
+                </label>
+                <label>
+                    <input type="checkbox" name="nonBonAlim" class="flat-red" value="2"checked>
+                    Non
+                </label>
+            </fieldset>
+        </div>
+    </div>
+    <!-- <div class="col-lg-6">
     <p><b>Temps passé devant la télévision (en minutes) :</b></p>
     <input type="text" id="slider-tele" value="Âge" class="slider form-control" data-slider-min="0" data-slider-max="500" data-slider-step="5" data-slider-value="[0,500]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="yellow">
-</div>
+</div> -->
 </div>
 
 
@@ -99,200 +126,7 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
 
-<script type="text/javascript">
-var personnes = [];
-var criteres = {};
+<script src="js/graph.js"></script>
 
-function initCriteres(){
-    criteres["age"] = {min: 3, max: 78};
-    criteres["tele"] = {min: 0, max: 500};
-}
-
-$(function() {
-    initCriteres();
-    loadData(myDataIsReady, false);
-    //myDataIsReady();
-    $('.slider').slider();
-});
-
-function loadData(callback, toBeUpdated){
-    personnes = [];
-    d3.csv("src/Table_indiv.csv", function(data) {
-        data.forEach(function(d) {
-            d.bmi = +d.bmi;
-            d["v2_age"] = +d["v2_age"];
-            d.tele = +d.tele;
-            // console.log(d["v2_age"]);
-            if(!isNaN(d["v2_age"]) && !isNaN(d.bmi) && d.bmi.toString().indexOf('.') != -1){ //
-                var personneTemp = new Personne(d["v2_age"], d.bmi, d.entrerep, d.mfruit, d.bonalim, d.tele, d.mvian, d.mpois, d.fastfood, d["aptotal_hebdo"], d.region);
-                personnes.push(personneTemp);
-                // console.log("personneTemp");
-            }
-        });
-        personnes.sort(function(a, b) {
-            return a.age - b.age;
-        })
-        // console.log(window);
-        if (toBeUpdated){
-            // window.myScatter.clear();
-            // window.myScatter.destroy();
-            // window.myScatter.update();
-        }
-        callback("test");
-    });
-}
-
-function reduceData(){
-    var personnesTemp = [];
-    //console.log(criteres["age"].min);
-    for (var key in personnes){
-        //console.log(personnes);
-        var personneTemp = personnes[key];
-        if (personneTemp.age >= criteres["age"].min && personneTemp.age <= criteres["age"].max){
-            if (!isNaN(personneTemp.tele) && personneTemp.tele >= criteres["tele"].min && personneTemp.tele <= criteres["tele"].max){
-                personnesTemp.push(personneTemp);
-            }
-        }
-    }
-    personnes = personnesTemp;
-    makeAverage(personnes);
-    var abscisses = [];
-    var ordonnees = [];
-    for (var key in personnes){
-        abscisses.push((personnes[key].x).toString());
-        ordonnees.push(personnes[key].y);
-    }
-
-    var newDataset = {
-        label: 'Dataset 2',
-        backgroundColor: window.chartColors.blue,
-        borderColor: window.chartColors.blue,
-        data: ordonnees,
-        fill: false
-    };
-
-    window.myScatter.config.data.datasets.push(newDataset);
-    window.myScatter.update();
-    // myDataIsReady();
-    //console.log(criteres["age"].min);
-}
-function Personne(age, bmi, entrerep, mfruit, bonalim, tele, mvian, mpois, fastfood, aptotal_hebdo, region) {
-    this.age = age;
-    this.bmi = bmi;
-    this.entrerep = entrerep;
-    this.mfruit = mfruit;
-    this.bonalim = bonalim;
-    this.tele = tele;
-    this.mvian = mvian;
-    this.mpois = mpois;
-    this.fastfood = fastfood;
-    this.aptotal_hebdo = aptotal_hebdo;
-    this.region = region;
-}
-
-// function MinMaxPair(min, max){
-//     this.min = min;
-//     this.max = max;
-// }
-
-$(".slider").change(function(){
-    var valuesAge = $("#slider-age").attr("data-value").split(",");
-    criteres["age"] = {min : valuesAge[0], max : valuesAge[1]}
-    var valuesTele = $("#slider-tele").attr("data-value").split(",");
-    criteres["tele"] = {min : valuesTele[0], max : valuesTele[1]}
-    loadData(reduceData, true);
-});
-
-function makeAverage(tabToMakeAverage){
-    var currentAge = tabToMakeAverage[0].age;
-    //var newPersonnes = [];
-    personnes = []
-    var counter = 1;
-    var sum = tabToMakeAverage[0].bmi;
-    for (var key in tabToMakeAverage){
-        var ageCour = tabToMakeAverage[key].age;
-        var imcCour = tabToMakeAverage[key].bmi;
-        if (ageCour != currentAge){
-            personnes.push({x: currentAge, y: sum / counter});
-            currentAge = ageCour;
-            sum = imcCour;
-            counter = 1;
-        }else{
-            sum += imcCour;
-            counter++;
-        }
-    }
-}
-
-function myDataIsReady() {
-    makeAverage(personnes);
-    var color = Chart.helpers.color;
-    //console.log(personnes);
-
-    // var testData = {
-    //     // labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-    //
-    // }
-    var abscisses = [];
-    var ordonnees = [];
-    for (var key in personnes){
-        abscisses.push((personnes[key].x).toString());
-        ordonnees.push(personnes[key].y);
-    }
-
-    var config = {
-        type: 'line',
-        data: {
-            labels : abscisses,
-            datasets: [{
-                label: "Cubic interpolation (monotone)",
-                data: ordonnees,
-                borderColor: window.chartColors.red,
-                backgroundColor: 'rgba(0, 0, 0, 0)',
-                fill: false,
-                cubicInterpolationMode: 'monotone'
-            }]
-        },
-        options: {
-            responsive: true,
-            title:{
-                display:true,
-                text:'Chart.js Line Chart - Cubic interpolation mode'
-            },
-            tooltips: {
-                mode: 'index'
-            }
-        }
-    };
-
-
-    var scatterChartData = {
-        datasets: [{
-            label: "My First dataset",
-            borderColor: window.chartColors.red,
-            backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
-            data: personnes
-        }]
-    };
-    var ctx = document.getElementById("lineChart").getContext("2d");
-    window.myScatter = new Chart(ctx,config); //.Scatter
-
-
-    // window.myScatter = Chart.Scatter(ctx,{
-    //     data: scatterChartData,
-    //     options: {
-    //         title: {
-    //             display: true,
-    //             text: 'Chart.js Scatter Chart'
-    //         },
-    //     }
-    // });
-    window.myScatter.update();
-};
-</script>
-<!-- Bootstrap slider -->
-<script>
-
-</script>
 </body>
 </html>

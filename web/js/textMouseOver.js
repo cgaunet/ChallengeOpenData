@@ -1,9 +1,10 @@
 function htmlPourcentageObesite(numeroRegion, nomRegion) {
     if (numeroRegion != 0) {
         return "Région : " + nomRegion + "<br>" + "Pourcentage obésité: " +
+
         pourcentageObesite(numeroRegion) + "%<br> Par rapport à la moyenne: "+
-        //var moy =  calculerMoyenne(pourcentageObesite);
         pourcentageParRapportMoyenne(calculerMoyenne(pourcentageObesite),numeroRegion, pourcentageObesite(numeroRegion))+"%"
+
     } else {
         return "La région 'Corse' n'est pas prise en compte"
     }
