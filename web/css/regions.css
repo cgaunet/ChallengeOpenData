@@ -1,11 +1,13 @@
 .region {
     cursor: pointer;
+    stroke-width: 1.0px;
+    stroke: #fff;
 
 }
 
 .region:hover {
     stroke: black;
-    stroke-width: 1.8px;
+    stroke-width: 2.8px;
         animation: fadeEffect 1s;
 }
 

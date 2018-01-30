@@ -46,3 +46,35 @@ function couleurFastFood(numeroRegion, nomRegion) {
         }
     }
 }
+
+function couleurViande(numeroRegion, nomRegion) {
+    if(numeroRegion != 0){
+        if (pourcentageViande(numeroRegion) < 14){
+            return tabCouleur[0];
+        } else if (pourcentageViande(numeroRegion) < 18){
+            return tabCouleur[1];
+        } else if (pourcentageViande(numeroRegion) < 22){
+            return tabCouleur[2];
+        } else if (pourcentageViande(numeroRegion) < 27){
+            return tabCouleur[3];
+        } else {
+            return tabCouleur[4];
+        }
+    }
+}
+
+function couleurFruit(numeroRegion, nomRegion) {
+    if(numeroRegion != 0){
+        if (pourcentageFruit(numeroRegion) < 15){
+            return tabCouleur[0];
+        } else if (pourcentageFruit(numeroRegion) < 18){
+            return tabCouleur[1];
+        } else if (pourcentageFruit(numeroRegion) < 20){
+            return tabCouleur[2];
+        } else if (pourcentageFruit(numeroRegion) < 25){
+            return tabCouleur[3];
+        } else {
+            return tabCouleur[4];
+        }
+    }
+}

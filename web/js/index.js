@@ -76,10 +76,12 @@ document.getElementById("defaultOpen").click();
     couleurCarte = function (numeroRegion, nomRegion) {return couleurFastFood(numeroRegion, nomRegion)}
     updateCouleurCarte();
   }
-  
+
   function choixViande(){
     titredeCarte = "la consommation de viande"
     updateTitreCarte();
+    htmlFuncMouseOver = function (numeroRegion, nomRegion) {return htmlViande(numeroRegion, nomRegion)}
+    couleurCarte = function (numeroRegion, nomRegion) {return couleurViande(numeroRegion, nomRegion)}
     updateCouleurCarte();
 
   }
@@ -93,6 +95,8 @@ document.getElementById("defaultOpen").click();
   function choixFruit(){
     titredeCarte = "la consommation de fruits"
     updateTitreCarte();
+    htmlFuncMouseOver = function (numeroRegion, nomRegion) {return htmlFruit(numeroRegion, nomRegion)}
+    couleurCarte = function (numeroRegion, nomRegion) {return couleurFruit(numeroRegion, nomRegion)}
     updateCouleurCarte();
   }
 

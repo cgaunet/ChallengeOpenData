@@ -156,6 +156,15 @@ function pourcentageObesite(numeroRegion) {
 function pourcentagePoisson(numeroRegion) {
   return (((map[numeroRegion]["mpois"].total[1].compteur+map[numeroRegion]["mpois"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
 }
+
+function pourcentageViande(numeroRegion) {
+  return (((map[numeroRegion]["mvian"].total[1].compteur+map[numeroRegion]["mvian"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
+}
+
+function pourcentageFruit(numeroRegion) {
+  return (((map[numeroRegion]["mfruit"].total[1].compteur+map[numeroRegion]["mfruit"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
+}
+
 function pourcentageFastFood(numeroRegion) {
   return (((map[numeroRegion]["fastfood"].total[1].compteur
             +map[numeroRegion]["fastfood"].total[2].compteur
@@ -177,13 +186,13 @@ var legendRectSize = 18;
 var legendSpacing = 4;
 
 
-var width = 750, height = 750;
+var width = 900, height = 900;
 
 var path = d3.geoPath();
 
 var projection = d3.geoConicConformal()
 .center([2.454071, 46.279229])
-.scale(3100)
+.scale(4500)
 .translate([width / 2, height / 2]);
 
 path.projection(projection);
