@@ -58,13 +58,13 @@ document.getElementById("defaultOpen").click();
 
   var titredeCarte = "l'obésité";
 
-  function htmlFuncMouseOver(numeroRegion, nomRegion) { return htmlPourcentageObesite(numeroRegion, nomRegion)}
+  function htmlMouseOver(numeroRegion, nomRegion) { return htmlPourcentageObesite(numeroRegion, nomRegion)}
   function couleurCarte (numeroRegion, nomRegion) {return couleurObesite(numeroRegion, nomRegion)}
 
   function choixObesite(){
     titredeCarte = "l'obésité"
     updateTitreCarte();
-    htmlFuncMouseOver = function (numeroRegion, nomRegion) {return htmlPourcentageObesite(numeroRegion, nomRegion)}
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlPourcentageObesite(numeroRegion, nomRegion)}
     couleurCarte = function (numeroRegion, nomRegion) {return couleurObesite(numeroRegion, nomRegion)}
     updateCouleurCarte();
 
@@ -72,7 +72,7 @@ document.getElementById("defaultOpen").click();
   function choixFastFood(){
     titredeCarte = "la consommation de Fast food"
     updateTitreCarte();
-    htmlFuncMouseOver = function (numeroRegion, nomRegion) {return htmlFastFood(numeroRegion, nomRegion)}
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlFastFood(numeroRegion, nomRegion)}
     couleurCarte = function (numeroRegion, nomRegion) {return couleurFastFood(numeroRegion, nomRegion)}
     updateCouleurCarte();
   }
@@ -88,7 +88,7 @@ document.getElementById("defaultOpen").click();
   function choixPoisson(){
     titredeCarte = "la consommation de poisson"
     updateTitreCarte();
-    htmlFuncMouseOver = function (numeroRegion, nomRegion) {return htmlMPois(numeroRegion, nomRegion)}
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlMPois(numeroRegion, nomRegion)}
     couleurCarte = function (numeroRegion, nomRegion) {return couleurPoisson(numeroRegion, nomRegion)}
     updateCouleurCarte();
   }
