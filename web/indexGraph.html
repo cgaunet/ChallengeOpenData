@@ -3,38 +3,22 @@
 <head>
     <meta charset="utf-8">
     <title>D3 Test</title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+
     <link rel="stylesheet" href="AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
     <script src="AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
     <script src"AdminLTE/plugins/jQueryUI/jquery-ui.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
 
-
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.js"></script> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css"> -->
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="AdminLTE/bower_components/font-awesome/css/font-awesome.min.css">
-    <!-- Ionicons -->
+
     <link rel="stylesheet" href="AdminLTE/bower_components/Ionicons/css/ionicons.min.css">
-    <!-- bootstrap slider -->
+
     <link rel="stylesheet" href="AdminLTE/plugins/bootstrap-slider/slider.css">
-    <!-- Theme style -->
-    <!-- <link rel="stylesheet" href="AdminLTE/bower_components/select2/dist/css/select2.min.css"> -->
+
     <link rel="stylesheet" href="AdminLTE/plugins/iCheck/all.css">
     <link rel="stylesheet" href="AdminLTE/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="AdminLTE/dist/css/skins/_all-skins.min.css">
-    <!-- FastClick -->
-    <!-- <script src="AdminLTE/plugins/fastclick/fastclick.min.js"></script> -->
-    <!-- AdminLTE App -->
-    <!-- <script src="AdminLTE/dist/js/adminlte.min.js"></script> -->
-    <!-- SlimScroll -->
-    <!-- <script src="AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script> -->
-    <!-- <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script> -->
-    <!-- <script src"AdminLTE/plugins/bootstrap-slider/bootstrap-slider.js"></script> -->
+
 
     <style>
     canvas {
@@ -45,14 +29,6 @@
     </style>
 </head>
 <body>
-    <!-- <div class="row">
-    <div class="col-lg-6">
-    <p>My first paragraph.</p>
-</div>
-<div class="col-lg-6">
-<p>My first paragraph2</p>
-</div>
-</div> -->
 <h3>IMC en fonction de l'age</h3>
 <div class="row margin">
     <div class="col-lg-1"></div>
@@ -63,9 +39,6 @@
     </div>
 </div>
 <div class="row margin">
-    <!-- <div class="col-lg-6" style="text-align: left">
-    <button type="button" class="btn btn-success" id="display">Display data</button>
-</div> -->
 <div class="col-lg-6">
     <p><b>Activité physique totale hebdomaire (en minutes) :</b></p>
     <input type="text" id="slider-aptotalhebdo" value="" class="slider form-control" data-slider-min="0" data-slider-max="2000" data-slider-step="100" data-slider-value="[0,2000]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="red">
@@ -95,12 +68,37 @@
             </fieldset>
         </div>
     </div>
-    <!-- <div class="col-lg-6">
-    <p><b>Temps passé devant la télévision (en minutes) :</b></p>
-    <input type="text" id="slider-tele" value="Âge" class="slider form-control" data-slider-min="0" data-slider-max="500" data-slider-step="5" data-slider-value="[0,500]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="yellow">
-</div> -->
+    <div class="col-lg-6">
+        <p><b>Aime les fruits: </b></p>
+        <div class="form-group">
+            <fieldset id="checkboxesMFruits">
+                <label>
+                    <input type="checkbox" name="ouiMFruits" class="flat-red" value="1" checked>
+                    Oui
+                </label>
+                <label>
+                    <input type="checkbox" name="nspMFruits" class="flat-red" value="3" checked>
+                    Ne sait pas
+                </label>
+                <label>
+                    <input type="checkbox" name="nonMFruits" class="flat-red" value="2"checked>
+                    Non
+                </label>
+            </fieldset>
+        </div>
+    </div>
 </div>
-
+<div class="row margin">
+    <div class="col-lg-6">
+        <p><b>Fréquence sur la présence au fast-food (en nombre de jours/mois): </b></p>
+        <input type="text" id="slider-fastfood" value="" class="slider form-control" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,30]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="blue">
+    </div>
+    <!-- <div class="col-lg-6"></div> -->
+</div>
+<!-- <div class="row margin">
+    <div class="col-lg-6"></div>
+    <div class="col-lg-6"></div>
+</div> -->
 
 
 
