@@ -1,18 +1,19 @@
 .region {
     cursor: pointer;
-    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+     /* Fading effect takes 1 second */
 }
 
 .region:hover {
     stroke: black;
     stroke-width: 1.8px;
+        animation: fadeEffect 1s;
 }
 
 div.tooltip {
     position: absolute;
     text-align: center;
     width: 275px;
-    height: 37px;
+    height: 50px;
     padding: 2px;
     font: 12px sans-serif;
     background: black;
@@ -21,7 +22,12 @@ div.tooltip {
     pointer-events: none;
 
 }
-
+.legend {
+  font-size: 12px;
+}
+rect {
+  stroke-width: 2;
+}
 #svg {
     display: block;
     margin: auto;
