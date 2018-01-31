@@ -191,46 +191,46 @@ function pourcentageParRapportMoyenne(moy, numeroRegion, val){
     }
 }
 
-function calculerMoyenne(func){
+function calculerMoyenne(func, categorie){
     var moy = 0;
     for (var i = 1; i < 22; i++) {
-        moy += func(i);
+        moy += func(i, categorie);
     }
     moy = moy/21;
     return moy;
 }
 
-function pourcentageObesite(numeroRegion) {
-    return ((map[numeroRegion]["nombreIndividus"].obesite / map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2);
+function pourcentageBmi(numeroRegion, categorie) {
+    return ((map[numeroRegion]["nombreIndividus"][categorie] / map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2);
 }
 
-function pourcentagePoisson(numeroRegion) {
-    return (((map[numeroRegion]["mpois"].total[1].compteur+map[numeroRegion]["mpois"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2);
+function pourcentagePoisson(numeroRegion, categorie) {
+    return (((map[numeroRegion]["mpois"][categorie][1].compteur+map[numeroRegion]["mpois"][categorie][2].compteur)/ map[numeroRegion]["nombreIndividus"][categorie])*100).toFixedDown(2);
 }
 
-function pourcentageViande(numeroRegion) {
-    return (((map[numeroRegion]["mvian"].total[1].compteur+map[numeroRegion]["mvian"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2);
+function pourcentageViande(numeroRegion, categorie) {
+    return (((map[numeroRegion]["mvian"][categorie][1].compteur+map[numeroRegion]["mvian"][categorie][2].compteur)/ map[numeroRegion]["nombreIndividus"][categorie])*100).toFixedDown(2);
 }
 
-function pourcentageFruit(numeroRegion) {
-    return (((map[numeroRegion]["mfruit"].total[1].compteur+map[numeroRegion]["mfruit"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2);
+function pourcentageFruit(numeroRegion, categorie) {
+    return (((map[numeroRegion]["mfruit"][categorie][1].compteur+map[numeroRegion]["mfruit"][categorie][2].compteur)/ map[numeroRegion]["nombreIndividus"][categorie])*100).toFixedDown(2);
 }
 
-function pourcentageFastFood(numeroRegion) {
-    return (((map[numeroRegion]["fastfood"].total[1].compteur
-    +map[numeroRegion]["fastfood"].total[2].compteur
-    +map[numeroRegion]["fastfood"].total[3].compteur
-    +map[numeroRegion]["fastfood"].total[4].compteur
-    +map[numeroRegion]["fastfood"].total[5].compteur
-)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2);
+function pourcentageFastFood(numeroRegion, categorie) {
+    return (((map[numeroRegion]["fastfood"][categorie][1].compteur
+    +map[numeroRegion]["fastfood"][categorie][2].compteur
+    +map[numeroRegion]["fastfood"][categorie][3].compteur
+    +map[numeroRegion]["fastfood"][categorie][4].compteur
+    +map[numeroRegion]["fastfood"][categorie][5].compteur
+)/ map[numeroRegion]["nombreIndividus"][categorie])*100).toFixedDown(2);
 }
 
-function pourcentageTele(numeroRegion) {
-    return (((map[numeroRegion]["tele"].total)/ map[numeroRegion]["nombreIndividus"].total)).toFixedDown(2);
+function pourcentageTele(numeroRegion, categorie) {
+    return (((map[numeroRegion]["tele"][categorie])/ map[numeroRegion]["nombreIndividus"][categorie])).toFixedDown(2);
 }
 
-function pourcentageActivite(numeroRegion) {
-    return (((map[numeroRegion]["aptotal_hebdo"].total)/ map[numeroRegion]["nombreIndividus"].total)).toFixedDown(2);
+function pourcentageActivite(numeroRegion, categorie) {
+    return (((map[numeroRegion]["aptotal_hebdo"][categorie])/ map[numeroRegion]["nombreIndividus"][categorie])).toFixedDown(2);
 }
 
 
