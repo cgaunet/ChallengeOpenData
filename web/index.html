@@ -26,6 +26,7 @@
         <button class="tablinks" onclick="openTab(event, 'Rapport')">Rapport</button>
     </div>
 
+
     <div id="Graphe" class="tabcontent">
         <h3><center><b>IMC en fonction de l'age</b></center></h3>
         <div class="row margin">
@@ -49,18 +50,22 @@
                 </div>
             </div>
         </div>
-        <div class="row margin">
+
+        <div class="row margin "> <!---  --->
             <div class="col-lg-4">
                 <p><b>Activité physique totale hebdomaire (en minutes) :</b></p>
-                <input type="text" id="slider-aptotalhebdo" value="" class="slider form-control" data-slider-min="0" data-slider-max="2000" data-slider-step="100" data-slider-value="[0,2000]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="hidden" data-slider-id="red">
+                <center><div id="textSliderApTotal"><b>0:2000</b></div></center>
+                <input type="text" id="slider-aptotalhebdo" value="" class="slider form-control" data-slider-min="0" data-slider-max="2000" data-slider-step="100" data-slider-value="[0,2000]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="hide" data-slider-id="red">
             </div>
             <div class="col-lg-4">
                 <p><b>Temps passé devant la télévision (en minutes/semaine) :</b></p>
-                <input type="text" id="slider-tele" value="" class="slider form-control" data-slider-min="0" data-slider-max="500" data-slider-step="5" data-slider-value="[0,500]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="hidden" data-slider-id="yellow">
+                <center><div id="textSliderTele"><b>0:500</b></div></center>
+                <input type="text" id="slider-tele" value="" class="slider form-control" data-slider-min="0" data-slider-max="500" data-slider-step="5" data-slider-value="[0,500]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="hide" data-slider-id="yellow">
             </div>
             <div class="col-lg-4">
                 <p><b>Fréquence sur la présence au fast-food (en nombre de jours/mois): </b></p>
-                <input type="text" id="slider-fastfood" value="" class="slider form-control" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,30]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="blue">
+                <center><div id="textSliderFastfood"><b>0:30</b></div></center>
+                <input type="text" id="slider-fastfood" value="" class="slider form-control" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,30]" data-slider-orientation="horizontal"  data-slider-tooltip="hide" data-slider-id="blue"><!--  data-slider-ticks="[0, 10, 20, 30]" data-slider-ticks-snap-bounds="30" data-slider-ticks-labels='["0", "10", "20", "30"]' -->
             </div>
         </div>
         <div class="row margin">
@@ -446,27 +451,104 @@
 <div id="Rapport" class="tabcontent">
     <center><h1>Rapport</h1></center>
     décrivant la démarche complète – source des données, traitements opérés, architecture, choix des technologies
-    <div class="row">
-        <div class="col-lg-2">
+
+      <div class="row">
+        <div class="col-lg-1">
         </div>
-        <div class="col-lg-8">
-            <h3>Démarche</h3>
+        <div class="col-lg-10">
+          <b><h3>Démarche Complète</h3></b>
             <ul>
-                <li>
-                    <b>Lancement:</b></br>
-                    <p>
-                        Nous avons commencé le projet par l'étude de datasets potentiels, en pensant à la qualité des données fournies, du sujet/domaine d'étude, et aux possibles représentations des données
-                        obtenues.</br>
-                        Après plusieurs essais, nous avons ciblé le secteur de l'alimentation pour deux raisons : les études visuelles sont courantes (par région, par corrélation sous forme de graphe)
-                        et car le sujet pose question.
-                    </p>
-                </li>
+              <li>
+                <b>Lancement:</b></br>
+                <p>
+                  Nous avons commencé le projet par l'étude de datasets potentiels, en pensant à la qualité des données fournies, du sujet/domaine d'étude, et aux possibles représentations des données
+                  obtenues.</br>
+                  Après plusieurs essais, nous avons ciblé le secteur de l'alimentation pour deux raisons : les études visuelles sont courantes (par région, par corrélation sous forme de graphe)
+                  et le sujet est un enjeu actuel avec la lutte contre le surpoids.</br>
+                </p>
+              </li>
+              <li>
+                <b>Jeu de donnée</b></br>
+                <p>
+                  Le Jeu de donnée sélectionné pour représentation est le jeu de donnée INCA_2, il date de 2006/2007 et est le résultat d'un sondage sur 3996 individus résidant en France Métropolitaine.
+                  Cette enquête a été ordonnée par le gouvernement Français pour étudier l'évolution des habitudes alimentaires des Français. </br>
+                  Pour chacune des 4000 personnes sondées il a fallu répondre à des questions
+                  précises pendant 7 jours sur le maximum de crières possible. Au final, le jeu de donnée est tellement complexe et riche qu'il nous a fallu le réduire a seulement une dizaine de critères pour pouvoir l'exploiter en temps raisonnable.
+                </p>
+              </li>
+              <li>
+                <b>Traitements opérés</b>
+                <p>
+                  Notre objectif initial était de mettre en place un outil de visualisation permettant de détecter des causes possibles à l'obésité. Pour pouvoir effectivement l'implémenter il a fallu
+                  sélectionner uniquement les critères déterminant dans le cas de l'obésité/surpoids. </br>
+                  Pour ce faire, nous avons commencé par développer une application Java. Cette application permettait, grâce au jeu de données fourni, de calculer un "score" par "catégorie
+                  de poids" pour un critère. Par exemple, grâce à cette application, nous avons pu remarqué que les gens en condition de maigreur regardaient moins la télévision que les gens en condition normale
+                  qui à leur tour regardaient moins la télévision que les gens en surpoids etc </br>
+                  Cette application renvoie un csv qui permet de comparer efficacement les scores obtenus par catégorie et ainsi de pouvoir éluder des critères qui ne semblent pas impacter de beaucoup l'IMC d'une personne.
+                </p>
+              </li>
+              <li>
+                <b>Architecture</b>
+                <p>
+                    La page web étant exécutée en local, il n'y a pas de lien avec un quelconque serveur ou une quelconque base de données hébergée.</br>
+                    Toutes les valeurs sont stockées dans un fichier .csv et c'est ce fichier qui va permettre d'effectuer tout calcul.</br>
+                    Le code html est contenu sur une seule page, index.html, et tous les scripts sont contenus dans les différents fichier au format .js présents dans le dossier js.
+                </p>
+              </li>
+              <li>
+                <b>Choix des technologies</b>
+                <p>
+                  Plusieurs technologies web ont été utilisées pour ce projet de visualisation : Notamment <b>D3.Js</b>,
+                  le framework javaScript utilisé pour la représentation cartographique de France et pour la lecture du jeu de donnée. </br>
+                  La lecture du jeu de donnée est facilité par D3, en effet il suffit uniquement de faire un appel javascript : <b>d3.csv('jeu-de-donnee.csv', function(data){  });</b> </br>
+                  La représentation avec la carte est également faite par D3, en effet il permet de lire un fichier geojson : regions.geojson, qui décrit un SVG de chaque région. L'appel de la
+                  méthode <b>d3.json('fichier-json', function(req, geojson){  ...  }</b> insere dans le code HTML une liste de figures SVG avec la balise "path" correspondant aux frontières des régions. </br> </br>
+
+                  Ensuite, les graphes dans l'onglet 'Graphe' utilisent le framework : <b>Chart.JS</b>, à l'aide de ce framework, il est assez rapide de générer des courbes lissées ou des nuages de points. Les deux peuvent convenir
+                  les critères sélectionnés. Nous avons choisi de garder la courbe de référence visible lors des changements de critères pour pouvoir comparer. Cependant, il suffit de cliquer sur la légende de la courbe de référence
+                  pour la faire disparaitre. </br>
+
+                  Enfin, la gestion des appels asynchrones de manière générale est pris en charge par le framework <b>jQuery</b>, norme dans les applications il permet notamment de charger le contenu quand la page est chargée.</br>
+
+                </p>
+              </li>
             </ul>
+
+
+            <b><h3>Résultats & Remarques</h3></b>
+            <p>
+              Comme décrit précédemment, nous avons décidé de
+            </p>
+
+
+
+
+            <b>Source : </b>
+            <ul>
+              <li>
+                Tutoriel pour la gestion des cartes : http://www.datavis.fr/index.php?page=map-firststep </br>
+              </li>
+              <li>
+                Fichier geojson des frontières de la France (regions-avant-redecoupage-2015.geojson): https://github.com/gregoiredavid/france-geojson </br>
+              </li>
+            </ul>
+
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-1">
         </div>
-    </div>
-</div>
+
+      </div>
+      <div class="row">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-10">
+          <h3>Schéma</h3>
+        </div>
+
+        <div class="col-lg-1">
+        </div>
+  </div>
+
 
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
