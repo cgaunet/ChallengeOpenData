@@ -82,7 +82,7 @@ function remplirTab() {
                 div.transition()
                 .duration(200)
                 .style("opacity", 0.75);
-
+                
                 div.html(htmlMouseOver(numeroRegion(d.properties.nom),d.properties.nom))
                 .style("left", (d3.event.pageX + 30) + "px")
                 .style("top", (d3.event.pageY - 30) + "px")

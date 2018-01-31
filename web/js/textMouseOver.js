@@ -11,9 +11,27 @@ function htmlClickCategorie(numeroRegion, nomRegion, categorie) {
 
 
 function htmlPourcentageBmi(numeroRegion, nomRegion, categorie) {
+    var catStr = "de personnes "
+    switch (categorie) {
+        case "sousPoids":
+        catStr += "en sous poids"
+        break;
+        case "poidsNormal":
+        catStr += "ayant un poids normal"
+        break;
+        case "surPoids":
+        catStr += "en surpoids"
+        break;
+        case "obesite":
+        catStr += "obèses"
+        break;
+        default:
+
+    }
+
     if (numeroRegion != 0) {
         if(pourcentageBmi(numeroRegion, categorie) > 0) {
-            return "Région : " + nomRegion + "<br>" + "Pourcentage obésité: " +
+            return "Région : " + nomRegion + "<br>" + "Pourcentage "+catStr+" : " +
             pourcentageBmi(numeroRegion, categorie) + "%<br> Par rapport à la moyenne: "+
             pourcentageParRapportMoyenne(calculerMoyenne(pourcentageBmi, categorie),numeroRegion, pourcentageBmi(numeroRegion, categorie))+"%";
         } else {
