@@ -94,7 +94,7 @@ function remplirTab() {
                 .style("left", "0px")
                 .style("top", "0px");
             })
-            .style("fill", function(d) { return couleurCarte(numeroRegion(d.properties.nom),d.properties.nom) })
+            .style("fill", function(d) { return couleur(numeroRegion(d.properties.nom),d.properties.nom) })
         });
 
 
@@ -105,12 +105,10 @@ function remplirTab() {
     .attr("transform", "translate(" + Math.round((width / 2) + width * 0.3) + ", " + Math.round(height / 2) + ")")
     .attr("id", "legend");
 
-    var unite = uniteLegende()
-
 
     var unit = "g/jour";
     var legend_title = "Légende :";
-    var mapName = "butter";
+    var mapName = "sport";
 
     switch (mapName) {
         case "sport":
@@ -132,64 +130,28 @@ function remplirTab() {
         unit = "g/jour";
     }
 
-
-    var range_legend = 4;
-
-    if (mapName == "butter") { range_legend = 2; }
-
-
     // Add colorbar
     legend.selectAll(".colorbar")
-    .data(d3.range(range_legend))
+    .data(d3.range(tabCouleur.length))
     .enter().append("svg:rect")
     .attr("y", function (d) { return d * 20 + "px"; })
     .attr("height", "20px")
     .attr("width", "20px")
     .attr("x", "0px")
-    .attr("class", function (d) { return "q" + d + "-9"; });
+    .attr("class", "carreLegende")
+    .attr("id", function(d) {return d})
+    .style("fill", function (d) { return couleurLegende(d) });
 
     // Add legend to each color
     legend.selectAll(".colorbar")
-    .data(d3.range(range_legend))
+    .data(d3.range(tabCouleur.length))
     .enter()
     .append("text")
     .attr("x", "30px")
     .attr("y", function (d) { return (d * 20 + 15) + "px"; })
-    .text(function (d) {
-
-        if (mapName == "butter"){
-
-            switch(d) {
-                case 0 :
-                return "Beurre";
-                break;
-                case 1:
-                return "Huile";
-                break;
-            }
-        } else {
-
-            switch(d) {
-                case 0 :
-                return "< " + Math.round(quantile.quantiles()[0]) + " " + unit;
-                break;
-                case 1:
-                return Math.round(quantile.quantiles()[0]) + " - " + Math.round(quantile.quantiles()[1]) + " "+ unit ;
-                break;
-                case 2:
-                return Math.round(quantile.quantiles()[1]) + " - " + Math.round(quantile.quantiles()[2]) + " "+ unit ;
-                break;
-                case 3 :
-                return "> " + Math.round(quantile.quantiles()[2]) + " "+ unit;
-                break;
-            }
-
-        }
-
-    })
-    .attr("id","legendText");
-
-
+    .attr("class", "texteLegende")
+    .attr("id", function(d) {return d})
+    .text(function (d) { var str = ""; str += d; return texteLegende(str) })
 
     // Add legend title
     legend.selectAll(".colorbar")
@@ -197,8 +159,9 @@ function remplirTab() {
     .enter()
     .append("text")
     .attr("x", "0px")
-    .attr("y", "-30px")
-    .text(function(d) { return "Legende : " });
+    .attr("y", "-45px")
+    .text(function(d) { return "Legende : " })
+    .style("font-weight", "bold")
 
 
     legend.selectAll(".colorbar")
@@ -206,22 +169,21 @@ function remplirTab() {
     .enter()
     .append("text")
     .attr("x", "0px")
+    .attr("y", "-30px")
+    .attr("height", "30px")
+    .attr("id", "sousTitre1")
+    .text(function(d) { return sousTitreLegende1()});
+
+    legend.selectAll(".colorbar")
+    .data(d3.range(1))
+    .enter()
+    .append("text")
+    .attr("x", "0px")
     .attr("y", "-15px")
-    .text(function(d) { return sousTitreLegende()});
+    .attr("height", "15px")
+    .attr("id", "sousTitre2")
+    .text(function(d) { return sousTitreLegende2()});
 
-
-
-
-}
-
-
-function updateCouleurCarte(){
-    var divs = document.getElementsByTagName("path");
-    for (var i=0, len=divs.length;i < len; i++){
-        if(divs[i].className.baseVal=="region"){
-            divs[i].style.fill = couleurCarte(numeroRegion(divs[i].getAttribute("regName")),divs[i].getAttribute("regName"))
-        }
-    }
 }
 
 function numeroRegion(nomRegion){
