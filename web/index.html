@@ -22,21 +22,128 @@
   <div class="tab">
     <button class="tablinks" onclick="openTab(event, 'Graphe')" id="defaultOpen">Graphes</button>
     <button class="tablinks" onclick="openTab(event, 'Carte')">Carte</button>
-    <button class="tablinks" onclick="openTab(event, 'About')">About</button>
+    <button class="tablinks" onclick="openTab(event, 'About')">À propos</button>
   </div>
 
   <div id="Graphe" class="tabcontent">
-    <h3><center>IMC en fonction de l'age</center></h3>
-    <div class="row">
-      <div class="col-lg-2">
-      </div>
+    <h3><center><b>IMC en fonction de l'age</b></center></h3>
+    <div class="row margin">
+        <div class="col-lg-1">
+          <!-- radio -->
+            <div class="form-group" id="radiosChoiceDisplay">
+                   <label>
+                     <input type="radio" name="choiceChart" class="minimal" value="line" checked>
+                     <a style="font-size:12px">Courbe Lissée</a>
 
-      </div>
-      <div class="col-lg-10">
-        <div style="width:100%; text-align: center;">
-          <canvas id="lineChart"></canvas>
+                   </label>
+                   <label>
+                     <input type="radio" name="choiceChart" class="minimal" value="scatter">
+                     <a style="font-size:12px">Nuage de points</a>
+                   </label>
+            </div>
         </div>
-      </div>
+        <div class="col-lg-10">
+            <div style="width:100%; text-align: center;">
+                <canvas id="chart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row margin">
+    <div class="col-lg-4">
+        <p><b>Activité physique totale hebdomaire (en minutes) :</b></p>
+        <input type="text" id="slider-aptotalhebdo" value="" class="slider form-control" data-slider-min="0" data-slider-max="2000" data-slider-step="100" data-slider-value="[0,2000]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="hidden" data-slider-id="red">
+    </div>
+    <div class="col-lg-4">
+        <p><b>Temps passé devant la télévision (en minutes/semaine) :</b></p>
+        <input type="text" id="slider-tele" value="" class="slider form-control" data-slider-min="0" data-slider-max="500" data-slider-step="5" data-slider-value="[0,500]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="hidden" data-slider-id="yellow">
+    </div>
+    <div class="col-lg-4">
+        <p><b>Fréquence sur la présence au fast-food (en nombre de jours/mois): </b></p>
+        <input type="text" id="slider-fastfood" value="" class="slider form-control" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,30]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="blue">
+    </div>
+    </div>
+    <div class="row margin">
+        <div class="col-lg-3">
+            <p><b>Considère qu'il/elle possède une bonne alimentation :</b></p>
+            <div class="form-group">
+                <fieldset id="checkboxesBonAlim">
+                    <label>
+                        <input type="checkbox" name="ouiBonAlim" class="flat-red" value="1" checked>
+                        Oui
+                    </label>
+                    <label>
+                        <input type="checkbox" name="nspBonAlim" class="flat-red" value="3" checked>
+                        Ne sait pas
+                    </label>
+                    <label>
+                        <input type="checkbox" name="nonBonAlim" class="flat-red" value="2"checked>
+                        Non
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <p><b>Aime les fruits: </b></p>
+            <div class="form-group">
+                <fieldset id="checkboxesMFruits">
+                    <label>
+                        <input type="checkbox" name="ouiMFruits" class="flat-red" value="1" checked>
+                        Oui
+                    </label>
+                    <label>
+                        <input type="checkbox" name="nspMFruits" class="flat-red" value="3" checked>
+                        Ne sait pas
+                    </label>
+                    <label>
+                        <input type="checkbox" name="nonMFruits" class="flat-red" value="2"checked>
+                        Non
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <p><b>Aime le poisson: </b></p>
+            <div class="form-group">
+                <fieldset id="checkboxesMPois">
+                    <label>
+                        <input type="checkbox" name="ouiMPois" class="flat-red" value="1" checked>
+                        Oui
+                    </label>
+                    <label>
+                      <input type="checkbox" name="nspMPois" class="flat-red" value="3" checked>
+                        Ne sait pas
+                    </label>
+                    <label>
+                        <input type="checkbox" name="nonMPois" class="flat-red" value="2"checked>
+                        Non
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <p><b>Aime la viande: </b></p>
+            <div class="form-group">
+                <fieldset id="checkboxesMVian">
+                    <label>
+                        <input type="checkbox" name="ouiMVian" class="flat-red" value="1" checked>
+                        Oui
+                    </label>
+                    <label>
+                      <input type="checkbox" name="nspMVian" class="flat-red" value="3" checked>
+                        Ne sait pas
+                    </label>
+                    <label>
+                        <input type="checkbox" name="nonMVian" class="flat-red" value="2"checked>
+                        Non
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+
+    </div>
+    <div class="row margin">
+
+
     </div>
   </div>
 
@@ -51,7 +158,7 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <ul>
               <li>
-                <a href="#" onclick="choixObesite()" id="defaultChoix">  Obésité</a>
+                <a href="#" onmouseover="deroulerObesite()" onmouseout="remballerObesite()" onclick="choixObesite()" >  Obésité</a>
               </li>
               <li>
                 <a href="#" onclick="choixFastFood()">Fast food</a>
@@ -127,9 +234,62 @@
         </p>
       </div>
       <div class="col-lg-6">
-        <h3>Prévalence Obésité</h3>
+        <h3>Fast Food</h3>
         <p>
+          Le critère <b>Fast Food</b> indique le pourcentage de personnes allant plus de 1 fois par mois au fast food.
+          Il est important de noter que parmi les personnes sondées, certaines n'ont pas donné de réponses, le pourcentage peut donc différer de la réalité. </br>
+          On constate de plus que les écarts entre régions sont assez importants! On passe notamment de +30% de réponse positive en Île de France jusqu'à seulement 12% en Poitou-Charente. </br>
+        </p>
 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h3>Viandes</h3>
+        <p>
+          Le critère <b>Viandes</b> indique le pourcentage de personnes répondant aimer la viande. </br>
+          Ce critère ne donne donc pas de résultat sur la consommation de viande mais plus sur le goût pour la viande.
+          On constate un étonnant écart sur deux régions proches avec le Limousin qui indique à 30% aime la viande et l'aquitaine seulement à 13%. </br>
+          Les réponses venant du Limousin sont toutefois moins révélatrices car seulement 44 personnes ont répondu au questionnaire dans cette région. C'est la région qui comprend le moins de personnes sondées.
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <h3>Poisson</h3>
+        <p>
+          Le critère <b>Poisson</b> indique le pourcentage de personnes répondant aimer le poisson </br>
+          Ce critère ne donne donc pas de résultat sur la consommation de poisson mais plus sur le goût pour le poisson dans cette région.
+          On constate un étonnant écart sur deux régions proches avec le Limousin qui indique à 20% aime la viande et l'aquitaine seulement à 7.50%. </br>
+          Les réponses venant du Limousin sont toutefois moins révélatrices car seulement 44 personnes ont répondu au questionnaire dans cette région. C'est la région qui comprend le moins de personnes sondées.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h3>Fruits</h3>
+        <p>
+          Le critère <b>Fruits</b> indique le pourcentage de personnes répondant aimer le poisson </br>
+          Ce critère ne donne donc pas de résultat sur la consommation de fruits mais plus sur le goût pour les fruits dans cette région.
+        </p>
+      </div>
+      <div class="col-lg-6">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <h3>Télévision</h3>
+        <p>
+          Le critère <b>Télévision</b> indique la moyenne de temps passé devant la télévision par jour. </br>
+          C'est certes un critère important lié au manque d'activité sportive mais il aurait fallu l'additionner avec le temps passé devant un ordinateur pour avoir des résultats plus probants. </br>
+          On constate une moyenne 15% supérieure en Nord-Pas-de-Calais et 21% supérieure en Limousin.
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <h3>Activité Sportive</h3>
+        <p>
+          Le critère <b>Activité Sportive</b> indique la moyenne de temps passé à faire du sport par semaine. </br>
+          Le type d'activité n'est pas renseigné mais seuelement l'activité. Il s'agit également d'une moyenne.
+          Cependant,on remarque une légère augmentation de l'activité sportive dans le sud de la France par rapport au nord. Peut-être est-ce dû à la météo plus agréable...
         </p>
       </div>
     </div>
@@ -190,6 +350,7 @@
 <script src="js/couleursCarte.js"></script>
 <script src="js/textMouseOver.js"></script>
 <script src="js/legende.js"></script>
+<script src="js/graph.js"></script>
 
 
 </body>

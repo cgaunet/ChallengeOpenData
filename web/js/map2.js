@@ -2,6 +2,8 @@ var map = creerMap()
 
 
 function ajoutData(data, categorie) {
+    map["nombreTotalIndividus"] += 1
+
     map[data.region]["nombreIndividus"].total += 1
     map[data.region]["nombreIndividus"][categorie] += 1
 
@@ -94,155 +96,167 @@ function remplirTab() {
                 .style("left", "0px")
                 .style("top", "0px");
             })
-            .style("fill", function(d) { return couleur(numeroRegion(d.properties.nom),d.properties.nom) })
-        });
 
+            .on("click", function(d) {
+                div.transition()
+                .duration(200)
+                .style("opacity", 0.75);
+                console.log("je passe dans le click")
+                div.html(htmlMouseOver(numeroRegion(d.properties.nom),d.properties.nom)+htmlClick(numeroRegion(d.properties.nom),d.properties.nom))
+                .style("left", (d3.event.pageX + 30) + "px")
+                .style("top", (d3.event.pageY - 30) + "px")
+                .style("color", "white")
+            })
+            .style("fill", function(d) { return couleur(numeroRegion(d.properties.nom),d.properties.nom) })
+
+
+
+        })
+
+
+        var legend = d3.select('#svg').append("g")
+        .attr("transform", "translate(" + Math.round((width / 2) + width * 0.3) + ", " + Math.round(height / 2) + ")")
+        .attr("id", "legend");
+
+
+        var unit = "g/jour";
+        var legend_title = "Légende :";
+        var mapName = "sport";
+
+        switch (mapName) {
+            case "sport":
+            unit = "minutes/semaine";
+            break;
+            case "fastfood":
+            unit = "%";
+            break;
+            case "alcohol":
+            unit = "%";
+            break;
+            case "obesity":
+            unit = "%";
+            break;
+            case "butter":
+            legend_title = "Consomme plus de :";
+            break;
+            default:
+            unit = "g/jour";
+        }
+
+        // Add colorbar
+        legend.selectAll(".colorbar")
+        .data(d3.range(tabCouleur.length))
+        .enter().append("svg:rect")
+        .attr("y", function (d) { return d * 20 + "px"; })
+        .attr("height", "20px")
+        .attr("width", "20px")
+        .attr("x", "0px")
+        .attr("class", "carreLegende")
+        .attr("id", function(d) {return d})
+        .style("fill", function (d) { return couleurLegende(d) });
+
+        // Add legend to each color
+        legend.selectAll(".colorbar")
+        .data(d3.range(tabCouleur.length))
+        .enter()
+        .append("text")
+        .attr("x", "30px")
+        .attr("y", function (d) { return (d * 20 + 15) + "px"; })
+        .attr("class", "texteLegende")
+        .attr("id", function(d) {return d})
+        .text(function (d) { var str = ""; str += d; return texteLegende(str) })
+
+        // Add legend title
+        legend.selectAll(".colorbar")
+        .data(d3.range(1))
+        .enter()
+        .append("text")
+        .attr("x", "0px")
+        .attr("y", "-45px")
+        .text(function(d) { return "Legende : " })
+        .style("font-weight", "bold")
+
+
+        legend.selectAll(".colorbar")
+        .data(d3.range(1))
+        .enter()
+        .append("text")
+        .attr("x", "0px")
+        .attr("y", "-30px")
+        .attr("height", "30px")
+        .attr("id", "sousTitre1")
+        .text(function(d) { return sousTitreLegende1()});
+
+        legend.selectAll(".colorbar")
+        .data(d3.range(1))
+        .enter()
+        .append("text")
+        .attr("x", "0px")
+        .attr("y", "-15px")
+        .attr("height", "15px")
+        .attr("id", "sousTitre2")
+        .text(function(d) { return sousTitreLegende2()});
 
     })
-
-
-    var legend = d3.select('#svg').append("g")
-    .attr("transform", "translate(" + Math.round((width / 2) + width * 0.3) + ", " + Math.round(height / 2) + ")")
-    .attr("id", "legend");
-
-
-    var unit = "g/jour";
-    var legend_title = "Légende :";
-    var mapName = "sport";
-
-    switch (mapName) {
-        case "sport":
-        unit = "minutes/semaine";
-        break;
-        case "fastfood":
-        unit = "%";
-        break;
-        case "alcohol":
-        unit = "%";
-        break;
-        case "obesity":
-        unit = "%";
-        break;
-        case "butter":
-        legend_title = "Consomme plus de :";
-        break;
-        default:
-        unit = "g/jour";
-    }
-
-    // Add colorbar
-    legend.selectAll(".colorbar")
-    .data(d3.range(tabCouleur.length))
-    .enter().append("svg:rect")
-    .attr("y", function (d) { return d * 20 + "px"; })
-    .attr("height", "20px")
-    .attr("width", "20px")
-    .attr("x", "0px")
-    .attr("class", "carreLegende")
-    .attr("id", function(d) {return d})
-    .style("fill", function (d) { return couleurLegende(d) });
-
-    // Add legend to each color
-    legend.selectAll(".colorbar")
-    .data(d3.range(tabCouleur.length))
-    .enter()
-    .append("text")
-    .attr("x", "30px")
-    .attr("y", function (d) { return (d * 20 + 15) + "px"; })
-    .attr("class", "texteLegende")
-    .attr("id", function(d) {return d})
-    .text(function (d) { var str = ""; str += d; return texteLegende(str) })
-
-    // Add legend title
-    legend.selectAll(".colorbar")
-    .data(d3.range(1))
-    .enter()
-    .append("text")
-    .attr("x", "0px")
-    .attr("y", "-45px")
-    .text(function(d) { return "Legende : " })
-    .style("font-weight", "bold")
-
-
-    legend.selectAll(".colorbar")
-    .data(d3.range(1))
-    .enter()
-    .append("text")
-    .attr("x", "0px")
-    .attr("y", "-30px")
-    .attr("height", "30px")
-    .attr("id", "sousTitre1")
-    .text(function(d) { return sousTitreLegende1()});
-
-    legend.selectAll(".colorbar")
-    .data(d3.range(1))
-    .enter()
-    .append("text")
-    .attr("x", "0px")
-    .attr("y", "-15px")
-    .attr("height", "15px")
-    .attr("id", "sousTitre2")
-    .text(function(d) { return sousTitreLegende2()});
-
 }
 
-function numeroRegion(nomRegion){
-    for (var i = 1; i < 22; i++) {
-        if (map[i].region == nomRegion) {
-            return i
+    function numeroRegion(nomRegion){
+        for (var i = 1; i < 22; i++) {
+            if (map[i].region == nomRegion) {
+                return i
+            }
+        }
+        return 0
+    }
+
+    function pourcentageParRapportMoyenne(moy, numeroRegion, val){
+        if(val - moy > 0){
+            return "+"+(((val - moy) / val) * 100).toFixedDown(2);
+        }else {
+            return "-"+(((val - moy) / val) * 100).toFixedDown(2);
         }
     }
-    return 0
-}
 
-function pourcentageParRapportMoyenne(moy, numeroRegion, val){
-    if(val - moy > 0){
-        return "+"+(((val - moy) / val) * 100).toFixedDown(2);
-    }else {
-        return "-"+(((val - moy) / val) * 100).toFixedDown(2);
+    function calculerMoyenne(func){
+        var moy = 0;
+        for (var i = 1; i < 22; i++) {
+            moy += func(i);
+        }
+        moy = moy/21;
+        return moy;
     }
-}
 
-function calculerMoyenne(func){
-    var moy = 0;
-    for (var i = 1; i < 22; i++) {
-        moy += func(i);
+    function pourcentageObesite(numeroRegion) {
+        return ((map[numeroRegion]["nombreIndividus"].obesite / map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
     }
-    moy = moy/21;
-    return moy;
-}
 
-function pourcentageObesite(numeroRegion) {
-    return ((map[numeroRegion]["nombreIndividus"].obesite / map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
-}
+    function pourcentagePoisson(numeroRegion) {
+        return (((map[numeroRegion]["mpois"].total[1].compteur+map[numeroRegion]["mpois"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
+    }
 
-function pourcentagePoisson(numeroRegion) {
-    return (((map[numeroRegion]["mpois"].total[1].compteur+map[numeroRegion]["mpois"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
-}
+    function pourcentageViande(numeroRegion) {
+        return (((map[numeroRegion]["mvian"].total[1].compteur+map[numeroRegion]["mvian"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
+    }
 
-function pourcentageViande(numeroRegion) {
-  return (((map[numeroRegion]["mvian"].total[1].compteur+map[numeroRegion]["mvian"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
-}
+    function pourcentageFruit(numeroRegion) {
+        return (((map[numeroRegion]["mfruit"].total[1].compteur+map[numeroRegion]["mfruit"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
+    }
 
-function pourcentageFruit(numeroRegion) {
-  return (((map[numeroRegion]["mfruit"].total[1].compteur+map[numeroRegion]["mfruit"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
-}
-
-function pourcentageFastFood(numeroRegion) {
-    return (((map[numeroRegion]["fastfood"].total[1].compteur
-    +map[numeroRegion]["fastfood"].total[2].compteur
-    +map[numeroRegion]["fastfood"].total[3].compteur
-    +map[numeroRegion]["fastfood"].total[4].compteur
-    +map[numeroRegion]["fastfood"].total[5].compteur
-)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
+    function pourcentageFastFood(numeroRegion) {
+        return (((map[numeroRegion]["fastfood"].total[1].compteur
+        +map[numeroRegion]["fastfood"].total[2].compteur
+        +map[numeroRegion]["fastfood"].total[3].compteur
+        +map[numeroRegion]["fastfood"].total[4].compteur
+        +map[numeroRegion]["fastfood"].total[5].compteur
+    )/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
 }
 
 function pourcentageTele(numeroRegion) {
-  return (((map[numeroRegion]["tele"].total)/ map[numeroRegion]["nombreIndividus"].total)).toFixedDown(2)
+    return (((map[numeroRegion]["tele"].total)/ map[numeroRegion]["nombreIndividus"].total)).toFixedDown(2)
 }
 
 function pourcentageActivite(numeroRegion) {
-  return (((map[numeroRegion]["aptotal_hebdo"].total)/ map[numeroRegion]["nombreIndividus"].total)).toFixedDown(2)
+    return (((map[numeroRegion]["aptotal_hebdo"].total)/ map[numeroRegion]["nombreIndividus"].total)).toFixedDown(2)
 }
 
 

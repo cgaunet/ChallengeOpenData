@@ -1,3 +1,13 @@
+function htmlClick(numeroRegion, nomRegion) {
+    if (numeroRegion != 0) {
+        return "<a style=\"color:grey\"></br>Nombre d'individus interrogés : "+map[numeroRegion]["nombreIndividus"].total+"</br> Nombre total d'individus: "+ map["nombreTotalIndividus"]+"</a>"
+    } else {
+        return ""
+    }
+}
+
+
+
 function htmlPourcentageObesite(numeroRegion, nomRegion) {
     if (numeroRegion != 0) {
         return "Région : " + nomRegion + "<br>" + "Pourcentage obésité: " +
