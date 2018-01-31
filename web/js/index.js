@@ -61,116 +61,116 @@ var tabCouleurBleu = ["#adccff","#77aaff","#478cff","#0562ff", "#001e82"];
 var tabCouleurRouge = [" #ffb3b3"," #ff4d4d","#e60000"," #990000", " #4d0000"];
 var tabCouleurVert = [" #99ff99"," #1aff1a","#00cc00","  #008000", " #003300"];
 var tabCouleurJaune = ["  #ffff80","  #ffff00","#b3b300","  #808000", " #333300"];
-var tabCritereObesite = [8,10,13,15]
-var tabCritereFastFood = [14,18,22,27]
-var tabCritereViande = [14,18,22,27]
-var tabCriterePoisson = [8.5,12,15,17]
-var tabCritereFruit = [15,18,20,25]
-var tabCritereTele = [130,140,152,165]
-var tabCritereActivite = [500,585,660,730]
+var tabCritereObesite = [8,10,13,15];
+var tabCritereFastFood = [14,18,22,27];
+var tabCritereViande = [14,18,22,27];
+var tabCriterePoisson = [8.5,12,15,17];
+var tabCritereFruit = [15,18,20,25];
+var tabCritereTele = [130,140,152,165];
+var tabCritereActivite = [500,585,660,730];
 
 function pourcentage(numeroRegion) {return pourcentageObesite(numeroRegion)}
 function htmlMouseOver(numeroRegion, nomRegion) { return htmlPourcentageObesite(numeroRegion, nomRegion)}
-function sousTitreLegende1() {return "% de personne avec imc > 30 : "}
-function sousTitreLegende2() {return ""}
+function sousTitreLegende1() {return "% de personne avec imc > 30 : ";}
+function sousTitreLegende2() {return "";}
 var tabCouleur = tabCouleurBleu;
 var tabCritere = tabCritereObesite;
 var uniteLegende = "%";
 
 
 function choixObesite(){
-    titredeCarte = "l'obésité"
+    titredeCarte = "l'obésité";
     tabCouleur = tabCouleurBleu;
     tabCritere = tabCritereObesite;
-    pourcentage = function(numeroRegion) {return pourcentageObesite(numeroRegion)}
-    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlPourcentageObesite(numeroRegion, nomRegion)}
-    uniteLegende = "%"
-    sousTitreLegende1 = function() {return "% de personne avec imc > 30 : "}
-    sousTitreLegende2 = function() {return ""}
+    pourcentage = function(numeroRegion) {return pourcentageObesite(numeroRegion);}
+    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlPourcentageObesite(numeroRegion, nomRegion);}
+    uniteLegende = "%";
+    sousTitreLegende1 = function() {return "% de personne avec imc > 30 : ";}
+    sousTitreLegende2 = function() {return "";}
     updateCouleurCarte();
     updateTitreCarte();
-    updateLegende()
+    updateLegende();
 }
 function choixFastFood(){
-    titredeCarte = "la consommation de Fast food"
+    titredeCarte = "la consommation de Fast food";
     tabCouleur = tabCouleurJaune;
     tabCritere = tabCritereFastFood;
-    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlFastFood(numeroRegion, nomRegion)}
-    pourcentage = function(numeroRegion) {return pourcentageFastFood(numeroRegion)}
-    uniteLegende = "%"
-    sousTitreLegende1 = function() {return "% de personne allant au"}
-    sousTitreLegende2 = function() {return "fastfood régulièrement :"}
+    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlFastFood(numeroRegion, nomRegion);}
+    pourcentage = function(numeroRegion) {return pourcentageFastFood(numeroRegion);}
+    uniteLegende = "%";
+    sousTitreLegende1 = function() {return "% de personne allant au";}
+    sousTitreLegende2 = function() {return "fastfood régulièrement :";}
     updateCouleurCarte();
     updateTitreCarte();
-    updateLegende()
+    updateLegende();
 }
 
 function choixViande(){
-    titredeCarte = "la consommation de viande"
+    titredeCarte = "la consommation de viande";
     tabCouleur = tabCouleurRouge;
-    tabCritere = tabCritereViande
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlViande(numeroRegion, nomRegion)}
-    pourcentage= function (numeroRegion) {return pourcentageViande(numeroRegion)}
+    tabCritere = tabCritereViande;
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlViande(numeroRegion, nomRegion);}
+    pourcentage= function (numeroRegion) {return pourcentageViande(numeroRegion);}
     uniteLegende = "%"
-    sousTitreLegende1 = function() {return "% de personne aimant" }
-    sousTitreLegende2 = function() {return "la viande :"}
+    sousTitreLegende1 = function() {return "% de personne aimant";}
+    sousTitreLegende2 = function() {return "la viande :";}
     updateCouleurCarte();
     updateTitreCarte();
-    updateLegende()
+    updateLegende();
 
 }
 function choixPoisson(){
-    titredeCarte = "la consommation de poisson"
+    titredeCarte = "la consommation de poisson";
     tabCouleur = tabCouleurVert;
     tabCritere = tabCriterePoisson;
-    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlMPois(numeroRegion, nomRegion)}
-    pourcentage = function(numeroRegion) {return pourcentagePoisson(numeroRegion)}
-    uniteLegende = "%"
-    sousTitreLegende1 = function() {return "% de personne aimant"}
-    sousTitreLegende2 = function() {return "le poisson :"}
+    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlMPois(numeroRegion, nomRegion);}
+    pourcentage = function(numeroRegion) {return pourcentagePoisson(numeroRegion);}
+    uniteLegende = "%";
+    sousTitreLegende1 = function() {return "% de personne aimant";}
+    sousTitreLegende2 = function() {return "le poisson :";}
     updateCouleurCarte();
     updateTitreCarte();
-    updateLegende()
+    updateLegende();
 }
 function choixFruit(){
-    titredeCarte = "la consommation de fruits"
+    titredeCarte = "la consommation de fruits";
     tabCouleur = tabCouleurVert;
     tabCritere = tabCritereFruit;
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlFruit(numeroRegion, nomRegion)}
-    pourcentage = function (numeroRegion) {return pourcentageFruit(numeroRegion)}
-    uniteLegende = "%"
-    sousTitreLegende1 = function() {return "% de personne aimant"}
-    sousTitreLegende2 = function() {return "les fruits :"}
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlFruit(numeroRegion, nomRegion);}
+    pourcentage = function (numeroRegion) {return pourcentageFruit(numeroRegion);}
+    uniteLegende = "%";
+    sousTitreLegende1 = function() {return "% de personne aimant";}
+    sousTitreLegende2 = function() {return "les fruits :";}
     updateCouleurCarte();
     updateTitreCarte();
-    updateLegende()
+    updateLegende();
 }
 function choixTele(){
-    titredeCarte = "temps passé devant la télévision"
+    titredeCarte = "temps passé devant la télévision";
     tabCouleur = tabCouleurRouge;
     tabCritere = tabCritereTele;
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlTele(numeroRegion, nomRegion)}
-    pourcentage = function (numeroRegion) {return pourcentageTele(numeroRegion)}
-    uniteLegende = " minutes"
-    sousTitreLegende1 = function() {return "moyenne du temps passé"}
-    sousTitreLegende2 = function() {return "devant la télévision :"}
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlTele(numeroRegion, nomRegion);}
+    pourcentage = function (numeroRegion) {return pourcentageTele(numeroRegion);}
+    uniteLegende = " minutes";
+    sousTitreLegende1 = function() {return "moyenne du temps passé";}
+    sousTitreLegende2 = function() {return "devant la télévision :";}
     updateCouleurCarte();
     updateTitreCarte();
-    updateLegende()
+    updateLegende();
 }
 
 function choixActivite(){
-    titredeCarte = "l'activité sportive"
+    titredeCarte = "l'activité sportive";
     tabCouleur = tabCouleurBleu;
     tabCritere = tabCritereActivite;
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlActivite(numeroRegion, nomRegion)}
-    pourcentage = function (numeroRegion, nomRegion) {return pourcentageActivite(numeroRegion)}
-    uniteLegende = " minutes"
-    sousTitreLegende1 = function() {return "moyenne du temps de sport"}
-    sousTitreLegende2 = function() {return "hebdomadaire :"}
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlActivite(numeroRegion, nomRegion);}
+    pourcentage = function (numeroRegion, nomRegion) {return pourcentageActivite(numeroRegion);}
+    uniteLegende = " minutes";
+    sousTitreLegende1 = function() {return "moyenne du temps de sport";}
+    sousTitreLegende2 = function() {return "hebdomadaire :";}
     updateCouleurCarte();
     updateTitreCarte();
-    updateLegende()
+    updateLegende();
 }
 
 function updateTitreCarte(){
@@ -186,7 +186,7 @@ function updateCouleurCarte(){
     var divs = document.getElementsByTagName("path");
     for (var i=0, len=divs.length;i < len; i++){
         if(divs[i].className.baseVal=="region"){
-            divs[i].style.fill = couleur(numeroRegion(divs[i].getAttribute("regName")),divs[i].getAttribute("regName"))
+            divs[i].style.fill = couleur(numeroRegion(divs[i].getAttribute("regName")),divs[i].getAttribute("regName"));
         }
     }
 }
@@ -196,18 +196,17 @@ function updateLegende(){
     sousTitre1.innerHTML = sousTitreLegende1();
     var sousTitre2 = document.getElementById("sousTitre2");
     sousTitre2.innerHTML = sousTitreLegende2();
-    var carres = document.getElementsByTagName("rect")
+    var carres = document.getElementsByTagName("rect");
 
     for (var i=0, len=carres.length; i<len; i++){
         if(carres[i].className.baseVal=="carreLegende") {
-            carres[i].style.fill = couleurLegende(carres[i].id)
+            carres[i].style.fill = couleurLegende(carres[i].id);
         }
     }
     var textes = document.getElementsByTagName("text")
     for (var i=0, len=textes.length; i<len; i++){
         if(textes[i].className.baseVal=="texteLegende") {
-            console.log(textes[i].id)
-            textes[i].innerHTML = texteLegende(textes[i].id)
+            textes[i].innerHTML = texteLegende(textes[i].id);
         }
     }
 }
@@ -215,26 +214,10 @@ function updateLegende(){
 
 
 $(document).ready(function() {
-    //$('#myModal').modal('show');
-
-    // $("#sidebar").mCustomScrollbar({
-    //  theme: "minimal"
-    // });
-    //
-    // $('#sidebarCollapse').on('click', function () {
-    //     $('#sidebar').toggleClass('active');
-    //     $('.collapse.in').toggleClass('in');
-    //     // and also adjust aria-expanded attributes we use for the open/closed arrows
-    //     // in our CSS
-    //     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-    // });
-
     $('ul li').on('click', function() {
         $('li').removeClass('active');
         $(this).addClass('active');
     });
-    console.log(document.getElementById("titreCarte").innerHTML);
-
     personnes = [];
     d3.csv("src/Table_indiv.csv", function(data) {
         data.forEach(function(d) {
@@ -253,32 +236,9 @@ $(document).ready(function() {
     });
 });
 
-/*
-$("#display").click(function () {
-personnes = [];
-d3.csv("src/Table_indiv.csv", function(data) {
-data.forEach(function(d) {
-d.bmi = +d.bmi;
-d["v2_age"] = +d["v2_age"];
-if(!isNaN(d.bmi) && d.bmi.toString().indexOf('.') != -1 && !isNaN(d.bmi) && d.bmi.toString().indexOf('.') != -1){
-var personneTemp = new Personne(d["v2_age"], d.bmi);
-personnes.push(personneTemp);
-}
-});
-personnes.sort(function(a, b) {
-return a.x - b.x;
-})
-makeAverage(personnes);
-myDataIsReady();
-
-}
-});
-});
-*/
-
 function makeAverage(tabToMakeAverage){
     var currentAge = tabToMakeAverage[0].x;
-    personnes = []
+    personnes = [];
     var counter = 1;
     var sum = tabToMakeAverage[0].y;
     for (var key in tabToMakeAverage){
@@ -341,8 +301,6 @@ var config = {
 
 function myDataIsReady() {
     var ctx = document.getElementById("lineChart").getContext("2d");
-    //window.myLine = new Chart(ctx, config);
-
     window.myScatter = Chart.Scatter(ctx,{
 
         type: 'line',
@@ -360,8 +318,8 @@ function myDataIsReady() {
             display:true,
             text:'IMC en fonction de l\'âge',
             fontSize: '29'
-            font
-        },*/
+            font*/
+        },
         tooltips: {
             mode: 'index',
             intersect: false,
@@ -386,7 +344,6 @@ function myDataIsReady() {
                 }
             }]
         }
-    }
-}
-);
+
+    });
 };
