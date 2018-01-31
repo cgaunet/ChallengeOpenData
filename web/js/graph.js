@@ -1,7 +1,7 @@
 var personnes = [];
 var criteres = {};
 var counterDatasets = 0;
-var backgroundColor = [window.chartColors.green, window.chartColors.yellow, window.chartColors.blue, window.chartColors.orange]
+var backgroundColor = [window.chartColors.green, window.chartColors.black, window.chartColors.blue, window.chartColors.purple]
 var mustMakeAverage = true;
 
 function initCriteres(){
@@ -11,6 +11,7 @@ function initCriteres(){
     criteres["mfruit"] = [0,1,2,3,4,9];
     criteres["fastfood"] = {min: 0, max: 30};
     criteres["mpois"] = [0,1,2,3,4,9];
+    criteres["mvian"] = [0,1,2,3,4,9];
 }
 
 $(function() {
@@ -129,6 +130,11 @@ function correspondsToCriterias(personne){
         }
         if (!containsTemp){return false;}
 
+        for (var key in criteres["mvian"]){
+            if (criteres["mvian"][key] == personne.mvian){containsTemp = true;}
+        }
+        if (!containsTemp){return false;}
+
         if (!isNaN(personne.aptotal_hebdo) && personne.aptotal_hebdo >= criteres["aptotal_hebdo"].min && personne.aptotal_hebdo <= criteres["aptotal_hebdo"].max){
             if (!isNaN(personne.fastfood)){
                 var nbJPerMonths = getValueFromAnswer("fastfood", personne.fastfood);
@@ -239,6 +245,16 @@ $(":checkbox").change(function(){
     criteres["mpois"].push(0);
     criteres["mpois"].push(4);
     criteres["mpois"].push(9);
+
+    criteres["mvian"] = [];
+    $('#checkboxesMVian :checkbox').each(function () {
+        if(this.checked){
+            criteres["mvian"].push(+$(this).val());
+        }
+    });
+    criteres["mvian"].push(0);
+    criteres["mvian"].push(4);
+    criteres["mvian"].push(9);
     if (mustMakeAverage){
       loadData(reduceDataForLineChart);
     }else{
