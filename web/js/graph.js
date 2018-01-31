@@ -2,6 +2,7 @@ var personnes = [];
 var criteres = {};
 var counterDatasets = 0;
 var backgroundColor = [window.chartColors.green, window.chartColors.yellow, window.chartColors.blue, window.chartColors.orange]
+var mustMakeAverage = true;
 
 function initCriteres(){
     criteres["aptotal_hebdo"] = {min: 0, max: 2000};
@@ -9,15 +10,16 @@ function initCriteres(){
     criteres["bonalim"] = [0,1,2,3,4,9];
     criteres["mfruit"] = [0,1,2,3,4,9];
     criteres["fastfood"] = {min: 0, max: 30};
+    criteres["mpois"] = [0,1,2,3,4,9];
 }
 
 $(function() {
     initCriteres();
-    loadData(myDataIsReady, false);
+    loadData(myDataIsReady);
     $('.slider').slider();
 });
 
-function loadData(callback, toBeUpdated){
+function loadData(callback){
     personnes = [];
     d3.csv("src/Table_indiv.csv", function(data) {
         data.forEach(function(d) {
@@ -43,7 +45,7 @@ function loadData(callback, toBeUpdated){
     });
 }
 
-function reduceData(){
+function reduceDataForLineChart(){
     var personnesTemp = [];
     for (var key in personnes){
         var personneTemp = personnes[key];
@@ -74,12 +76,37 @@ function reduceData(){
         fill: false
     };
 
-    window.myScatter.config.data.datasets.push(newDataset);
-    counterDatasets++;
-    if (counterDatasets >= 3){
-        window.myScatter.config.data.datasets.splice(1,1);
-    }
-    window.myScatter.update();
+    updateChart(newDataset);
+}
+
+function reduceDataForScatterChart(){
+  var personnesTemp = [];
+  for (var key in personnes){
+      var personneTemp = personnes[key];
+      if (correspondsToCriterias(personneTemp)){
+          personnesTemp.push(personneTemp);
+      }
+  }
+  personnes = personnesTemp;
+
+  var newDataset = {
+      label: 'Dataset ' + (counterDatasets+1).toString(),
+      backgroundColor: backgroundColor[counterDatasets%4],
+      borderColor: backgroundColor[counterDatasets%4],
+      data: convertDatasetPersonnesToScatterDataset(personnes),
+      fill: false
+  };
+
+  updateChart(newDataset);
+}
+
+function updateChart(newDataset){
+  window.myScatter.config.data.datasets.push(newDataset);
+  counterDatasets++;
+  if (counterDatasets >= 3){
+      window.myScatter.config.data.datasets.splice(1,1);
+  }
+  window.myScatter.update();
 }
 
 function correspondsToCriterias(personne){
@@ -93,10 +120,14 @@ function correspondsToCriterias(personne){
 
         containsTemp = false;
         for (var key in criteres["mfruit"]){
-            if (criteres["mfruit"][key] == personne.bonalim){containsTemp = true;}
+            if (criteres["mfruit"][key] == personne.mfruit){containsTemp = true;}
         }
         if (!containsTemp){return false;}
 
+        for (var key in criteres["mpois"]){
+            if (criteres["mpois"][key] == personne.mpois){containsTemp = true;}
+        }
+        if (!containsTemp){return false;}
 
         if (!isNaN(personne.aptotal_hebdo) && personne.aptotal_hebdo >= criteres["aptotal_hebdo"].min && personne.aptotal_hebdo <= criteres["aptotal_hebdo"].max){
             if (!isNaN(personne.fastfood)){
@@ -170,7 +201,12 @@ $(".slider").change(function(){
     criteres["tele"] = {min : valuesTele[0], max : valuesTele[1]}
     var valuesFastFood = $("#slider-fastfood").attr("data-value").split(",");
     criteres["fastfood"] = {min : valuesFastFood[0], max : valuesFastFood[1]}
-    loadData(reduceData, true);
+    if (mustMakeAverage){
+      loadData(reduceDataForLineChart);
+    }else{
+      loadData(reduceDataForScatterChart);
+    }
+
 });
 
 $(":checkbox").change(function(){
@@ -193,7 +229,34 @@ $(":checkbox").change(function(){
     criteres["mfruit"].push(0);
     criteres["mfruit"].push(4);
     criteres["mfruit"].push(9);
-    loadData(reduceData, true);
+
+    criteres["mpois"] = [];
+    $('#checkboxesMPois :checkbox').each(function () {
+        if(this.checked){
+            criteres["mpois"].push(+$(this).val());
+        }
+    });
+    criteres["mpois"].push(0);
+    criteres["mpois"].push(4);
+    criteres["mpois"].push(9);
+    if (mustMakeAverage){
+      loadData(reduceDataForLineChart);
+    }else{
+      loadData(reduceDataForScatterChart);
+    }
+});
+
+$("#radiosChoiceDisplay :radio").change(function(){
+    if($('#radiosChoiceDisplay :radio:checked').val() == "line"){
+      mustMakeAverage = true;
+      window.myScatter.destroy();
+      loadData(myDataIsReady);
+    }else{
+      mustMakeAverage = false;
+      window.myScatter.destroy();
+      loadData(createNewScatterChart);
+      // reduceDataForScatterChart
+    }
 });
 
 
@@ -227,33 +290,77 @@ function myDataIsReady() {
         ordonnees.push(personnes[key].y);
     }
 
-    var config = {
-        type: 'line',
-        data: {
-            labels : abscisses,
-            datasets: [{
-                label: "Courbe de référence",
-                data: ordonnees,
-                borderColor: window.chartColors.red,
-                backgroundColor: 'rgba(0, 0, 0, 0)',
-                fill: false,
-                cubicInterpolationMode: 'monotone'
-            }]
-        },
-        options: {
-            responsive: true,
-            title:{
-                display:true,
-                text:"Courbe de l'IMC en fonction de l'âge"
-            },
-            tooltips: {
-                mode: 'index'
-            }
-        }
-    };
+    createNewLineChart(abscisses, ordonnees);
+}
 
-    var ctx = document.getElementById("lineChart").getContext("2d");
-    window.myScatter = new Chart(ctx,config);
-    counterDatasets++;
-    window.myScatter.update();
+function createNewLineChart(labels, dataset){
+  var config = {
+      type: 'line',
+      data: {
+          labels : labels,
+          datasets: [{
+              label: "Courbe de référence",
+              data: dataset,
+              borderColor: window.chartColors.red,
+              backgroundColor: 'rgba(0, 0, 0, 0)',
+              fill: false,
+              cubicInterpolationMode: 'monotone'
+          }]
+      },
+      options: {
+          responsive: true,
+          title:{
+              display:true,
+              text:"Courbe de l'IMC en fonction de l'âge"
+          },
+          tooltips: {
+              mode: 'index'
+          }
+      }
+  };
+
+  var ctx = document.getElementById("chart").getContext("2d");
+  window.myScatter = new Chart(ctx,config);
+  counterDatasets = 1;
+  window.myScatter.update();
+
+}
+function convertDatasetPersonnesToScatterDataset(datasetPersonnes){
+  var scatterDataset = [];
+    for (var key in datasetPersonnes){
+      scatterDataset.push({x: datasetPersonnes[key].age, y: datasetPersonnes[key].bmi});
+    }
+  return scatterDataset;
+}
+
+/**
+* Used only when you change the mode of display. Hence, the data are already loaded in personnes.
+*
+*
+**/
+function createNewScatterChart(){
+  var config = {
+    type: 'scatter',
+    data: {
+        datasets: [{
+            label: 'Scatter Dataset',
+            data: convertDatasetPersonnesToScatterDataset(personnes),
+            borderColor: window.chartColors.red,
+            backgroundColor: 'rgba(0, 0, 0, 0)'
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+            }]
+        }
+    }
+  }
+
+  var ctx = document.getElementById("chart").getContext("2d");
+  window.myScatter = new Chart(ctx,config);
+  counterDatasets = 1;
+  window.myScatter.update();
 }
