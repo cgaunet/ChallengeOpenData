@@ -7,12 +7,13 @@ function initCriteres(){
     criteres["aptotal_hebdo"] = {min: 0, max: 2000};
     criteres["tele"] = {min: 0, max: 500};
     criteres["bonalim"] = [0,1,2,3,4,9];
+    criteres["mfruit"] = [0,1,2,3,4,9];
+    criteres["fastfood"] = {min: 0, max: 30};
 }
 
 $(function() {
     initCriteres();
     loadData(myDataIsReady, false);
-    //myDataIsReady();
     $('.slider').slider();
 });
 
@@ -24,6 +25,12 @@ function loadData(callback, toBeUpdated){
             d["v2_age"] = +d["v2_age"];
             d.tele = +d.tele;
             d["aptotal_hebdo"] = +d["aptotal_hebdo"];
+            d.fastfood = +d.fastfood;
+            d.mfruit = +d.mfruit;
+            d.mvian = +d.mvian;
+            d.mpois = +d.mpois;
+            d.region = +d.region;
+            d.entrerep = +d.entrerep;
             if(!isNaN(d["v2_age"]) && !isNaN(d.bmi) && d.bmi.toString().indexOf('.') != -1){ //
                 var personneTemp = new Personne(d["v2_age"], d.bmi, d.entrerep, d.mfruit, d.bonalim, d.tele, d.mvian, d.mpois, d.fastfood, d["aptotal_hebdo"], d.region);
                 personnes.push(personneTemp);
@@ -38,9 +45,7 @@ function loadData(callback, toBeUpdated){
 
 function reduceData(){
     var personnesTemp = [];
-    //console.log(criteres["age"].min);
     for (var key in personnes){
-        //console.log(personnes);
         var personneTemp = personnes[key];
         if (correspondsToCriterias(personneTemp)){
             personnesTemp.push(personneTemp);
@@ -52,9 +57,10 @@ function reduceData(){
     var ordonnees = [];
     var agePrec = 3;
     for (var key in personnes){
-        //abscisses.push((personnes[key].x).toString());
         if (personnes[key].x - agePrec > 1){
-            ordonnees.push(NaN);
+            for (var i = 0; i < personnes[key].x - agePrec - 1; i++){
+                ordonnees.push(NaN);
+            }
         }
         agePrec = personnes[key].x;
         ordonnees.push(personnes[key].y);
@@ -79,12 +85,30 @@ function reduceData(){
 function correspondsToCriterias(personne){
     var containsTemp = false;
     if (!isNaN(personne.tele) && personne.tele >= criteres["tele"].min && personne.tele <= criteres["tele"].max){
+
         for (var key in criteres["bonalim"]){
             if (criteres["bonalim"][key] == personne.bonalim){containsTemp = true;}
         }
         if (!containsTemp){return false;}
+
+        containsTemp = false;
+        for (var key in criteres["mfruit"]){
+            if (criteres["mfruit"][key] == personne.bonalim){containsTemp = true;}
+        }
+        if (!containsTemp){return false;}
+
+
         if (!isNaN(personne.aptotal_hebdo) && personne.aptotal_hebdo >= criteres["aptotal_hebdo"].min && personne.aptotal_hebdo <= criteres["aptotal_hebdo"].max){
-            return true;
+            if (!isNaN(personne.fastfood)){
+                var nbJPerMonths = getValueFromAnswer("fastfood", personne.fastfood);
+                if (nbJPerMonths >= criteres["fastfood"].min && nbJPerMonths <= criteres["fastfood"].max){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
         }else{
             return false;
         }
@@ -92,6 +116,37 @@ function correspondsToCriterias(personne){
     return false;
 }
 
+function getValueFromAnswer(criteria, value){
+    switch (criteria) {
+        case "fastfood":
+        switch (value) {
+            case 1:
+            return 30;
+            break;
+            case 2:
+            return 20;
+            break;
+            case 3:
+            return 14;
+            break;
+            case 4:
+            return 4;
+            break;
+            case 5:
+            return 1;
+            break;
+            case 6:
+            return 0;
+            break;
+            default:
+            return 5;
+            break;
+        }
+        break;
+        default:
+        break;
+    }
+}
 
 
 function Personne(age, bmi, entrerep, mfruit, bonalim, tele, mvian, mpois, fastfood, aptotal_hebdo, region) {
@@ -113,12 +168,14 @@ $(".slider").change(function(){
     criteres["aptotal_hebdo"] = {min : valuesApTotal[0], max : valuesApTotal[1]}
     var valuesTele = $("#slider-tele").attr("data-value").split(",");
     criteres["tele"] = {min : valuesTele[0], max : valuesTele[1]}
+    var valuesFastFood = $("#slider-fastfood").attr("data-value").split(",");
+    criteres["fastfood"] = {min : valuesFastFood[0], max : valuesFastFood[1]}
     loadData(reduceData, true);
 });
 
-$(":checkbox").change(function(){ //#checkboxesBonAlim
+$(":checkbox").change(function(){
     criteres["bonalim"] = [];
-    $('#checkboxesBonAlim :checkbox').each(function () { //#checkboxesBonAlim
+    $('#checkboxesBonAlim :checkbox').each(function () {
         if(this.checked){
             criteres["bonalim"].push(+$(this).val());
         }
@@ -126,6 +183,17 @@ $(":checkbox").change(function(){ //#checkboxesBonAlim
     criteres["bonalim"].push(0);
     criteres["bonalim"].push(4);
     criteres["bonalim"].push(9);
+
+    criteres["mfruit"] = [];
+    $('#checkboxesMFruits :checkbox').each(function () {
+        if(this.checked){
+            criteres["mfruit"].push(+$(this).val());
+        }
+    });
+    criteres["mfruit"].push(0);
+    criteres["mfruit"].push(4);
+    criteres["mfruit"].push(9);
+    loadData(reduceData, true);
 });
 
 
