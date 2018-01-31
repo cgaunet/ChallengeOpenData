@@ -351,7 +351,26 @@
               <li>
                 <b>Choix des technologies</b>
                 <p>
+                  Plusieurs technologies web ont été utilisées pour ce projet de visualisation : Notamment <b>D3.Js</b>,
+                  le framework javaScript utilisé pour la représentation cartographique de France et pour la lecture du jeu de donnée. </br>
+                  La lecture du jeu de donnée est facilité par D3, en effet il suffit uniquement de faire un appel javascript : <b>d3.csv('jeu-de-donnee.csv', function(data){  });</b> </br>
+                  La représentation avec la carte est également faite par D3, en effet il permet de lire un fichier geojson : regions.geojson, qui décrit un SVG de chaque région. L'appel de la
+                  méthode <b>d3.json('fichier-json', function(req, geojson){  ...  }</b> insere dans le code HTML une liste de figures SVG avec la balise "path" correspondant aux frontières des régions. </br> </br>
 
+                  Ensuite, les graphes dans l'onglet 'Graphe' utilisent le framework : <b>Chart.JS</b>, à l'aide de ce framework, il est assez rapide de générer des courbes lissées ou des nuages de points. Les deux peuvent convenir
+                  les critères sélectionnés. Nous avons choisi de garder la courbe de référence visible lors des changements de critères pour pouvoir comparer. Cependant, il suffit de cliquer sur la légende de la courbe de référence
+                  pour la faire disparaitre. </br>
+
+                  Enfin, la gestion des appels asynchrones de manière générale est pris en charge par le framework <b>jQuery</b>, norme dans les applications il permet notamment de charger le contenu quand la page est chargée.</br>
+
+
+                </p>
+              </li>
+              <li>
+                <b>Source : </b>
+                <p>
+                  Tutoriel pour la gestion des cartes : http://www.datavis.fr/index.php?page=map-firststep </br>
+                  Fichier geojson des frontières de la France (regions-avant-redecoupage-2015.geojson): https://github.com/gregoiredavid/france-geojson </br>
                 </p>
               </li>
             </ul>
@@ -363,8 +382,9 @@
         <div class="col-lg-1">
         </div>
         <div class="col-lg-10">
+          <h3>Schéma</h3>
         </div>
-        <h3>Schéma</h3>
+
         <div class="col-lg-1">
         </div>
   </div>
