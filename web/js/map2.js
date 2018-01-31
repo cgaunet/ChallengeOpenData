@@ -102,7 +102,7 @@ function remplirTab() {
 
 
     var legend = d3.select('#svg').append("g")
-    .attr("transform", "translate(" + Math.round((width / 2) + width * 0.2) + ", " + Math.round(height / 2) + ")")
+    .attr("transform", "translate(" + Math.round((width / 2) + width * 0.3) + ", " + Math.round(height / 2) + ")")
     .attr("id", "legend");
 
     var unite = uniteLegende()
@@ -296,7 +296,7 @@ var legendRectSize = 18;
 var legendSpacing = 4;
 
 
-var width = 900, height = 900;
+var width = 1000, height = 1000;
 
 var path = d3.geoPath();
 
