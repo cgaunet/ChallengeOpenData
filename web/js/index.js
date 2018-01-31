@@ -93,12 +93,12 @@ var criteresBmi = {
 }
 
 var tabCritereBmi = {
-    sousPoids: [8,10,13,15],
-    poidsNormal: [8,10,13,15],
-    surPoids: [8,10,13,15],
+    sousPoids: [12,16,19,22],
+    poidsNormal: [40,45,50,55],
+    surPoids: [12,16,19,22],
     obesite: [8,10,13,15]
 }
-    ;
+;
 var tabCritereFastFood = {
     total: [14,18,22,27],
     sousPoids: [14,18,22,27],
@@ -142,8 +142,9 @@ var tabCritereActivite = {
     obesite: [500,585,660,730]
 };
 
+function htmlClick(numeroRegion, nomRegion) {return htmlClickCategorie(numeroRegion, nomRegion, "total");}
 function pourcentage(numeroRegion) {return pourcentageBmi(numeroRegion, "obesite")}
-function htmlMouseOver(numeroRegion, nomRegion) { return htmlPourcentageBmi(numeroRegion, nomRegion, "obesite")}
+function htmlMouseOver(numeroRegion, nomRegion) { return htmlPourcentageBmi(numeroRegion, nomRegion, "obesite");}
 function sousTitreLegende1() {return "% de personne avec imc > 30 : ";}
 function sousTitreLegende2() {return "";}
 var tabCouleur = tabCouleurBleu;
@@ -157,6 +158,7 @@ function choixBmi(categorie){
     tabCritere = tabCritereBmi[categorie];
     pourcentage = function(numeroRegion) {return pourcentageBmi(numeroRegion,categorie);}
     htmlMouseOver = function(numeroRegion, nomRegion) {return htmlPourcentageBmi(numeroRegion, nomRegion, categorie);}
+    htmlClick = function(numeroRegion, nomRegion) {return htmlClickCategorie(numeroRegion, nomRegion, categorie);}
     uniteLegende = "%";
     sousTitreLegende1 = function() {return "% de personne avec imc > 30 : ";}
     sousTitreLegende2 = function() {return "";}
@@ -170,6 +172,7 @@ function choixFastFood(categorie){
     tabCritere = tabCritereFastFood[categorie];
     htmlMouseOver = function(numeroRegion, nomRegion) {return htmlFastFood(numeroRegion, nomRegion, categorie);}
     pourcentage = function(numeroRegion) {return pourcentageFastFood(numeroRegion, categorie);}
+    htmlClick = function(numeroRegion, nomRegion) {return htmlClickCategorie(numeroRegion, nomRegion, categorie);}
     uniteLegende = "%";
     sousTitreLegende1 = function() {return "% de personne allant au";}
     sousTitreLegende2 = function() {return "fastfood régulièrement :";}
@@ -184,6 +187,7 @@ function choixViande(categorie){
     tabCritere = tabCritereViande[categorie];
     htmlMouseOver = function (numeroRegion, nomRegion) {return htmlViande(numeroRegion, nomRegion, categorie);}
     pourcentage= function (numeroRegion) {return pourcentageViande(numeroRegion, categorie);}
+    htmlClick = function(numeroRegion, nomRegion) {return htmlClickCategorie(numeroRegion, nomRegion, categorie);}
     uniteLegende = "%"
     sousTitreLegende1 = function() {return "% de personne aimant";}
     sousTitreLegende2 = function() {return "la viande :";}
@@ -199,6 +203,7 @@ function choixPoisson(categorie){
     tabCritere = tabCriterePoisson[categorie];
     htmlMouseOver = function(numeroRegion, nomRegion) {return htmlMPois(numeroRegion, nomRegion, categorie);}
     pourcentage = function(numeroRegion) {return pourcentagePoisson(numeroRegion, categorie);}
+    htmlClick = function(numeroRegion, nomRegion) {return htmlClickCategorie(numeroRegion, nomRegion, categorie);}
     uniteLegende = "%";
     sousTitreLegende1 = function() {return "% de personne aimant";}
     sousTitreLegende2 = function() {return "le poisson :";}
@@ -213,6 +218,7 @@ function choixFruit(categorie){
     tabCritere = tabCritereFruit[categorie];
     htmlMouseOver = function (numeroRegion, nomRegion) {return htmlFruit(numeroRegion, nomRegion, categorie);}
     pourcentage = function (numeroRegion) {return pourcentageFruit(numeroRegion, categorie);}
+    htmlClick = function(numeroRegion, nomRegion) {return htmlClickCategorie(numeroRegion, nomRegion, categorie);}
     uniteLegende = "%";
     sousTitreLegende1 = function() {return "% de personne aimant";}
     sousTitreLegende2 = function() {return "les fruits :";}
@@ -227,6 +233,7 @@ function choixTele(categorie){
     tabCritere = tabCritereTele[categorie];
     htmlMouseOver = function (numeroRegion, nomRegion) {return htmlTele(numeroRegion, nomRegion, categorie);}
     pourcentage = function (numeroRegion) {return pourcentageTele(numeroRegion, categorie);}
+    htmlClick = function(numeroRegion, nomRegion) {return htmlClickCategorie(numeroRegion, nomRegion, categorie);}
     uniteLegende = " minutes";
     sousTitreLegende1 = function() {return "moyenne du temps passé";}
     sousTitreLegende2 = function() {return "devant la télévision :";}
@@ -241,6 +248,7 @@ function choixActivite(categorie){
     tabCritere = tabCritereActivite[categorie];
     htmlMouseOver = function (numeroRegion, nomRegion) {return htmlActivite(numeroRegion, nomRegion, categorie);}
     pourcentage = function (numeroRegion, nomRegion) {return pourcentageActivite(numeroRegion, categorie);}
+    htmlClick = function(numeroRegion, nomRegion) {return htmlClickCategorie(numeroRegion, nomRegion, categorie);}
     uniteLegende = " minutes";
     sousTitreLegende1 = function() {return "moyenne du temps de sport";}
     sousTitreLegende2 = function() {return "hebdomadaire :";}

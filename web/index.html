@@ -177,21 +177,21 @@
                     <a href="javascript:void(0)" class="closebtn" onclick="closeAll()">&times;</a>
                     <ul>
                         <li>
-                            <a href="#"  onclick="openNavCategorie('categorieBmi')">Obésité</a>
+                            <a href="#"  onclick="openNavCategorie('categorieBmi')">Corpulence</a>
                             <div id="categorieBmi" class="sidenavcategorie">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieBmi')">&times;</a>
                                 <ul>
                                     <li>
-                                        <a href="#" onclick="choixBmi('sousPoids')">sous poids</a>
+                                        <a href="#" onclick="choixBmi('sousPoids')">Sous poids</a>
                                     </li>
                                     <li>
                                         <a href="#" onclick="choixBmi('poidsNormal')">Poids Normal</a>
                                     </li>
                                     <li>
-                                        <a href="#" onclick="choixBmi('surPoids')">surpoids</a>
+                                        <a href="#" onclick="choixBmi('surPoids')">Surpoids</a>
                                     </li>
                                     <li>
-                                        <a href="#" onclick="choixBmi('obesite')">Obesite</a>
+                                        <a href="#" onclick="choixBmi('obesite')">Obésite</a>
                                     </li>
                                 </ul>
                             </div>
@@ -214,7 +214,7 @@
                                         <a href="#" onclick="choixFastFood('surPoids')">Surpoids</a>
                                     </li>
                                     <li>
-                                        <a href="#" onclick="choixFastFood('obesite')">Obesite</a>
+                                        <a href="#" onclick="choixFastFood('obesite')">Obésite</a>
                                     </li>
                                 </ul>
                             </div>
@@ -237,7 +237,7 @@
                                         <a href="#" onclick="choixViande('surPoids')">Surpoids</a>
                                     </li>
                                     <li>
-                                        <a href="#" onclick="choixViande('obesite')">Obesite</a>
+                                        <a href="#" onclick="choixViande('obesite')">Obésite</a>
                                     </li>
                                 </ul>
                             </div>
@@ -260,7 +260,7 @@
                                         <a href="#" onclick="choixPoisson('surPoids')">Surpoids</a>
                                     </li>
                                     <li>
-                                        <a href="#" onclick="choixPoisson('obesite')">Obesite</a>
+                                        <a href="#" onclick="choixPoisson('obesite')">Obésite</a>
                                     </li>
                                 </ul>
                             </div>
@@ -283,7 +283,7 @@
                                         <a href="#" onclick="choixFruit('surPoids')">Surpoids</a>
                                     </li>
                                     <li>
-                                        <a href="#" onclick="choixFruit('obesite')">Obesite</a>
+                                        <a href="#" onclick="choixFruit('obesite')">Obésite</a>
                                     </li>
                                 </ul>
                             </div>
@@ -306,13 +306,12 @@
                                         <a href="#" onclick="choixTele('surPoids')">Surpoids</a>
                                     </li>
                                     <li>
-                                        <a href="#" onclick="choixTele('obesite')">Obesite</a>
+                                        <a href="#" onclick="choixTele('obesite')">Obésite</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <a href="#" onclick="choixActivite('total')"></a>
                             <a href="#" onclick="openNavCategorie('categorieActivite')">Activité Sportive</a>
                             <div id="categorieActivite" class="sidenavcategorie">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieActivite')">&times;</a>
@@ -330,7 +329,7 @@
                                         <a href="#" onclick="choixActivite('surPoids')">Surpoids</a>
                                     </li>
                                     <li>
-                                        <a href="#" onclick="choixActivite('obesite')">Obesite</a>
+                                        <a href="#" onclick="choixActivite('obesite')">Obésite</a>
                                     </li>
                                 </ul>
                             </div>
@@ -462,7 +461,7 @@
 
 <div id="Rapport" class="tabcontent">
     <center><h1>Rapport</h1></center>
-    décrivant la démarche complète – source des données, traitements opérés, architecture, choix des technologies
+    <center>Nicolas Follet - Cyril Gaunet - Samy Beyou - 2018</center>
 
       <div class="row">
         <div class="col-lg-1">
@@ -522,46 +521,139 @@
                   les critères sélectionnés. Nous avons choisi de garder la courbe de référence visible lors des changements de critères pour pouvoir comparer. Cependant, il suffit de cliquer sur la légende de la courbe de référence
                   pour la faire disparaitre. </br>
 
-                  Enfin, la gestion des appels asynchrones de manière générale est pris en charge par le framework <b>jQuery</b>, norme dans les applications il permet notamment de charger le contenu quand la page est chargée.</br>
-
+                  La gestion des appels asynchrones de manière générale est pris en charge par le framework <b>jQuery</b>, norme dans les applications il permet notamment de charger le contenu quand la page est chargée.</br>
+                  Enfin, bootstrap nous a permit de mettre en place une interface web responsive, c'est à dire qui s'adapte à la taille du navigateur. Lorsque l'on réduit la taille du navigateur les élement de la page web se réduisent de manière élégante automatiquement.
                 </p>
               </li>
             </ul>
 
 
-            <b><h3>Résultats & Remarques</h3></b>
-            <p>
-              Comme décrit précédemment, nous avons décidé de
-            </p>
+            <b><h3>Résultats</h3></b>
 
 
+              Comme décrit précédemment, nous avons décidé de sélectionné à partir du jeu de donnée uniquement quelques critères, à savoir, pour chaque individu :
+              <ul>
+                <li>
+                  L'indice de masse corporelle (IMC), qui correspond au poids/taille², c'est un indicateur standard pour représenter l'obésité ou le surpoids.
+                </li>
+                <li>
+                  Le goût pour la viande.
+                </li>
+                <li>
+                  le goût pour le poisson.
+                </li>
+                <li>
+                  Le goût pour les fruits.
+                </li>
+                <li>
+                  L'âge
+                </li>
+                <li>
+                  La région
+                </li>
+                <li>
+                  Le temps d'activité physique hebdomadaire.
+                </li>
+                <li>
+                  Le temps passé devant un poste TV quotidiennement.
+                </li>
+                <li>
+                  Le nombre de Fast Food mensuel.
+                </li>
+                <li>
+                  Le fait de se considérer avec une alimentation saine ou non.
+                </li>
+              </ul>
 
+            A partir de ce jeu de donnée, nous avons première établi un <b> graphe de l'IMC moyen des individus en fonction de l'âge </b>. Ce graphe à deux dimensions se recalcule en prenant en compte divers critères,
+            comme le temps passé devant un poste de télévision ou encore le temps d'activité physique hebdomadaire. </br>
+            De cette manière, nous pouvons représenter plusieurs critères dans un graphe 2D simple à analyser. Pour une comparaison plus simple, nous avons choisi de garder le graphe de référence représentant l'ensemble des individus.
+            </br>
+            </br>
 
-            <b>Source : </b>
+            <b>Dans l'onglet 'Carte', d'autres critères sont représentés par région:</b>
             <ul>
               <li>
-                Tutoriel pour la gestion des cartes : http://www.datavis.fr/index.php?page=map-firststep </br>
+                La corpulence par région suivant l'IMC.
               </li>
               <li>
-                Fichier geojson des frontières de la France (regions-avant-redecoupage-2015.geojson): https://github.com/gregoiredavid/france-geojson </br>
+                La pourcentage de personnes fréquentant les fast food plus de 1 fois par mois, suivant la catégorie d'IMC (sous poids, normale, surpoids et obèse).
+              </li>
+              <li>
+                Le pourcentage de personnes répondant aimer la viande suivant la catégorie d'IMC (sous poids, normale, surpoids et obèse).
+              </li>
+              <li>
+                Le pourcentage de personnes répondant aimer le poisson suivant la catégorie d'IMC (sous poids, normale, surpoids et obèse).
+              </li>
+              <li>
+                Le pourcentage de personnes répondant aimer les fruits suivant la catégorie d'IMC (sous poids, normale, surpoids et obèse).
+              </li>
+              <li>
+                Le durée moyenne passé devant un écran de télévision quotidiennement suivant la catégorie d'IMC (sous poids, normale, surpoids et obèse).
+              </li>
+              <li>
+                La durée moyenne d'activité sportive hebdomadaire suivant la catégorie d'IMC (sous poids, normale, surpoids et obèse).
               </li>
             </ul>
+
+            Il est donc rapide à l'aide du menu à gauche de sélectionner des critères et de voir évoluer la carte.
+
+            <b><h3>Conclusions </h3></b>
+            De cette étude visuelle, et à partir du jeu de donnée selectionné, on peut tirer quelques constats : </br>
+            Tout d'abord les personnes en sous poids - un IMC faible - sont plus susceptibles de fréquenter les fast food que les personnes en surpoids ou obèses.
+            De plus, elles présentent un plus grand intérêt pour la viande et le poisson que les personnes en surpoids.
+
+            </br>
+            En revanche, les personnes en surpoids/obèses passent également plus de temps sur leurs postes de télévisions que la moyenne.
+            De plus, ils semblent porter moins d'intérêts pour les fruits!
+
+            <b><h3>Remarques</h3></b>
+
+            Le jeu de donnée ne portent que sur 4000 personnes, mais lorsque l'on sélectionne des critères précis, par exemple les personnes obèses dans la région limousin,
+            il y a beaucoup moins d'individus qui correspondent. Il est donc prétentieux d'émettre des conclusions sur un nombre aussi restreint de personnes, cela n'est pas
+            assez représentatif pour aider à porter un jugement global sur le comportement alimentaire des Français.</br>
+
+            De plus, dans notre étude nous avons souhaité garder les enfants pour l'ensemble de nos calculs mais il est important de noter que leur IMC est en moyenne plus faible et donc peut fausser les résultats surtout dans les critères précis évoqués précédemment.
 
         </div>
         <div class="col-lg-1">
         </div>
 
       </div>
+
+
       <div class="row">
         <div class="col-lg-1">
         </div>
         <div class="col-lg-10">
           <h3>Schéma</h3>
+        </div id="schema">
+          <center><img src="schemaOPENDATA.png" alt="Schéma open data" style="opacity:0.75;filter:alpha(opacity=75);border:solid 4px black;"/></center>
+        <div class="col-lg-1">
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-10">
+          <h3>Sources</h3>
+          <ul>
+            <li>
+              Tutoriel pour la gestion des cartes : http://www.datavis.fr/index.php?page=map-firststep </br>
+            </li>
+            <li>
+              Fichier geojson des frontières de la France (regions-avant-redecoupage-2015.geojson): https://github.com/gregoiredavid/france-geojson </br>
+            </li>
+          </ul>
         </div>
 
         <div class="col-lg-1">
         </div>
-  </div>
+      </div>
+
+
 
 
 <div class="modal fade" id="myModal">
