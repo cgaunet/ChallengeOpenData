@@ -4,6 +4,9 @@ var counterDatasets = 0;
 var backgroundColor = [window.chartColors.green, window.chartColors.bordeaux, window.chartColors.blue, window.chartColors.purple]
 var mustMakeAverage = true;
 
+/***
+* Function to initialize the criteres array to its default values.
+***/
 function initCriteres(){
     criteres["aptotal_hebdo"] = {min: 0, max: 2000};
     criteres["tele"] = {min: 0, max: 500};
@@ -20,10 +23,14 @@ $(function() {
     $('.slider').slider({focus: true });
 });
 
+/***
+* Load the data and put it in the personnes array. It can calls a callback function if needed.
+***/
 function loadData(callback){
     personnes = [];
     d3.csv("src/Table_indiv.csv", function(data) {
         data.forEach(function(d) {
+            // We use the unary plus to convert from string to numeric value.
             d.bmi = +d.bmi;
             d["v2_age"] = +d["v2_age"];
             d.tele = +d.tele;
@@ -34,20 +41,29 @@ function loadData(callback){
             d.mpois = +d.mpois;
             d.region = +d.region;
             d.entrerep = +d.entrerep;
-            if(!isNaN(d["v2_age"]) && !isNaN(d.bmi) && d.bmi.toString().indexOf('.') != -1){ //
+            if(!isNaN(d["v2_age"]) && !isNaN(d.bmi) && d.bmi.toString().indexOf('.') != -1){ //To check if the age is a double value.
                 var personneTemp = new Personne(d["v2_age"], d.bmi, d.entrerep, d.mfruit, d.bonalim, d.tele, d.mvian, d.mpois, d.fastfood, d["aptotal_hebdo"], d.region);
                 personnes.push(personneTemp);
             }
         });
+
+        //Sort the personnes array with the age of each people.
         personnes.sort(function(a, b) {
             return a.age - b.age;
         })
+        //Call a callback function when needed.
         callback();
     });
 }
 
+
+/***
+* Keeps only the people that match the criterias, create a new dataset and pass it to the updateChart function.
+* this version is meant for the line chart.
+***/
 function reduceDataForLineChart(){
     var personnesTemp = [];
+
     for (var key in personnes){
         var personneTemp = personnes[key];
         if (correspondsToCriterias(personneTemp)){
@@ -55,7 +71,9 @@ function reduceDataForLineChart(){
         }
     }
     personnes = personnesTemp;
+    //Make the average of the bmi for a given age for every people in the personnes array.
     makeAverage(personnes);
+
     var abscisses = [];
     var ordonnees = [];
     var agePrec = 3;
@@ -80,6 +98,10 @@ function reduceDataForLineChart(){
     updateChart(newDataset);
 }
 
+/***
+* Keeps only the people that match the criterias, create a new dataset and pass it to the updateChart function.
+* this version is meant for the scatter chart.
+***/
 function reduceDataForScatterChart(){
   var personnesTemp = [];
   for (var key in personnes){
@@ -101,6 +123,9 @@ function reduceDataForScatterChart(){
   updateChart(newDataset);
 }
 
+/***
+* Add the dataset provided and update the chart.
+***/
 function updateChart(newDataset){
   window.myScatter.config.data.datasets.push(newDataset);
   counterDatasets++;
@@ -110,6 +135,9 @@ function updateChart(newDataset){
   window.myScatter.update();
 }
 
+/***
+* Returns true if one corresponds to the criterias given by the array criteres, else it returns false
+***/
 function correspondsToCriterias(personne){
     var containsTemp = false;
     if (!isNaN(personne.tele) && personne.tele >= criteres["tele"].min && personne.tele <= criteres["tele"].max){
@@ -153,6 +181,9 @@ function correspondsToCriterias(personne){
     return false;
 }
 
+/***
+*Some values aren't numeric so it needs this kind of mapping.
+***/
 function getValueFromAnswer(criteria, value){
     switch (criteria) {
         case "fastfood":
@@ -199,20 +230,12 @@ function Personne(age, bmi, entrerep, mfruit, bonalim, tele, mvian, mpois, fastf
     this.aptotal_hebdo = aptotal_hebdo;
     this.region = region;
 }
+
 var wto;
 $(".slider").change(function(){
-    var valuesApTotal = $("#slider-aptotalhebdo").attr("data-value").split(",");
-    criteres["aptotal_hebdo"] = {min : valuesApTotal[0], max : valuesApTotal[1]}
-    $("#textSliderApTotal").empty();
-    $("#textSliderApTotal").append("<b>" + valuesApTotal[0] + ":" + valuesApTotal[1] + "</b>");
-    var valuesTele = $("#slider-tele").attr("data-value").split(",");
-    criteres["tele"] = {min : valuesTele[0], max : valuesTele[1]}
-    $("#textSliderTele").empty();
-    $("#textSliderTele").append("<b>" + valuesTele[0] + ":" + valuesTele[1] + "</b>");
-    var valuesFastFood = $("#slider-fastfood").attr("data-value").split(",");
-    criteres["fastfood"] = {min : valuesFastFood[0], max : valuesFastFood[1]}
-    $("#textSliderFastfood").empty();
-    $("#textSliderFastfood").append("<b>" + valuesFastFood[0] + ":" + valuesFastFood[1] + "</b>");
+    updateTextValueForSliders();
+
+    //Set a timeout so that when the slider is changed it doesn't make many new graphs
     clearTimeout(wto);
     wto = setTimeout(function() {
         if (mustMakeAverage){
@@ -223,52 +246,87 @@ $(".slider").change(function(){
     }, 500);
 });
 
+/**
+*Function to update the values displayed above the sliders in order to provide
+* to the user the current value from the slider.
+**/
+function updateTextValueForSliders(){
+    /////////////////////////aptotal_hebdo//////////////////////////////////
+    var valuesApTotal = $("#slider-aptotalhebdo").attr("data-value").split(",");
+    criteres["aptotal_hebdo"] = {min : valuesApTotal[0], max : valuesApTotal[1]}
+    $("#textSliderApTotal").empty();
+    $("#textSliderApTotal").append("<b>" + valuesApTotal[0] + ":" + valuesApTotal[1] + "</b>");
+    /////////////////////////tele//////////////////////////////////
+    var valuesTele = $("#slider-tele").attr("data-value").split(",");
+    criteres["tele"] = {min : valuesTele[0], max : valuesTele[1]}
+    $("#textSliderTele").empty();
+    $("#textSliderTele").append("<b>" + valuesTele[0] + ":" + valuesTele[1] + "</b>");
+    /////////////////////////fastfood//////////////////////////////////
+    var valuesFastFood = $("#slider-fastfood").attr("data-value").split(",");
+    criteres["fastfood"] = {min : valuesFastFood[0], max : valuesFastFood[1]}
+    $("#textSliderFastfood").empty();
+    $("#textSliderFastfood").append("<b>" + valuesFastFood[0] + ":" + valuesFastFood[1] + "</b>");
+}
+
+
 $(":checkbox").change(function(){
     criteres["bonalim"] = [];
+    criteres["mfruit"] = [];
+    criteres["mpois"] = [];
+    criteres["mvian"] = [];
+
     $('#checkboxesBonAlim :checkbox').each(function () {
         if(this.checked){
             criteres["bonalim"].push(+$(this).val());
+            if ($(this).val() == 3){
+                addSomeNumbers("bonalim");
+            }
         }
     });
-    criteres["bonalim"].push(0);
-    criteres["bonalim"].push(4);
-    criteres["bonalim"].push(9);
 
-    criteres["mfruit"] = [];
     $('#checkboxesMFruits :checkbox').each(function () {
         if(this.checked){
             criteres["mfruit"].push(+$(this).val());
+            if ($(this).val() == 3){
+                addSomeNumbers("mfruit");
+            }
         }
     });
-    criteres["mfruit"].push(0);
-    criteres["mfruit"].push(4);
-    criteres["mfruit"].push(9);
 
-    criteres["mpois"] = [];
     $('#checkboxesMPois :checkbox').each(function () {
         if(this.checked){
             criteres["mpois"].push(+$(this).val());
+            if ($(this).val() == 3){
+                addSomeNumbers("mpois");
+            }
         }
     });
-    criteres["mpois"].push(0);
-    criteres["mpois"].push(4);
-    criteres["mpois"].push(9);
 
-    criteres["mvian"] = [];
     $('#checkboxesMVian :checkbox').each(function () {
         if(this.checked){
             criteres["mvian"].push(+$(this).val());
+            if ($(this).val() == 3){
+                addSomeNumbers("mvian");
+            }
         }
     });
-    criteres["mvian"].push(0);
-    criteres["mvian"].push(4);
-    criteres["mvian"].push(9);
+
     if (mustMakeAverage){
       loadData(reduceDataForLineChart);
     }else{
       loadData(reduceDataForScatterChart);
     }
 });
+
+/***
+*Add some numbers when the choice is "I dont know" because "didn't answer" is almost the same.
+**/
+function addSomeNumbers(critere){
+    criteres[critere].push(0);
+    criteres[critere].push(4);
+    criteres[critere].push(9);
+}
+
 
 $("#radiosChoiceDisplay :radio").change(function(){
     if($('#radiosChoiceDisplay :radio:checked').val() == "line"){
