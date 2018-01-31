@@ -40,11 +40,32 @@ function openNav() {
     document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 }
 
+
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
     document.body.style.backgroundColor = "white";
+}
+
+
+
+function openNavCategorie(id) {
+    document.getElementById(id).style.width = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNavCategorie(id) {
+    document.getElementById(id).style.width = "0";
+    document.body.style.backgroundColor = "white";
+}
+
+function closeAll() {
+    closeNav();
+    sidenavs = document.getElementsByClassName("sidenavcategorie");
+    for (var i=0, len=sidenavs.length;i < len; i++){
+        closeNavCategorie(sidenavs[i].id);
+    }
 }
 // Get the modal
 //var modal = document.getElementById('#myModal');
@@ -62,29 +83,80 @@ var tabCouleurBleu = ["#adccff","#77aaff","#478cff","#0562ff", "#001e82"];
 var tabCouleurRouge = [" #ffb3b3"," #ff4d4d","#e60000"," #990000", " #4d0000"];
 var tabCouleurVert = [" #99ff99"," #1aff1a","#00cc00","  #008000", " #003300"];
 var tabCouleurJaune = ["  #ffff80","  #ffff00","#b3b300","  #808000", " #333300"];
-var tabCritereObesite = [8,10,13,15];
-var tabCritereFastFood = [14,18,22,27];
-var tabCritereViande = [14,18,22,27];
-var tabCriterePoisson = [8.5,12,15,17];
-var tabCritereFruit = [15,18,20,25];
-var tabCritereTele = [130,140,152,165];
-var tabCritereActivite = [500,585,660,730];
 
-function pourcentage(numeroRegion) {return pourcentageObesite(numeroRegion)}
-function htmlMouseOver(numeroRegion, nomRegion) { return htmlPourcentageObesite(numeroRegion, nomRegion)}
+var criteresBmi = {
+    total: "pour la population totale",
+    sousPoids: "pour la population ayant un bmi inferieur à 18",
+    poidsNormal: "pour la population  ayant un bmi compris entre 18 et 25",
+    surPoids: "pour la population  ayant un bmi compris entre 25 et 30",
+    obesite: "pour la population ayant un bmi supérieur à 30"
+}
+
+var tabCritereBmi = {
+    sousPoids: [8,10,13,15],
+    poidsNormal: [8,10,13,15],
+    surPoids: [8,10,13,15],
+    obesite: [8,10,13,15]
+}
+    ;
+var tabCritereFastFood = {
+    total: [14,18,22,27],
+    sousPoids: [14,18,22,27],
+    poidsNormal: [14,18,22,27],
+    surPoids: [14,18,22,27],
+    obesite: [14,18,22,27]
+};
+var tabCritereViande = {
+    total: [14,18,22,27],
+    sousPoids: [14,18,22,27],
+    poidsNormal: [14,18,22,27],
+    surPoids: [14,18,22,27],
+    obesite: [14,18,22,27]
+};
+var tabCriterePoisson = {
+    total: [8.5,12,15,17],
+    sousPoids: [8.5,12,15,17],
+    poidsNormal: [8.5,12,15,17],
+    surPoids: [8.5,12,15,17],
+    obesite: [8.5,12,15,17],
+};
+var tabCritereFruit = {
+    total: [15,18,20,25],
+    sousPoids: [15,18,20,25],
+    poidsNormal: [15,18,20,25],
+    surPoids: [15,18,20,25],
+    obesite: [15,18,20,25]
+};
+var tabCritereTele = {
+    total: [130,140,152,165],
+    sousPoids: [130,140,152,165],
+    poidsNormal: [130,140,152,165],
+    surPoids: [130,140,152,165],
+    obesite: [130,140,152,165]
+};
+var tabCritereActivite = {
+    total: [500,585,660,730],
+    sousPoids: [500,585,660,730],
+    poidsNormal: [500,585,660,730],
+    surPoids: [500,585,660,730],
+    obesite: [500,585,660,730]
+};
+
+function pourcentage(numeroRegion) {return pourcentageBmi(numeroRegion, "obesite")}
+function htmlMouseOver(numeroRegion, nomRegion) { return htmlPourcentageBmi(numeroRegion, nomRegion, "obesite")}
 function sousTitreLegende1() {return "% de personne avec imc > 30 : ";}
 function sousTitreLegende2() {return "";}
 var tabCouleur = tabCouleurBleu;
-var tabCritere = tabCritereObesite;
+var tabCritere = tabCritereBmi["obesite"];
 var uniteLegende = "%";
 
 
-function choixObesite(){
+function choixBmi(categorie){
     titredeCarte = "l'obésité";
     tabCouleur = tabCouleurBleu;
-    tabCritere = tabCritereObesite;
-    pourcentage = function(numeroRegion) {return pourcentageObesite(numeroRegion);}
-    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlPourcentageObesite(numeroRegion, nomRegion);}
+    tabCritere = tabCritereBmi[categorie];
+    pourcentage = function(numeroRegion) {return pourcentageBmi(numeroRegion,categorie);}
+    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlPourcentageBmi(numeroRegion, nomRegion, categorie);}
     uniteLegende = "%";
     sousTitreLegende1 = function() {return "% de personne avec imc > 30 : ";}
     sousTitreLegende2 = function() {return "";}
@@ -92,12 +164,12 @@ function choixObesite(){
     updateTitreCarte();
     updateLegende();
 }
-function choixFastFood(){
+function choixFastFood(categorie){
     titredeCarte = "la consommation de Fast food";
     tabCouleur = tabCouleurJaune;
-    tabCritere = tabCritereFastFood;
-    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlFastFood(numeroRegion, nomRegion);}
-    pourcentage = function(numeroRegion) {return pourcentageFastFood(numeroRegion);}
+    tabCritere = tabCritereFastFood[categorie];
+    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlFastFood(numeroRegion, nomRegion, categorie);}
+    pourcentage = function(numeroRegion) {return pourcentageFastFood(numeroRegion, categorie);}
     uniteLegende = "%";
     sousTitreLegende1 = function() {return "% de personne allant au";}
     sousTitreLegende2 = function() {return "fastfood régulièrement :";}
@@ -106,12 +178,12 @@ function choixFastFood(){
     updateLegende();
 }
 
-function choixViande(){
+function choixViande(categorie){
     titredeCarte = "la consommation de viande";
     tabCouleur = tabCouleurRouge;
-    tabCritere = tabCritereViande;
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlViande(numeroRegion, nomRegion);}
-    pourcentage= function (numeroRegion) {return pourcentageViande(numeroRegion);}
+    tabCritere = tabCritereViande[categorie];
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlViande(numeroRegion, nomRegion, categorie);}
+    pourcentage= function (numeroRegion) {return pourcentageViande(numeroRegion, categorie);}
     uniteLegende = "%"
     sousTitreLegende1 = function() {return "% de personne aimant";}
     sousTitreLegende2 = function() {return "la viande :";}
@@ -120,12 +192,13 @@ function choixViande(){
     updateLegende();
 
 }
-function choixPoisson(){
+
+function choixPoisson(categorie){
     titredeCarte = "la consommation de poisson";
     tabCouleur = tabCouleurVert;
-    tabCritere = tabCriterePoisson;
-    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlMPois(numeroRegion, nomRegion);}
-    pourcentage = function(numeroRegion) {return pourcentagePoisson(numeroRegion);}
+    tabCritere = tabCriterePoisson[categorie];
+    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlMPois(numeroRegion, nomRegion, categorie);}
+    pourcentage = function(numeroRegion) {return pourcentagePoisson(numeroRegion, categorie);}
     uniteLegende = "%";
     sousTitreLegende1 = function() {return "% de personne aimant";}
     sousTitreLegende2 = function() {return "le poisson :";}
@@ -133,12 +206,13 @@ function choixPoisson(){
     updateTitreCarte();
     updateLegende();
 }
-function choixFruit(){
+
+function choixFruit(categorie){
     titredeCarte = "la consommation de fruits";
     tabCouleur = tabCouleurVert;
-    tabCritere = tabCritereFruit;
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlFruit(numeroRegion, nomRegion);}
-    pourcentage = function (numeroRegion) {return pourcentageFruit(numeroRegion);}
+    tabCritere = tabCritereFruit[categorie];
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlFruit(numeroRegion, nomRegion, categorie);}
+    pourcentage = function (numeroRegion) {return pourcentageFruit(numeroRegion, categorie);}
     uniteLegende = "%";
     sousTitreLegende1 = function() {return "% de personne aimant";}
     sousTitreLegende2 = function() {return "les fruits :";}
@@ -146,12 +220,13 @@ function choixFruit(){
     updateTitreCarte();
     updateLegende();
 }
-function choixTele(){
+
+function choixTele(categorie){
     titredeCarte = "temps passé devant la télévision";
     tabCouleur = tabCouleurRouge;
-    tabCritere = tabCritereTele;
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlTele(numeroRegion, nomRegion);}
-    pourcentage = function (numeroRegion) {return pourcentageTele(numeroRegion);}
+    tabCritere = tabCritereTele[categorie];
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlTele(numeroRegion, nomRegion, categorie);}
+    pourcentage = function (numeroRegion) {return pourcentageTele(numeroRegion, categorie);}
     uniteLegende = " minutes";
     sousTitreLegende1 = function() {return "moyenne du temps passé";}
     sousTitreLegende2 = function() {return "devant la télévision :";}
@@ -160,12 +235,12 @@ function choixTele(){
     updateLegende();
 }
 
-function choixActivite(){
+function choixActivite(categorie){
     titredeCarte = "l'activité sportive";
     tabCouleur = tabCouleurBleu;
-    tabCritere = tabCritereActivite;
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlActivite(numeroRegion, nomRegion);}
-    pourcentage = function (numeroRegion, nomRegion) {return pourcentageActivite(numeroRegion);}
+    tabCritere = tabCritereActivite[categorie];
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlActivite(numeroRegion, nomRegion, categorie);}
+    pourcentage = function (numeroRegion, nomRegion) {return pourcentageActivite(numeroRegion, categorie);}
     uniteLegende = " minutes";
     sousTitreLegende1 = function() {return "moyenne du temps de sport";}
     sousTitreLegende2 = function() {return "hebdomadaire :";}
