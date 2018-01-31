@@ -2,6 +2,8 @@ var map = creerMap()
 
 
 function ajoutData(data, categorie) {
+    map["nombreTotalIndividus"] += 1
+
     map[data.region]["nombreIndividus"].total += 1
     map[data.region]["nombreIndividus"][categorie] += 1
 
@@ -93,6 +95,17 @@ function remplirTab() {
                 div.html("")
                 .style("left", "0px")
                 .style("top", "0px");
+            })
+
+            .on("click", function(d) {
+                div.transition()
+                .duration(200)
+                .style("opacity", 0.75);
+                console.log("je passe dans le click")
+                div.html(htmlMouseOver(numeroRegion(d.properties.nom),d.properties.nom)+htmlClick(numeroRegion(d.properties.nom),d.properties.nom))
+                .style("left", (d3.event.pageX + 30) + "px")
+                .style("top", (d3.event.pageY - 30) + "px")
+                .style("color", "white")
             })
             .style("fill", function(d) { return couleurCarte(numeroRegion(d.properties.nom),d.properties.nom) })
         });
@@ -208,9 +221,6 @@ function remplirTab() {
     .attr("x", "0px")
     .attr("y", "-15px")
     .text(function(d) { return sousTitreLegende()});
-
-
-
 
 }
 

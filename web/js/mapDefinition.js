@@ -237,6 +237,7 @@ function ajoutRegion(nom) {
 
 function creerMap() {
   var outputMap = {}
+  outputMap["nombreTotalIndividus"] = 0
   outputMap[1] = ajoutRegion("\u00cele-de-France")
   outputMap[2] = ajoutRegion("Champagne-Ardenne")
   outputMap[3] = ajoutRegion("Picardie")

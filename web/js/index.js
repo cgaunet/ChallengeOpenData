@@ -56,6 +56,12 @@ document.getElementById("defaultOpen").click();
   //     }
   // }
 
+
+  function déroulerObésité(){
+    
+  }
+
+
   var titredeCarte = "l'obésité";
 
   function htmlMouseOver(numeroRegion, nomRegion) { return htmlPourcentageObesite(numeroRegion, nomRegion)}

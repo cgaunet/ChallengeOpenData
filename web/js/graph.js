@@ -287,7 +287,7 @@ function myDataIsReady() {
     var ordonnees = [];
     for (var key in personnes){
         abscisses.push((personnes[key].x).toString());
-        ordonnees.push(personnes[key].y);
+        ordonnees.push(personnes[key].y.toFixedDown(2));
     }
 
     createNewLineChart(abscisses, ordonnees);
@@ -301,6 +301,7 @@ function createNewLineChart(labels, dataset){
           datasets: [{
               label: "Courbe de référence",
               data: dataset,
+              borderDash: [5, 5],
               borderColor: window.chartColors.red,
               backgroundColor: 'rgba(0, 0, 0, 0)',
               fill: false,
@@ -310,7 +311,7 @@ function createNewLineChart(labels, dataset){
       options: {
           responsive: true,
           title:{
-              display:true,
+              display:false,
               text:"Courbe de l'IMC en fonction de l'âge"
           },
           tooltips: {
@@ -328,7 +329,7 @@ function createNewLineChart(labels, dataset){
 function convertDatasetPersonnesToScatterDataset(datasetPersonnes){
   var scatterDataset = [];
     for (var key in datasetPersonnes){
-      scatterDataset.push({x: datasetPersonnes[key].age, y: datasetPersonnes[key].bmi});
+      scatterDataset.push({x: datasetPersonnes[key].age, y: datasetPersonnes[key].bmi.toFixedDown(2)});
     }
   return scatterDataset;
 }
@@ -343,7 +344,7 @@ function createNewScatterChart(){
     type: 'scatter',
     data: {
         datasets: [{
-            label: 'Scatter Dataset',
+            label: 'Toutes les valeurs',
             data: convertDatasetPersonnesToScatterDataset(personnes),
             borderColor: window.chartColors.red,
             backgroundColor: 'rgba(0, 0, 0, 0)'
