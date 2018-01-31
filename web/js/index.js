@@ -59,22 +59,28 @@ document.getElementById("defaultOpen").click();
   var titredeCarte = "l'obésité";
 
   function htmlMouseOver(numeroRegion, nomRegion) { return htmlPourcentageObesite(numeroRegion, nomRegion)}
-  function couleurCarte (numeroRegion, nomRegion) {return couleurObesite(numeroRegion, nomRegion)}
+  function couleurCarte(numeroRegion, nomRegion) {return couleurObesite(numeroRegion, nomRegion)}
+  function uniteLegende() {return "%"}
+  function sousTitreLegende() {return "% de personne avec imc > 30 : "}
 
   function choixObesite(){
     titredeCarte = "l'obésité"
     updateTitreCarte();
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlPourcentageObesite(numeroRegion, nomRegion)}
-    couleurCarte = function (numeroRegion, nomRegion) {return couleurObesite(numeroRegion, nomRegion)}
+    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlPourcentageObesite(numeroRegion, nomRegion)}
+    couleurCarte = function(numeroRegion, nomRegion) {return couleurObesite(numeroRegion, nomRegion)}
     updateCouleurCarte();
+    uniteLegende = function() {return "%"}
+    sousTitreLegende = function() {return "% de personne avec imc > 30 : "}
 
   }
   function choixFastFood(){
     titredeCarte = "la consommation de Fast food"
     updateTitreCarte();
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlFastFood(numeroRegion, nomRegion)}
-    couleurCarte = function (numeroRegion, nomRegion) {return couleurFastFood(numeroRegion, nomRegion)}
+    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlFastFood(numeroRegion, nomRegion)}
+    couleurCarte = function(numeroRegion, nomRegion) {return couleurFastFood(numeroRegion, nomRegion)}
     updateCouleurCarte();
+    uniteLegende = function() {return "%"}
+    sousTitreLegende = function() {return "% de personne allant > 1x/semaine :"}
   }
 
   function choixViande(){
@@ -86,9 +92,11 @@ document.getElementById("defaultOpen").click();
   function choixPoisson(){
     titredeCarte = "la consommation de poisson"
     updateTitreCarte();
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlMPois(numeroRegion, nomRegion)}
-    couleurCarte = function (numeroRegion, nomRegion) {return couleurPoisson(numeroRegion, nomRegion)}
+    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlMPois(numeroRegion, nomRegion)}
+    couleurCarte = function(numeroRegion, nomRegion) {return couleurPoisson(numeroRegion, nomRegion)}
     updateCouleurCarte();
+    uniteLegende = function() {return "%"}
+    sousTitreLegende = function() {return "% de personne aimant le poisson :"}
   }
   function choixFruit(){
     titredeCarte = "la consommation de fruits"

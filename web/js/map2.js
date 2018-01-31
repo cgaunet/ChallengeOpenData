@@ -3,162 +3,274 @@ var map = creerMap()
 var tabCouleur = ["#adccff","#77aaff","#478cff","#0562ff", "#001e82"];
 
 function ajoutData(data, categorie) {
-  map[data.region]["nombreIndividus"].total += 1
-  map[data.region]["nombreIndividus"][categorie] += 1
+    map[data.region]["nombreIndividus"].total += 1
+    map[data.region]["nombreIndividus"][categorie] += 1
 
-  map[data.region]["age"].total += data["v2_age"]
-  map[data.region]["age"][categorie] += data["v2_age"]
+    map[data.region]["age"].total += data["v2_age"]
+    map[data.region]["age"][categorie] += data["v2_age"]
 
-  map[data.region]["bmi"].total += data.bmi
-  map[data.region]["bmi"][categorie] += data.bmi
+    map[data.region]["bmi"].total += data.bmi
+    map[data.region]["bmi"][categorie] += data.bmi
 
-  map[data.region]["entrerep"].total[data["entrerep"]].compteur += 1
-  map[data.region]["entrerep"][categorie][data["entrerep"]].compteur += 1
+    map[data.region]["entrerep"].total[data["entrerep"]].compteur += 1
+    map[data.region]["entrerep"][categorie][data["entrerep"]].compteur += 1
 
-  map[data.region]["mfruit"].total[data["mfruit"]].compteur += 1
-  map[data.region]["mfruit"][categorie][data["mfruit"]].compteur += 1
+    map[data.region]["mfruit"].total[data["mfruit"]].compteur += 1
+    map[data.region]["mfruit"][categorie][data["mfruit"]].compteur += 1
 
-  map[data.region]["bonalim"].total[data["bonalim"]].compteur += 1
-  map[data.region]["bonalim"][categorie][data["bonalim"]].compteur += 1
+    map[data.region]["bonalim"].total[data["bonalim"]].compteur += 1
+    map[data.region]["bonalim"][categorie][data["bonalim"]].compteur += 1
 
-  map[data.region]["tele"].total += data["tele"]
-  map[data.region]["tele"][categorie] += data["tele"]
+    map[data.region]["tele"].total += data["tele"]
+    map[data.region]["tele"][categorie] += data["tele"]
 
-  map[data.region]["mvian"].total[data["mvian"]].compteur += 1
-  map[data.region]["mvian"][categorie][data["mvian"]].compteur += 1
+    map[data.region]["mvian"].total[data["mvian"]].compteur += 1
+    map[data.region]["mvian"][categorie][data["mvian"]].compteur += 1
 
-  map[data.region]["mpois"].total[data["mpois"]].compteur += 1
-  map[data.region]["mpois"][categorie][data["mpois"]].compteur += 1
+    map[data.region]["mpois"].total[data["mpois"]].compteur += 1
+    map[data.region]["mpois"][categorie][data["mpois"]].compteur += 1
 
-  map[data.region]["fastfood"].total[data["fastfood"]].compteur += 1
-  map[data.region]["fastfood"][categorie][data["fastfood"]].compteur += 1
+    map[data.region]["fastfood"].total[data["fastfood"]].compteur += 1
+    map[data.region]["fastfood"][categorie][data["fastfood"]].compteur += 1
 
-  map[data.region]["aptotal_hebdo"].total += data["aptotal_hebdo"]
-  map[data.region]["aptotal_hebdo"][categorie] += data["aptotal_hebdo"]
+    map[data.region]["aptotal_hebdo"].total += data["aptotal_hebdo"]
+    map[data.region]["aptotal_hebdo"][categorie] += data["aptotal_hebdo"]
 }
 
 function remplirTab() {
-  d3.csv("src/Table_indiv.csv", function(data) {
-    data.forEach(function(d) {
+    d3.csv("src/Table_indiv.csv", function(data) {
+        data.forEach(function(d) {
 
-      d.bmi = +d.bmi
-      d["v2_age"] = +d["v2_age"]
-      d["entrerep"] = +d["entrerep"]
-      d["mfruit"] = +d["mfruit"]
-      d["bonalim"] = +d["bonalim"]
-      d["tele"] = +d["tele"]
-      d["mvian"] = +d["mvian"]
-      d["mpois"] = +d["mpois"]
-      d["fastfood"] = +d["fastfood"]
-      d["aptotal_hebdo"] = +d["aptotal_hebdo"]
+            d.bmi = +d.bmi
+            d["v2_age"] = +d["v2_age"]
+            d["entrerep"] = +d["entrerep"]
+            d["mfruit"] = +d["mfruit"]
+            d["bonalim"] = +d["bonalim"]
+            d["tele"] = +d["tele"]
+            d["mvian"] = +d["mvian"]
+            d["mpois"] = +d["mpois"]
+            d["fastfood"] = +d["fastfood"]
+            d["aptotal_hebdo"] = +d["aptotal_hebdo"]
 
-      if(!isNaN(d.bmi) && d.bmi.toString().indexOf('.') != -1){
-        if (d.bmi < 18) {
-          ajoutData(d, "sousPoids")
-        } else if (d.bmi < 25) {
-          ajoutData(d, "poidsNormal")
-        } else if (d.bmi < 30) {
-          ajoutData(d, "surPoids")
-        } else {
-          ajoutData(d, "obesite")
-        }
-      }
+            if(!isNaN(d.bmi) && d.bmi.toString().indexOf('.') != -1){
+                if (d.bmi < 18) {
+                    ajoutData(d, "sousPoids")
+                } else if (d.bmi < 25) {
+                    ajoutData(d, "poidsNormal")
+                } else if (d.bmi < 30) {
+                    ajoutData(d, "surPoids")
+                } else {
+                    ajoutData(d, "obesite")
+                }
+            }
+        })
+
+        d3.json('data/regions.geojson', function(req, geojson) {
+            regions.selectAll("path")
+            .data(geojson.features)
+            .enter()
+            .append("path")
+            .attr('class', 'region')
+            .attr('regName', function(d) {
+                return d.properties.nom;
+            })
+            .attr("d", path)
+
+
+            .on("mouseover", function(d) {
+                div.transition()
+                .duration(200)
+                .style("opacity", 0.75);
+
+                div.html(htmlMouseOver(numeroRegion(d.properties.nom),d.properties.nom))
+                .style("left", (d3.event.pageX + 30) + "px")
+                .style("top", (d3.event.pageY - 30) + "px")
+                .style("color", "white")
+            })
+            .on("mouseout", function(d) {
+                div.transition()
+                .duration(0)
+                .style("opacity", 0);
+                div.html("")
+                .style("left", "0px")
+                .style("top", "0px");
+            })
+            .style("fill", function(d) { return couleurCarte(numeroRegion(d.properties.nom),d.properties.nom) })
+        });
+
+
     })
 
-    d3.json('data/regions.geojson', function(req, geojson) {
-      regions.selectAll("path")
-      .data(geojson.features)
-      .enter()
-      .append("path")
-      .attr('class', 'region')
-      .attr('regName', function(d) {
-        return d.properties.nom;
-      })
-      .attr("d", path)
+
+    var legend = d3.select('#svg').append("g")
+    .attr("transform", "translate(" + Math.round((width / 2) + width * 0.2) + ", " + Math.round(height / 2) + ")")
+    .attr("id", "legend");
+
+    var unite = uniteLegende()
 
 
-      .on("mouseover", function(d) {
-        div.transition()
-        .duration(200)
-        .style("opacity", 0.75);
+    var unit = "g/jour";
+    var legend_title = "Légende :";
+    var mapName = "butter";
 
-        div.html(htmlMouseOver(numeroRegion(d.properties.nom),d.properties.nom))
-        .style("left", (d3.event.pageX + 30) + "px")
-        .style("top", (d3.event.pageY - 30) + "px")
-        .style("color", "white")
-      })
-      .on("mouseout", function(d) {
-        div.transition()
-        .duration(0)
-        .style("opacity", 0);
-        div.html("")
-        .style("left", "0px")
-        .style("top", "0px");
-      })
-      .style("fill", function(d) { return couleurCarte(numeroRegion(d.properties.nom),d.properties.nom) })
-    });
+    switch (mapName) {
+        case "sport":
+        unit = "minutes/semaine";
+        break;
+        case "fastfood":
+        unit = "%";
+        break;
+        case "alcohol":
+        unit = "%";
+        break;
+        case "obesity":
+        unit = "%";
+        break;
+        case "butter":
+        legend_title = "Consomme plus de :";
+        break;
+        default:
+        unit = "g/jour";
+    }
 
-  })
-  //ajout de la légende :
+
+    var range_legend = 4;
+
+    if (mapName == "butter") { range_legend = 2; }
+
+
+    // Add colorbar
+    legend.selectAll(".colorbar")
+    .data(d3.range(range_legend))
+    .enter().append("svg:rect")
+    .attr("y", function (d) { return d * 20 + "px"; })
+    .attr("height", "20px")
+    .attr("width", "20px")
+    .attr("x", "0px")
+    .attr("class", function (d) { return "q" + d + "-9"; });
+
+    // Add legend to each color
+    legend.selectAll(".colorbar")
+    .data(d3.range(range_legend))
+    .enter()
+    .append("text")
+    .attr("x", "30px")
+    .attr("y", function (d) { return (d * 20 + 15) + "px"; })
+    .text(function (d) {
+
+        if (mapName == "butter"){
+
+            switch(d) {
+                case 0 :
+                return "Beurre";
+                break;
+                case 1:
+                return "Huile";
+                break;
+            }
+        } else {
+
+            switch(d) {
+                case 0 :
+                return "< " + Math.round(quantile.quantiles()[0]) + " " + unit;
+                break;
+                case 1:
+                return Math.round(quantile.quantiles()[0]) + " - " + Math.round(quantile.quantiles()[1]) + " "+ unit ;
+                break;
+                case 2:
+                return Math.round(quantile.quantiles()[1]) + " - " + Math.round(quantile.quantiles()[2]) + " "+ unit ;
+                break;
+                case 3 :
+                return "> " + Math.round(quantile.quantiles()[2]) + " "+ unit;
+                break;
+            }
+
+        }
+
+    })
+    .attr("id","legendText");
+
+
+
+    // Add legend title
+    legend.selectAll(".colorbar")
+    .data(d3.range(1))
+    .enter()
+    .append("text")
+    .attr("x", "0px")
+    .attr("y", "-30px")
+    .text(function(d) { return "Legende : " });
+
+
+    legend.selectAll(".colorbar")
+    .data(d3.range(1))
+    .enter()
+    .append("text")
+    .attr("x", "0px")
+    .attr("y", "-15px")
+    .text(function(d) { return sousTitreLegende()});
+
+
+
 
 }
 
 
 function updateCouleurCarte(){
-  var divs = document.getElementsByTagName("path");
-  for (var i=0, len=divs.length;i < len; i++){
-    if(divs[i].className.baseVal=="region"){
-      divs[i].style.fill = couleurCarte(numeroRegion(divs[i].getAttribute("regName")),divs[i].getAttribute("regName"))
+    var divs = document.getElementsByTagName("path");
+    for (var i=0, len=divs.length;i < len; i++){
+        if(divs[i].className.baseVal=="region"){
+            divs[i].style.fill = couleurCarte(numeroRegion(divs[i].getAttribute("regName")),divs[i].getAttribute("regName"))
+        }
     }
-  }
 }
 
 function numeroRegion(nomRegion){
-  for (var i = 1; i < 22; i++) {
-    if (map[i].region == nomRegion) {
-      return i
+    for (var i = 1; i < 22; i++) {
+        if (map[i].region == nomRegion) {
+            return i
+        }
     }
-  }
-  return 0
+    return 0
 }
 
 function pourcentageParRapportMoyenne(moy, numeroRegion, val){
-  if(val - moy > 0){
-    return "+"+(((val - moy) / val) * 100).toFixedDown(2);
-  }else {
-    return "-"+(((val - moy) / val) * 100).toFixedDown(2);
-  }
+    if(val - moy > 0){
+        return "+"+(((val - moy) / val) * 100).toFixedDown(2);
+    }else {
+        return "-"+(((val - moy) / val) * 100).toFixedDown(2);
+    }
 }
 
 function calculerMoyenne(func){
-  var moy = 0;
-  for (var i = 1; i < 22; i++) {
-    moy += func(i);
-  }
-  moy = moy/21;
-  return moy;
+    var moy = 0;
+    for (var i = 1; i < 22; i++) {
+        moy += func(i);
+    }
+    moy = moy/21;
+    return moy;
 }
 
 function pourcentageObesite(numeroRegion) {
-  return ((map[numeroRegion]["nombreIndividus"].obesite / map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
+    return ((map[numeroRegion]["nombreIndividus"].obesite / map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
 }
 
 function pourcentagePoisson(numeroRegion) {
-  return (((map[numeroRegion]["mpois"].total[1].compteur+map[numeroRegion]["mpois"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
+    return (((map[numeroRegion]["mpois"].total[1].compteur+map[numeroRegion]["mpois"].total[2].compteur)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
 }
 function pourcentageFastFood(numeroRegion) {
-  return (((map[numeroRegion]["fastfood"].total[1].compteur
-            +map[numeroRegion]["fastfood"].total[2].compteur
-            +map[numeroRegion]["fastfood"].total[3].compteur
-            +map[numeroRegion]["fastfood"].total[4].compteur
-            +map[numeroRegion]["fastfood"].total[5].compteur
-            )/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
+    return (((map[numeroRegion]["fastfood"].total[1].compteur
+    +map[numeroRegion]["fastfood"].total[2].compteur
+    +map[numeroRegion]["fastfood"].total[3].compteur
+    +map[numeroRegion]["fastfood"].total[4].compteur
+    +map[numeroRegion]["fastfood"].total[5].compteur
+)/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
 }
 
 Number.prototype.toFixedDown = function(digits) {
-  var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
-  m = this.toString().match(re);
-  return m ? parseFloat(m[1]) : this.valueOf();
+    var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
+    m = this.toString().match(re);
+    return m ? parseFloat(m[1]) : this.valueOf();
 };
 
 
@@ -174,7 +286,7 @@ var path = d3.geoPath();
 var projection = d3.geoConicConformal()
 .center([2.454071, 46.279229])
 .scale(3100)
-.translate([width / 2, height / 2]);
+.translate([width/ 2 , height / 2]);
 
 path.projection(projection);
 
@@ -185,8 +297,6 @@ var svg = d3.select('#map').append("svg")
 
 var regions = svg.append("g");
 
-
-
 var div = d3.select("body").append("div")
 .attr("class", "tooltip")
 .style("opacity", 0);
@@ -194,7 +304,7 @@ var div = d3.select("body").append("div")
 
 $(document).ready(function(){
 
-  remplirTab();
+    remplirTab();
 
 
 })
