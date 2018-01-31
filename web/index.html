@@ -49,17 +49,21 @@
         </div>
     </div>
     <div class="row margin">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
         <p><b>Activité physique totale hebdomaire (en minutes) :</b></p>
-        <input type="text" id="slider-aptotalhebdo" value="" class="slider form-control" data-slider-min="0" data-slider-max="2000" data-slider-step="100" data-slider-value="[0,2000]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="red">
+        <input type="text" id="slider-aptotalhebdo" value="" class="slider form-control" data-slider-min="0" data-slider-max="2000" data-slider-step="100" data-slider-value="[0,2000]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="hidden" data-slider-id="red">
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-4">
         <p><b>Temps passé devant la télévision (en minutes/semaine) :</b></p>
-        <input type="text" id="slider-tele" value="" class="slider form-control" data-slider-min="0" data-slider-max="500" data-slider-step="5" data-slider-value="[0,500]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="yellow">
+        <input type="text" id="slider-tele" value="" class="slider form-control" data-slider-min="0" data-slider-max="500" data-slider-step="5" data-slider-value="[0,500]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="hidden" data-slider-id="yellow">
+    </div>
+    <div class="col-lg-4">
+        <p><b>Fréquence sur la présence au fast-food (en nombre de jours/mois): </b></p>
+        <input type="text" id="slider-fastfood" value="" class="slider form-control" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,30]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="blue">
     </div>
     </div>
     <div class="row margin">
-        <div class="col-lg-6">
+        <div class="col-lg-3">
             <p><b>Considère qu'il/elle possède une bonne alimentation :</b></p>
             <div class="form-group">
                 <fieldset id="checkboxesBonAlim">
@@ -78,7 +82,7 @@
                 </fieldset>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-3">
             <p><b>Aime les fruits: </b></p>
             <div class="form-group">
                 <fieldset id="checkboxesMFruits">
@@ -97,13 +101,7 @@
                 </fieldset>
             </div>
         </div>
-    </div>
-    <div class="row margin">
-        <div class="col-lg-6">
-            <p><b>Fréquence sur la présence au fast-food (en nombre de jours/mois): </b></p>
-            <input type="text" id="slider-fastfood" value="" class="slider form-control" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,30]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="blue">
-        </div>
-        <div class="col-lg-6">
+        <div class="col-lg-3">
             <p><b>Aime le poisson: </b></p>
             <div class="form-group">
                 <fieldset id="checkboxesMPois">
@@ -122,6 +120,30 @@
                 </fieldset>
             </div>
         </div>
+        <div class="col-lg-3">
+            <p><b>Aime la viande: </b></p>
+            <div class="form-group">
+                <fieldset id="checkboxesMVian">
+                    <label>
+                        <input type="checkbox" name="ouiMVian" class="flat-red" value="1" checked>
+                        Oui
+                    </label>
+                    <label>
+                      <input type="checkbox" name="nspMVian" class="flat-red" value="3" checked>
+                        Ne sait pas
+                    </label>
+                    <label>
+                        <input type="checkbox" name="nonMVian" class="flat-red" value="2"checked>
+                        Non
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+
+    </div>
+    <div class="row margin">
+
+
     </div>
   </div>
 

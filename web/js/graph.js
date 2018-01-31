@@ -70,7 +70,7 @@ function reduceDataForLineChart(){
     }
 
     var newDataset = {
-        label: 'Dataset ' + (counterDatasets+1).toString(),
+        label: 'Courbe suivant les critères',// + (counterDatasets+1).toString(),
         backgroundColor: backgroundColor[counterDatasets%4],
         borderColor: backgroundColor[counterDatasets%4],
         data: ordonnees,
@@ -91,7 +91,7 @@ function reduceDataForScatterChart(){
   personnes = personnesTemp;
 
   var newDataset = {
-      label: 'Dataset ' + (counterDatasets+1).toString(),
+      label: 'Courbe suivant les critères',// + (counterDatasets+1).toString(),
       backgroundColor: backgroundColor[counterDatasets%4],
       borderColor: backgroundColor[counterDatasets%4],
       data: convertDatasetPersonnesToScatterDataset(personnes),
@@ -317,7 +317,7 @@ function createNewLineChart(labels, dataset){
           datasets: [{
               label: "Courbe de référence",
               data: dataset,
-              borderDash: [5, 5],
+              //borderDash: [5, 5],
               borderColor: window.chartColors.red,
               backgroundColor: 'rgba(0, 0, 0, 0)',
               fill: false,
@@ -330,8 +330,9 @@ function createNewLineChart(labels, dataset){
               display:false,
               text:"Courbe de l'IMC en fonction de l'âge"
           },
+
           tooltips: {
-              mode: 'index'
+              mode: 'index',
           }
       }
   };
