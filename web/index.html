@@ -154,371 +154,371 @@
     </div>
 
     <div id="Carte" class="tabcontent">
-        <center><h3><div id="titreCarte"></h3></center>
-            <link rel="stylesheet" type="text/css" href="css/regions.css">
-            <!-- <div class="container clearfix"> -->
-            <div class="row">
-                <!-- <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main pull-right"> -->
+        <center><h3><div id="titreCarte" style="font-weight:bold">Carte de la corpulence</div></h3></center>
+        <link rel="stylesheet" type="text/css" href="css/regions.css">
+        <!-- <div class="container clearfix"> -->
+        <div class="row">
+            <!-- <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main pull-right"> -->
 
 
-                <div id="mySidenav" class="sidenav">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeAll()">&times;</a>
-                    <ul>
-                        <li>
-                            <a href="#"  onclick="openNavCategorie('categorieBmi')">Corpulence</a>
-                            <div id="categorieBmi" class="sidenavcategorie">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieBmi')">&times;</a>
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="choixBmi('sousPoids')">Sous poids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixBmi('poidsNormal')">Poids Normal</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixBmi('surPoids')">Surpoids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixBmi('obesite')">Obésite</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#" onclick="openNavCategorie('categorieFastFood')">Fast food</a>
-                            <div id="categorieFastFood" class="sidenavcategorie">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieFastFood')">&times;</a>
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="choixFastFood('total')">Total</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixFastFood('sousPoids')">Sous poids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixFastFood('poidsNormal')">Poids Normal</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixFastFood('surPoids')">Surpoids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixFastFood('obesite')">Obésite</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#" onclick="openNavCategorie('categorieViande')">Viande</a>
-                            <div id="categorieViande" class="sidenavcategorie">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieViande')">&times;</a>
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="choixViande('total')">Total</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixViande('sousPoids')">Sous poids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixViande('poidsNormal')">Poids Normal</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixViande('surPoids')">Surpoids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixViande('obesite')">Obésite</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#" onclick="openNavCategorie('categoriePoisson')">Poisson</a>
-                            <div id="categoriePoisson" class="sidenavcategorie">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categoriePoisson')">&times;</a>
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="choixPoisson('total')">Total</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixPoisson('sousPoids')">Sous poids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixPoisson('poidsNormal')">Poids Normal</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixPoisson('surPoids')">Surpoids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixPoisson('obesite')">Obésite</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#" onclick="openNavCategorie('categorieFruit')">Fruit</a>
-                            <div id="categorieFruit" class="sidenavcategorie">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieFruit')">&times;</a>
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="choixFruit('total')">Total</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixFruit('sousPoids')">Sous poids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixFruit('poidsNormal')">Poids Normal</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixFruit('surPoids')">Surpoids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixFruit('obesite')">Obésite</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#" onclick="openNavCategorie('categorieTele')">Télévision</a>
-                            <div id="categorieTele" class="sidenavcategorie">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieTele')">&times;</a>
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="choixTele('total')">Total</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixTele('sousPoids')">Sous poids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixTele('poidsNormal')">Poids Normal</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixTele('surPoids')">Surpoids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixTele('obesite')">Obésite</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#" onclick="openNavCategorie('categorieActivite')">Activité Sportive</a>
-                            <div id="categorieActivite" class="sidenavcategorie">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieActivite')">&times;</a>
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="choixActivite('total')">Total</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixActivite('sousPoids')">Sous poids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixActivite('poidsNormal')">Poids Normal</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixActivite('surPoids')">Surpoids</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="choixActivite('obesite')">Obésite</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeAll()">&times;</a>
+                <ul>
+                    <li>
+                        <a href="#"  onclick="openNavCategorie('categorieBmi')">Corpulence</a>
+                        <div id="categorieBmi" class="sidenavcategorie">
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieBmi')">&times;</a>
+                            <ul>
+                                <li>
+                                    <a href="#" onclick="choixBmi('sousPoids')">Sous poids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixBmi('poidsNormal')">Poids Normal</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixBmi('surPoids')">Surpoids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixBmi('obesite')">Obésite</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="openNavCategorie('categorieFastFood')">Fast food</a>
+                        <div id="categorieFastFood" class="sidenavcategorie">
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieFastFood')">&times;</a>
+                            <ul>
+                                <li>
+                                    <a href="#" onclick="choixFastFood('total')">Total</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixFastFood('sousPoids')">Sous poids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixFastFood('poidsNormal')">Poids Normal</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixFastFood('surPoids')">Surpoids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixFastFood('obesite')">Obésite</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="openNavCategorie('categorieViande')">Viande</a>
+                        <div id="categorieViande" class="sidenavcategorie">
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieViande')">&times;</a>
+                            <ul>
+                                <li>
+                                    <a href="#" onclick="choixViande('total')">Total</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixViande('sousPoids')">Sous poids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixViande('poidsNormal')">Poids Normal</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixViande('surPoids')">Surpoids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixViande('obesite')">Obésite</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="openNavCategorie('categoriePoisson')">Poisson</a>
+                        <div id="categoriePoisson" class="sidenavcategorie">
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categoriePoisson')">&times;</a>
+                            <ul>
+                                <li>
+                                    <a href="#" onclick="choixPoisson('total')">Total</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixPoisson('sousPoids')">Sous poids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixPoisson('poidsNormal')">Poids Normal</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixPoisson('surPoids')">Surpoids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixPoisson('obesite')">Obésite</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="openNavCategorie('categorieFruit')">Fruit</a>
+                        <div id="categorieFruit" class="sidenavcategorie">
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieFruit')">&times;</a>
+                            <ul>
+                                <li>
+                                    <a href="#" onclick="choixFruit('total')">Total</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixFruit('sousPoids')">Sous poids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixFruit('poidsNormal')">Poids Normal</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixFruit('surPoids')">Surpoids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixFruit('obesite')">Obésite</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="openNavCategorie('categorieTele')">Télévision</a>
+                        <div id="categorieTele" class="sidenavcategorie">
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieTele')">&times;</a>
+                            <ul>
+                                <li>
+                                    <a href="#" onclick="choixTele('total')">Total</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixTele('sousPoids')">Sous poids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixTele('poidsNormal')">Poids Normal</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixTele('surPoids')">Surpoids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixTele('obesite')">Obésite</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="openNavCategorie('categorieActivite')">Activité Sportive</a>
+                        <div id="categorieActivite" class="sidenavcategorie">
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNavCategorie('categorieActivite')">&times;</a>
+                            <ul>
+                                <li>
+                                    <a href="#" onclick="choixActivite('total')">Total</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixActivite('sousPoids')">Sous poids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixActivite('poidsNormal')">Poids Normal</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixActivite('surPoids')">Surpoids</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="choixActivite('obesite')">Obésite</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Critères </span>
-                <div id="map"></div>
-                <!-- </div> -->
-                <!-- <div class="col-lg-4"> -->
-                <!-- sidebar!-->
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Critères </span>
+            <div id="map"></div>
+            <!-- </div> -->
+            <!-- <div class="col-lg-4"> -->
+            <!-- sidebar!-->
 
-                <!-- <div class="w3-sidebar w3-bar-block" style="width:25%">
-                <h3 class="w3-bar-item">Critères</h3>
-                <a href="#" class="w3-bar-item w3-button">Link 1</a>
-                <a href="#" class="w3-bar-item w3-button">Link 2</a>
-                <a href="#" class="w3-bar-item w3-button">Link 3</a>
-            </div> -->
+            <!-- <div class="w3-sidebar w3-bar-block" style="width:25%">
+            <h3 class="w3-bar-item">Critères</h3>
+            <a href="#" class="w3-bar-item w3-button">Link 1</a>
+            <a href="#" class="w3-bar-item w3-button">Link 2</a>
+            <a href="#" class="w3-bar-item w3-button">Link 3</a>
+        </div> -->
+    </div>
+    <!-- </div> -->
+</div>
+
+<div id="About" class="tabcontent">
+
+    <h1>Challenge Open Data</h1></br>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-6">
+                <h3>Projet ENSIMAG 2017-2018</h3>
+                <p>Bienvenue sur notre étude des causes de l'obésité en France. L'ensemble des résultats provient de l'étude  <a href="https://www.anses.fr/fr/content/inca-2-les-r%C3%A9sultats-dune-grande-%C3%A9tude">INCA2</a>,
+                    étude de 2006-2007 portée sur un échantillon diversifié de Français en métropole. L'étude originale à un but plus large que les causes de l'obésité, et contient des centaines de critères remplis par les personnes sondées.
+                </br></br>Cependant, pour ce projet nous souhaitions nous concentrer sur les causes possibles de l'obésité en France, en permettant la visualtion de critères par zone démographique et sous forme de graphes.
+            </p>
+
         </div>
-        <!-- </div> -->
+        <div class="col-lg-3">
+            <h3>INCA_2 - 2006/2007</h3>
+            <p>
+                Le dataset utilisé est disponible ici à cette<a href="https://www.data.gouv.fr/fr/datasets/donnees-de-consommations-et-habitudes-alimentaires-de-letude-inca-2-3/"> adresse</a> .
+            </p>
+        </div>
+        <div class="col-lg-3">
+            <a href="https://www.data.gouv.fr/fr/datasets/donnees-de-consommations-et-habitudes-alimentaires-de-letude-inca-2-3/"><img src="logo-600x600.png" alt="Data Gouv Logo" style="float:center;width:200px;height:200px;"> </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h3>Prévalence Obésité</h3>
+            <p>
+                La prévalence d'obésité reflète de la proportion par région de nombre de personnes obèses. Une personne est dite obèse si son IMC est supérieur à 30. </br>
+                L'IMC se calcule en divisant le poids de la personne par sa taille au carré. </br>
+                Il est important de noter que les causes de l'obésité sont diverses et que l'IMC est un <b>indicateur très simple </b> ne reflétant pas tout le temps la réalité.
+                Il s'est imposé grâce à sa simplicité de calcul, et car il permet un regard totalement objectif sur la corpulence de l'individu. </br>
+                De nouvelles alternatives sont apparus récemment, on peut citer notamment le <a href="https://www.calculersonimc.fr/articles/nouvel-imc-nick-trefethen">nouvel IMC</a>, qui permet de ne pas creuser les écarts entre les personnes de petite taille et de grande taille.
+            </p>
+        </div>
+        <div class="col-lg-6">
+            <h3>Fast Food</h3>
+            <p>
+                Le critère <b>Fast Food</b> indique le pourcentage de personnes allant plus de 1 fois par mois au fast food.
+                Il est important de noter que parmi les personnes sondées, certaines n'ont pas donné de réponses, le pourcentage peut donc différer de la réalité. </br>
+                On constate de plus que les écarts entre régions sont assez importants! On passe notamment de +30% de réponse positive en Île de France jusqu'à seulement 12% en Poitou-Charente. </br>
+            </p>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h3>Viandes</h3>
+            <p>
+                Le critère <b>Viandes</b> indique le pourcentage de personnes répondant aimer la viande. </br>
+                Ce critère ne donne donc pas de résultat sur la consommation de viande mais plus sur le goût pour la viande.
+                On constate un étonnant écart sur deux régions proches avec le Limousin qui indique à 30% aime la viande et l'aquitaine seulement à 13%. </br>
+                Les réponses venant du Limousin sont toutefois moins révélatrices car seulement 44 personnes ont répondu au questionnaire dans cette région. C'est la région qui comprend le moins de personnes sondées.
+            </p>
+        </div>
+        <div class="col-lg-6">
+            <h3>Poisson</h3>
+            <p>
+                Le critère <b>Poisson</b> indique le pourcentage de personnes répondant aimer le poisson </br>
+                Ce critère ne donne donc pas de résultat sur la consommation de poisson mais plus sur le goût pour le poisson dans cette région.
+                On constate un étonnant écart sur deux régions proches avec le Limousin qui indique à 20% aime la viande et l'aquitaine seulement à 7.50%. </br>
+                Les réponses venant du Limousin sont toutefois moins révélatrices car seulement 44 personnes ont répondu au questionnaire dans cette région. C'est la région qui comprend le moins de personnes sondées.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h3>Fruits</h3>
+            <p>
+                Le critère <b>Fruits</b> indique le pourcentage de personnes répondant aimer le poisson </br>
+                Ce critère ne donne donc pas de résultat sur la consommation de fruits mais plus sur le goût pour les fruits dans cette région.
+            </p>
+        </div>
+        <div class="col-lg-6">
+        </div>
     </div>
 
-    <div id="About" class="tabcontent">
-
-        <h1>Challenge Open Data</h1></br>
-
-        <div class="container-fluid">
-            <div class="row">
-
-                <div class="col-lg-6">
-                    <h3>Projet ENSIMAG 2017-2018</h3>
-                    <p>Bienvenue sur notre étude des causes de l'obésité en France. L'ensemble des résultats provient de l'étude  <a href="https://www.anses.fr/fr/content/inca-2-les-r%C3%A9sultats-dune-grande-%C3%A9tude">INCA2</a>,
-                        étude de 2006-2007 portée sur un échantillon diversifié de Français en métropole. L'étude originale à un but plus large que les causes de l'obésité, et contient des centaines de critères remplis par les personnes sondées.
-                    </br></br>Cependant, pour ce projet nous souhaitions nous concentrer sur les causes possibles de l'obésité en France, en permettant la visualtion de critères par zone démographique et sous forme de graphes.
-                </p>
-
-            </div>
-            <div class="col-lg-3">
-                <h3>INCA_2 - 2006/2007</h3>
-                <p>
-                    Le dataset utilisé est disponible ici à cette<a href="https://www.data.gouv.fr/fr/datasets/donnees-de-consommations-et-habitudes-alimentaires-de-letude-inca-2-3/"> adresse</a> .
-                </p>
-            </div>
-            <div class="col-lg-3">
-                <a href="https://www.data.gouv.fr/fr/datasets/donnees-de-consommations-et-habitudes-alimentaires-de-letude-inca-2-3/"><img src="logo-600x600.png" alt="Data Gouv Logo" style="float:center;width:200px;height:200px;"> </a>
-            </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h3>Télévision</h3>
+            <p>
+                Le critère <b>Télévision</b> indique la moyenne de temps passé devant la télévision par jour. </br>
+                C'est certes un critère important lié au manque d'activité sportive mais il aurait fallu l'additionner avec le temps passé devant un ordinateur pour avoir des résultats plus probants. </br>
+                On constate une moyenne 15% supérieure en Nord-Pas-de-Calais et 21% supérieure en Limousin.
+            </p>
         </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <h3>Prévalence Obésité</h3>
-                <p>
-                    La prévalence d'obésité reflète de la proportion par région de nombre de personnes obèses. Une personne est dite obèse si son IMC est supérieur à 30. </br>
-                    L'IMC se calcule en divisant le poids de la personne par sa taille au carré. </br>
-                    Il est important de noter que les causes de l'obésité sont diverses et que l'IMC est un <b>indicateur très simple </b> ne reflétant pas tout le temps la réalité.
-                    Il s'est imposé grâce à sa simplicité de calcul, et car il permet un regard totalement objectif sur la corpulence de l'individu. </br>
-                    De nouvelles alternatives sont apparus récemment, on peut citer notamment le <a href="https://www.calculersonimc.fr/articles/nouvel-imc-nick-trefethen">nouvel IMC</a>, qui permet de ne pas creuser les écarts entre les personnes de petite taille et de grande taille.
-                </p>
-            </div>
-            <div class="col-lg-6">
-                <h3>Fast Food</h3>
-                <p>
-                    Le critère <b>Fast Food</b> indique le pourcentage de personnes allant plus de 1 fois par mois au fast food.
-                    Il est important de noter que parmi les personnes sondées, certaines n'ont pas donné de réponses, le pourcentage peut donc différer de la réalité. </br>
-                    On constate de plus que les écarts entre régions sont assez importants! On passe notamment de +30% de réponse positive en Île de France jusqu'à seulement 12% en Poitou-Charente. </br>
-                </p>
-
-            </div>
+        <div class="col-lg-6">
+            <h3>Activité Sportive</h3>
+            <p>
+                Le critère <b>Activité Sportive</b> indique la moyenne de temps passé à faire du sport par semaine. </br>
+                Le type d'activité n'est pas renseigné mais seuelement l'activité. Il s'agit également d'une moyenne.
+                Cependant,on remarque une légère augmentation de l'activité sportive dans le sud de la France par rapport au nord. Peut-être est-ce dû à la météo plus agréable...
+            </p>
         </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <h3>Viandes</h3>
-                <p>
-                    Le critère <b>Viandes</b> indique le pourcentage de personnes répondant aimer la viande. </br>
-                    Ce critère ne donne donc pas de résultat sur la consommation de viande mais plus sur le goût pour la viande.
-                    On constate un étonnant écart sur deux régions proches avec le Limousin qui indique à 30% aime la viande et l'aquitaine seulement à 13%. </br>
-                    Les réponses venant du Limousin sont toutefois moins révélatrices car seulement 44 personnes ont répondu au questionnaire dans cette région. C'est la région qui comprend le moins de personnes sondées.
-                </p>
-            </div>
-            <div class="col-lg-6">
-                <h3>Poisson</h3>
-                <p>
-                    Le critère <b>Poisson</b> indique le pourcentage de personnes répondant aimer le poisson </br>
-                    Ce critère ne donne donc pas de résultat sur la consommation de poisson mais plus sur le goût pour le poisson dans cette région.
-                    On constate un étonnant écart sur deux régions proches avec le Limousin qui indique à 20% aime la viande et l'aquitaine seulement à 7.50%. </br>
-                    Les réponses venant du Limousin sont toutefois moins révélatrices car seulement 44 personnes ont répondu au questionnaire dans cette région. C'est la région qui comprend le moins de personnes sondées.
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <h3>Fruits</h3>
-                <p>
-                    Le critère <b>Fruits</b> indique le pourcentage de personnes répondant aimer le poisson </br>
-                    Ce critère ne donne donc pas de résultat sur la consommation de fruits mais plus sur le goût pour les fruits dans cette région.
-                </p>
-            </div>
-            <div class="col-lg-6">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-6">
-                <h3>Télévision</h3>
-                <p>
-                    Le critère <b>Télévision</b> indique la moyenne de temps passé devant la télévision par jour. </br>
-                    C'est certes un critère important lié au manque d'activité sportive mais il aurait fallu l'additionner avec le temps passé devant un ordinateur pour avoir des résultats plus probants. </br>
-                    On constate une moyenne 15% supérieure en Nord-Pas-de-Calais et 21% supérieure en Limousin.
-                </p>
-            </div>
-            <div class="col-lg-6">
-                <h3>Activité Sportive</h3>
-                <p>
-                    Le critère <b>Activité Sportive</b> indique la moyenne de temps passé à faire du sport par semaine. </br>
-                    Le type d'activité n'est pas renseigné mais seuelement l'activité. Il s'agit également d'une moyenne.
-                    Cependant,on remarque une légère augmentation de l'activité sportive dans le sud de la France par rapport au nord. Peut-être est-ce dû à la météo plus agréable...
-                </p>
-            </div>
-        </div>
-
-
-        <div class="col-xs-12" style="height: 40px;"></div>
-        <div class="container-fluid">
-            <a style="color:#939393 ">Cyril Gaunet - Nicolas Follet - Samy Beyou - 2018</a>
-        </div>
-        <div class="col-xs-12" style="height: 40px;"></div>
     </div>
+
+
+    <div class="col-xs-12" style="height: 40px;"></div>
+    <div class="container-fluid">
+        <a style="color:#939393 ">Cyril Gaunet - Nicolas Follet - Samy Beyou - 2018</a>
+    </div>
+    <div class="col-xs-12" style="height: 40px;"></div>
+</div>
 </div>
 
 <div id="Rapport" class="tabcontent">
     <center><h1>Rapport</h1></center>
     décrivant la démarche complète – source des données, traitements opérés, architecture, choix des technologies
 
-      <div class="row">
+    <div class="row">
         <div class="col-lg-1">
         </div>
         <div class="col-lg-10">
-          <b><h3>Démarche Complète</h3></b>
+            <b><h3>Démarche Complète</h3></b>
             <ul>
-              <li>
-                <b>Lancement:</b></br>
-                <p>
-                  Nous avons commencé le projet par l'étude de datasets potentiels, en pensant à la qualité des données fournies, du sujet/domaine d'étude, et aux possibles représentations des données
-                  obtenues.</br>
-                  Après plusieurs essais, nous avons ciblé le secteur de l'alimentation pour deux raisons : les études visuelles sont courantes (par région, par corrélation sous forme de graphe)
-                  et le sujet est un enjeu actuel avec la lutte contre le surpoids.</br>
-                </p>
-              </li>
-              <li>
-                <b>Jeu de donnée</b></br>
-                <p>
-                  Le Jeu de donnée sélectionné pour représentation est le jeu de donnée INCA_2, il date de 2006/2007 et est le résultat d'un sondage sur 3996 individus résidant en France Métropolitaine.
-                  Cette enquête a été ordonnée par le gouvernement Français pour étudier l'évolution des habitudes alimentaires des Français. </br>
-                  Pour chacune des 4000 personnes sondées il a fallu répondre à des questions
-                  précises pendant 7 jours sur le maximum de crières possible. Au final, le jeu de donnée est tellement complexe et riche qu'il nous a fallu le réduire a seulement une dizaine de critères pour pouvoir l'exploiter en temps raisonnable.
-                </p>
-              </li>
-              <li>
-                <b>Traitements opérés</b>
-                <p>
-                  Notre objectif initial était de mettre en place un outil de visualisation permettant de détecter des causes possibles à l'obésité. Pour pouvoir effectivement l'implémenter il a fallu
-                  sélectionner uniquement les critères déterminant dans le cas de l'obésité/surpoids. </br>
-                  Pour ce faire, nous avons commencé par développer une application Java. Cette application permettait, grâce au jeu de données fourni, de calculer un "score" par "catégorie
-                  de poids" pour un critère. Par exemple, grâce à cette application, nous avons pu remarqué que les gens en condition de maigreur regardaient moins la télévision que les gens en condition normale
-                  qui à leur tour regardaient moins la télévision que les gens en surpoids etc </br>
-                  Cette application renvoie un csv qui permet de comparer efficacement les scores obtenus par catégorie et ainsi de pouvoir éluder des critères qui ne semblent pas impacter de beaucoup l'IMC d'une personne.
-                  Cette "première passe" nous a permis de nous concentrer sur certaines zones de la base de données et donc cela permet de proposer à l'utilisateur seulement certaines possibilités de modification.</br>
-                  Après avoir choisi de modifier ces critères, les données sont sélectionnées puis transformées pour pouvoir être affichées, soit sous forme d'un graphique, soit d'une carte de France.
-                </p>
-              </li>
-              <li>
-                <b>Architecture</b>
-                <p>
-                    La page web étant exécutée en local, il n'y a pas de lien avec un quelconque serveur ou une quelconque base de données hébergée.</br>
-                    Toutes les valeurs sont stockées dans un fichier .csv et c'est ce fichier qui va permettre d'effectuer tout calcul.</br>
-                    Le code html est contenu sur une seule page, index.html, et tous les scripts sont contenus dans les différents fichier au format .js présents dans le dossier js.
-                </p>
-              </li>
-              <li>
-                <b>Choix des technologies</b>
-                <p>
-                  Plusieurs technologies web ont été utilisées pour ce projet de visualisation : Notamment <b>D3.Js</b>,
-                  le framework javaScript utilisé pour la représentation cartographique de France et pour la lecture du jeu de donnée. </br>
-                  La lecture du jeu de donnée est facilité par D3, en effet il suffit uniquement de faire un appel javascript : <b>d3.csv('jeu-de-donnee.csv', function(data){  });</b> </br>
-                  La représentation avec la carte est également faite par D3, en effet il permet de lire un fichier geojson : regions.geojson, qui décrit un SVG de chaque région. L'appel de la
-                  méthode <b>d3.json('fichier-json', function(req, geojson){  ...  }</b> insere dans le code HTML une liste de figures SVG avec la balise "path" correspondant aux frontières des régions. </br> </br>
+                <li>
+                    <b>Lancement:</b></br>
+                    <p>
+                        Nous avons commencé le projet par l'étude de datasets potentiels, en pensant à la qualité des données fournies, du sujet/domaine d'étude, et aux possibles représentations des données
+                        obtenues.</br>
+                        Après plusieurs essais, nous avons ciblé le secteur de l'alimentation pour deux raisons : les études visuelles sont courantes (par région, par corrélation sous forme de graphe)
+                        et le sujet est un enjeu actuel avec la lutte contre le surpoids.</br>
+                    </p>
+                </li>
+                <li>
+                    <b>Jeu de donnée</b></br>
+                    <p>
+                        Le Jeu de donnée sélectionné pour représentation est le jeu de donnée INCA_2, il date de 2006/2007 et est le résultat d'un sondage sur 3996 individus résidant en France Métropolitaine.
+                        Cette enquête a été ordonnée par le gouvernement Français pour étudier l'évolution des habitudes alimentaires des Français. </br>
+                        Pour chacune des 4000 personnes sondées il a fallu répondre à des questions
+                        précises pendant 7 jours sur le maximum de crières possible. Au final, le jeu de donnée est tellement complexe et riche qu'il nous a fallu le réduire a seulement une dizaine de critères pour pouvoir l'exploiter en temps raisonnable.
+                    </p>
+                </li>
+                <li>
+                    <b>Traitements opérés</b>
+                    <p>
+                        Notre objectif initial était de mettre en place un outil de visualisation permettant de détecter des causes possibles à l'obésité. Pour pouvoir effectivement l'implémenter il a fallu
+                        sélectionner uniquement les critères déterminant dans le cas de l'obésité/surpoids. </br>
+                        Pour ce faire, nous avons commencé par développer une application Java. Cette application permettait, grâce au jeu de données fourni, de calculer un "score" par "catégorie
+                        de poids" pour un critère. Par exemple, grâce à cette application, nous avons pu remarqué que les gens en condition de maigreur regardaient moins la télévision que les gens en condition normale
+                        qui à leur tour regardaient moins la télévision que les gens en surpoids etc </br>
+                        Cette application renvoie un csv qui permet de comparer efficacement les scores obtenus par catégorie et ainsi de pouvoir éluder des critères qui ne semblent pas impacter de beaucoup l'IMC d'une personne.
+                        Cette "première passe" nous a permis de nous concentrer sur certaines zones de la base de données et donc cela permet de proposer à l'utilisateur seulement certaines possibilités de modification.</br>
+                        Après avoir choisi de modifier ces critères, les données sont sélectionnées puis transformées pour pouvoir être affichées, soit sous forme d'un graphique, soit d'une carte de France.
+                    </p>
+                </li>
+                <li>
+                    <b>Architecture</b>
+                    <p>
+                        La page web étant exécutée en local, il n'y a pas de lien avec un quelconque serveur ou une quelconque base de données hébergée.</br>
+                        Toutes les valeurs sont stockées dans un fichier .csv et c'est ce fichier qui va permettre d'effectuer tout calcul.</br>
+                        Le code html est contenu sur une seule page, index.html, et tous les scripts sont contenus dans les différents fichier au format .js présents dans le dossier js.
+                    </p>
+                </li>
+                <li>
+                    <b>Choix des technologies</b>
+                    <p>
+                        Plusieurs technologies web ont été utilisées pour ce projet de visualisation : Notamment <b>D3.Js</b>,
+                        le framework javaScript utilisé pour la représentation cartographique de France et pour la lecture du jeu de donnée. </br>
+                        La lecture du jeu de donnée est facilité par D3, en effet il suffit uniquement de faire un appel javascript : <b>d3.csv('jeu-de-donnee.csv', function(data){  });</b> </br>
+                        La représentation avec la carte est également faite par D3, en effet il permet de lire un fichier geojson : regions.geojson, qui décrit un SVG de chaque région. L'appel de la
+                        méthode <b>d3.json('fichier-json', function(req, geojson){  ...  }</b> insere dans le code HTML une liste de figures SVG avec la balise "path" correspondant aux frontières des régions. </br> </br>
 
-                  Ensuite, les graphes dans l'onglet 'Graphe' utilisent le framework : <b>Chart.JS</b>, à l'aide de ce framework, il est assez rapide de générer des courbes lissées ou des nuages de points. Les deux peuvent convenir
-                  les critères sélectionnés. Nous avons choisi de garder la courbe de référence visible lors des changements de critères pour pouvoir comparer. Cependant, il suffit de cliquer sur la légende de la courbe de référence
-                  pour la faire disparaitre. </br>
+                        Ensuite, les graphes dans l'onglet 'Graphe' utilisent le framework : <b>Chart.JS</b>, à l'aide de ce framework, il est assez rapide de générer des courbes lissées ou des nuages de points. Les deux peuvent convenir
+                        les critères sélectionnés. Nous avons choisi de garder la courbe de référence visible lors des changements de critères pour pouvoir comparer. Cependant, il suffit de cliquer sur la légende de la courbe de référence
+                        pour la faire disparaitre. </br>
 
-                  Enfin, la gestion des appels asynchrones de manière générale est pris en charge par le framework <b>jQuery</b>, norme dans les applications il permet notamment de charger le contenu quand la page est chargée.</br>
+                        Enfin, la gestion des appels asynchrones de manière générale est pris en charge par le framework <b>jQuery</b>, norme dans les applications il permet notamment de charger le contenu quand la page est chargée.</br>
 
-                </p>
-              </li>
+                    </p>
+                </li>
             </ul>
 
 
             <b><h3>Résultats & Remarques</h3></b>
             <p>
-              Comme décrit précédemment, nous avons décidé de
+                Comme décrit précédemment, nous avons décidé de
             </p>
 
 
@@ -526,63 +526,63 @@
 
             <b>Source : </b>
             <ul>
-              <li>
-                Tutoriel pour la gestion des cartes : http://www.datavis.fr/index.php?page=map-firststep </br>
-              </li>
-              <li>
-                Fichier geojson des frontières de la France (regions-avant-redecoupage-2015.geojson): https://github.com/gregoiredavid/france-geojson </br>
-              </li>
+                <li>
+                    Tutoriel pour la gestion des cartes : http://www.datavis.fr/index.php?page=map-firststep </br>
+                </li>
+                <li>
+                    Fichier geojson des frontières de la France (regions-avant-redecoupage-2015.geojson): https://github.com/gregoiredavid/france-geojson </br>
+                </li>
             </ul>
 
         </div>
         <div class="col-lg-1">
         </div>
 
-      </div>
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-lg-1">
         </div>
         <div class="col-lg-10">
-          <h3>Schéma</h3>
+            <h3>Schéma</h3>
         </div>
 
         <div class="col-lg-1">
         </div>
-  </div>
+    </div>
 
 
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-            <div class="modal-body">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h2 class="box-title">Challenge Open Data 2018</h2>
-                    </div>
-                    <div class="box-body">
-                        <p>
-                            Deux onglets de Navigation : Graphes et Carte qui permettent de visualiser les causes de l'obésité en France. </br>
-                        </p>
-                        <p>
-                            Pour une explication détaillée de notre outil de visualisation, se reporter à la page <h2>à propos</h2>.
-                        </p>
-                        <img src="logo-600x600.png" alt="Data Gouv Logo" style="float:right;width:50px;height:50px;">
+                <div class="modal-body">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h2 class="box-title">Challenge Open Data 2018</h2>
+                        </div>
+                        <div class="box-body">
+                            <p>
+                                Deux onglets de Navigation : Graphes et Carte qui permettent de visualiser les causes de l'obésité en France. </br>
+                            </p>
+                            <p>
+                                Pour une explication détaillée de notre outil de visualisation, se reporter à la page <h2>à propos</h2>.
+                            </p>
+                            <img src="logo-600x600.png" alt="Data Gouv Logo" style="float:right;width:50px;height:50px;">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
-<script src"AdminLTE/plugins/jQueryUI/jquery-ui.min.js"></script>
-<script src="https://d3js.org/d3.v4.min.js"></script>    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
-<script src="js/utils.js"></script>
-<!--
-<script src="https://raw.githubusercontent.com/susielu/d3-legend/master/d3-legend.min.js"></script>
+    <script src="AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src"AdminLTE/plugins/jQueryUI/jquery-ui.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
+    <script src="js/utils.js"></script>
+    <!--
+    <script src="https://raw.githubusercontent.com/susielu/d3-legend/master/d3-legend.min.js"></script>
 -->
 <!-- <script src="js/scrollbar.js"></script> -->
 <script src="AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>

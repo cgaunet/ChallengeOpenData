@@ -146,7 +146,7 @@ function remplirTab() {
         .enter()
         .append("text")
         .attr("x", "0px")
-        .attr("y", "-45px")
+        .attr("y", "-60px")
         .text(function(d) { return "Legende : ";})
         .style("font-weight", "bold")
 
@@ -156,8 +156,7 @@ function remplirTab() {
         .enter()
         .append("text")
         .attr("x", "0px")
-        .attr("y", "-30px")
-        .attr("height", "30px")
+        .attr("y", "-45px")
         .attr("id", "sousTitre1")
         .text(function(d) { return sousTitreLegende1();});
 
@@ -166,10 +165,18 @@ function remplirTab() {
         .enter()
         .append("text")
         .attr("x", "0px")
-        .attr("y", "-15px")
-        .attr("height", "15px")
+        .attr("y", "-30px")
         .attr("id", "sousTitre2")
         .text(function(d) { return sousTitreLegende2();});
+
+        legend.selectAll(".colorbar")
+        .data(d3.range(1))
+        .enter()
+        .append("text")
+        .attr("x", "0px")
+        .attr("y", "-15px")
+        .attr("id", "sousTitre3")
+        .text(function(d) { return sousTitreLegende3();});
 
     })
 }
