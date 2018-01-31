@@ -59,28 +59,34 @@ document.getElementById("defaultOpen").click();
   var titredeCarte = "l'obésité";
 
   function htmlMouseOver(numeroRegion, nomRegion) { return htmlPourcentageObesite(numeroRegion, nomRegion)}
-  function couleurCarte (numeroRegion, nomRegion) {return couleurObesite(numeroRegion, nomRegion)}
+  function couleurCarte(numeroRegion, nomRegion) {return couleurObesite(numeroRegion, nomRegion)}
+  function uniteLegende() {return "%"}
+  function sousTitreLegende() {return "% de personne avec imc > 30 : "}
 
   function choixObesite(){
     titredeCarte = "l'obésité"
     updateTitreCarte();
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlPourcentageObesite(numeroRegion, nomRegion)}
-    couleurCarte = function (numeroRegion, nomRegion) {return couleurObesite(numeroRegion, nomRegion)}
+    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlPourcentageObesite(numeroRegion, nomRegion)}
+    couleurCarte = function(numeroRegion, nomRegion) {return couleurObesite(numeroRegion, nomRegion)}
     updateCouleurCarte();
+    uniteLegende = function() {return "%"}
+    sousTitreLegende = function() {return "% de personne avec imc > 30 : "}
 
   }
   function choixFastFood(){
     titredeCarte = "la consommation de Fast food"
     updateTitreCarte();
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlFastFood(numeroRegion, nomRegion)}
-    couleurCarte = function (numeroRegion, nomRegion) {return couleurFastFood(numeroRegion, nomRegion)}
+    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlFastFood(numeroRegion, nomRegion)}
+    couleurCarte = function(numeroRegion, nomRegion) {return couleurFastFood(numeroRegion, nomRegion)}
     updateCouleurCarte();
+    uniteLegende = function() {return "%"}
+    sousTitreLegende = function() {return "% de personne allant > 1x/semaine :"}
   }
 
   function choixViande(){
     titredeCarte = "la consommation de viande"
     updateTitreCarte();
-    htmlFuncMouseOver = function (numeroRegion, nomRegion) {return htmlViande(numeroRegion, nomRegion)}
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlViande(numeroRegion, nomRegion)}
     couleurCarte = function (numeroRegion, nomRegion) {return couleurViande(numeroRegion, nomRegion)}
     updateCouleurCarte();
 
@@ -88,19 +94,34 @@ document.getElementById("defaultOpen").click();
   function choixPoisson(){
     titredeCarte = "la consommation de poisson"
     updateTitreCarte();
-    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlMPois(numeroRegion, nomRegion)}
-    couleurCarte = function (numeroRegion, nomRegion) {return couleurPoisson(numeroRegion, nomRegion)}
+    htmlMouseOver = function(numeroRegion, nomRegion) {return htmlMPois(numeroRegion, nomRegion)}
+    couleurCarte = function(numeroRegion, nomRegion) {return couleurPoisson(numeroRegion, nomRegion)}
     updateCouleurCarte();
+    uniteLegende = function() {return "%"}
+    sousTitreLegende = function() {return "% de personne aimant le poisson :"}
   }
   function choixFruit(){
     titredeCarte = "la consommation de fruits"
     updateTitreCarte();
-    htmlFuncMouseOver = function (numeroRegion, nomRegion) {return htmlFruit(numeroRegion, nomRegion)}
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlFruit(numeroRegion, nomRegion)}
     couleurCarte = function (numeroRegion, nomRegion) {return couleurFruit(numeroRegion, nomRegion)}
     updateCouleurCarte();
   }
+  function choixTele(){
+    titredeCarte = "temps passé devant la télévision"
+    updateTitreCarte();
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlTele(numeroRegion, nomRegion)}
+    couleurCarte = function (numeroRegion, nomRegion) {return couleurTele(numeroRegion, nomRegion)}
+    updateCouleurCarte();
+  }
 
-
+  function choixActivite(){
+    titredeCarte = "l'activité sportive"
+    updateTitreCarte();
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlActivite(numeroRegion, nomRegion)}
+    couleurCarte = function (numeroRegion, nomRegion) {return couleurActivite(numeroRegion, nomRegion)}
+    updateCouleurCarte();
+  }
 
   function updateTitreCarte(){
     var text = "";
@@ -128,7 +149,10 @@ document.getElementById("defaultOpen").click();
     //     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     // });
 
-
+    $('ul li').on('click', function() {
+    	$('li').removeClass('active');
+    	$(this).addClass('active');
+    });
     console.log(document.getElementById("titreCarte").innerHTML);
 
     personnes = [];

@@ -43,21 +43,40 @@
   <div id="Carte" class="tabcontent">
     <center><h3><div id="titreCarte"></h3></center>
     <link rel="stylesheet" type="text/css" href="css/regions.css">
-    <div class="container clearfix">
+    <!-- <div class="container clearfix"> -->
       <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main pull-right">
+        <!-- <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main pull-right"> -->
 
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#" onclick="choixObesite()" id="defaultChoix">Obésité</a>
-            <a href="#" onclick="choixFastFood()">Fast food</a>
-            <a href="#" onclick="choixViande()">Viandes</a>
-            <a href="#" onclick="choixPoisson()">Poisson</a>
-            <a href="#" onclick="choixFruit()">Fruits</a>
+            <ul>
+              <li>
+                <a href="#" onclick="choixObesite()" id="defaultChoix">  Obésité</a>
+              </li>
+              <li>
+                <a href="#" onclick="choixFastFood()">Fast food</a>
+              </li>
+              <li>
+                <a href="#" onclick="choixViande()">Viandes</a>
+              </li>
+              <li>
+                <a href="#" onclick="choixPoisson()">Poisson</a>
+              </li>
+              <li>
+                <a href="#" onclick="choixFruit()">Fruits</a>
+              </li>
+              <li>
+                <a href="#" onclick="choixTele()">Télévision</a>
+              </li>
+              <li>
+                <a href="#" onclick="choixActivite()">Activité Sportive</a>
+              </li>
+            </ul>
           </div>
+
           <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Critères </span>
           <div id="map"></div>
-        </div>
+        <!-- </div> -->
       <!-- <div class="col-lg-4"> -->
         <!-- sidebar!-->
 
@@ -68,7 +87,7 @@
             <a href="#" class="w3-bar-item w3-button">Link 3</a>
           </div> -->
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 
   <div id="About" class="tabcontent">

@@ -51,3 +51,23 @@ function htmlFruit(numeroRegion, nomRegion) {
         return "La région 'Corse' n'est pas prise en compte"
     }
 }
+
+function htmlTele(numeroRegion, nomRegion) {
+    if (numeroRegion != 0) {
+        return "Région : " + nomRegion + "<br>" + "Temps moyen télévision /jr : " +
+        pourcentageTele(numeroRegion)+ " mn<br> Par rapport à la moyenne: "+
+        pourcentageParRapportMoyenne(calculerMoyenne(pourcentageTele),numeroRegion, pourcentageTele(numeroRegion))+"%"
+    } else {
+        return "La région 'Corse' n'est pas prise en compte"
+    }
+}
+
+function htmlActivite(numeroRegion, nomRegion) {
+    if (numeroRegion != 0) {
+        return "Région : " + nomRegion + "<br>" + "Activite sportive /sem : " +
+        pourcentageActivite(numeroRegion)+ " mn<br> Par rapport à la moyenne: "+
+        pourcentageParRapportMoyenne(calculerMoyenne(pourcentageActivite),numeroRegion, pourcentageActivite(numeroRegion))+"%"
+    } else {
+        return "La région 'Corse' n'est pas prise en compte"
+    }
+}
