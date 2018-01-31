@@ -1,7 +1,7 @@
 var personnes = [];
 var criteres = {};
 var counterDatasets = 0;
-var backgroundColor = [window.chartColors.green, window.chartColors.black, window.chartColors.blue, window.chartColors.purple]
+var backgroundColor = [window.chartColors.green, window.chartColors.bordeaux, window.chartColors.blue, window.chartColors.purple]
 var mustMakeAverage = true;
 
 function initCriteres(){
@@ -17,7 +17,7 @@ function initCriteres(){
 $(function() {
     initCriteres();
     loadData(myDataIsReady);
-    $('.slider').slider();
+    $('.slider').slider({focus: true });
 });
 
 function loadData(callback){
@@ -199,20 +199,28 @@ function Personne(age, bmi, entrerep, mfruit, bonalim, tele, mvian, mpois, fastf
     this.aptotal_hebdo = aptotal_hebdo;
     this.region = region;
 }
-
+var wto;
 $(".slider").change(function(){
     var valuesApTotal = $("#slider-aptotalhebdo").attr("data-value").split(",");
     criteres["aptotal_hebdo"] = {min : valuesApTotal[0], max : valuesApTotal[1]}
+    $("#textSliderApTotal").empty();
+    $("#textSliderApTotal").append("<b>" + valuesApTotal[0] + ":" + valuesApTotal[1] + "</b>");
     var valuesTele = $("#slider-tele").attr("data-value").split(",");
     criteres["tele"] = {min : valuesTele[0], max : valuesTele[1]}
+    $("#textSliderTele").empty();
+    $("#textSliderTele").append("<b>" + valuesTele[0] + ":" + valuesTele[1] + "</b>");
     var valuesFastFood = $("#slider-fastfood").attr("data-value").split(",");
     criteres["fastfood"] = {min : valuesFastFood[0], max : valuesFastFood[1]}
-    if (mustMakeAverage){
-      loadData(reduceDataForLineChart);
-    }else{
-      loadData(reduceDataForScatterChart);
-    }
-
+    $("#textSliderFastfood").empty();
+    $("#textSliderFastfood").append("<b>" + valuesFastFood[0] + ":" + valuesFastFood[1] + "</b>");
+    clearTimeout(wto);
+    wto = setTimeout(function() {
+        if (mustMakeAverage){
+          loadData(reduceDataForLineChart);
+        }else{
+          loadData(reduceDataForScatterChart);
+        }
+    }, 500);
 });
 
 $(":checkbox").change(function(){

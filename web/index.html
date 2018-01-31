@@ -49,19 +49,22 @@
             </div>
         </div>
     </div>
-    <div class="row margin">
-    <div class="col-lg-4">
-        <p><b>Activité physique totale hebdomaire (en minutes) :</b></p>
-        <input type="text" id="slider-aptotalhebdo" value="" class="slider form-control" data-slider-min="0" data-slider-max="2000" data-slider-step="100" data-slider-value="[0,2000]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="hidden" data-slider-id="red">
-    </div>
-    <div class="col-lg-4">
-        <p><b>Temps passé devant la télévision (en minutes/semaine) :</b></p>
-        <input type="text" id="slider-tele" value="" class="slider form-control" data-slider-min="0" data-slider-max="500" data-slider-step="5" data-slider-value="[0,500]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="hidden" data-slider-id="yellow">
-    </div>
-    <div class="col-lg-4">
-        <p><b>Fréquence sur la présence au fast-food (en nombre de jours/mois): </b></p>
-        <input type="text" id="slider-fastfood" value="" class="slider form-control" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,30]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="blue">
-    </div>
+    <div class="row margin "> <!---  --->
+        <div class="col-lg-4">
+            <p><b>Activité physique totale hebdomaire (en minutes) :</b></p>
+            <center><div id="textSliderApTotal"><b>0:2000</b></div></center>
+            <input type="text" id="slider-aptotalhebdo" value="" class="slider form-control" data-slider-min="0" data-slider-max="2000" data-slider-step="100" data-slider-value="[0,2000]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="hide" data-slider-id="red">
+        </div>
+        <div class="col-lg-4">
+            <p><b>Temps passé devant la télévision (en minutes/semaine) :</b></p>
+            <center><div id="textSliderTele"><b>0:500</b></div></center>
+            <input type="text" id="slider-tele" value="" class="slider form-control" data-slider-min="0" data-slider-max="500" data-slider-step="5" data-slider-value="[0,500]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="hide" data-slider-id="yellow">
+        </div>
+        <div class="col-lg-4">
+            <p><b>Fréquence sur la présence au fast-food (en nombre de jours/mois): </b></p>
+            <center><div id="textSliderFastfood"><b>0:30</b></div></center>
+            <input type="text" id="slider-fastfood" value="" class="slider form-control" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,30]" data-slider-orientation="horizontal"  data-slider-tooltip="hide" data-slider-id="blue"><!--  data-slider-ticks="[0, 10, 20, 30]" data-slider-ticks-snap-bounds="30" data-slider-ticks-labels='["0", "10", "20", "30"]' -->
+        </div>
     </div>
     <div class="row margin">
         <div class="col-lg-3">
@@ -408,11 +411,11 @@
 
 <script src="js/index.js"></script>
 <script src="js/mapDefinition.js"></script>
-<script src="js/map2.js"></script>
+<script src="js/map.js"></script>
 <script src="js/couleursCarte.js"></script>
 <script src="js/textMouseOver.js"></script>
+<script src="js/legende.js"></script>
 <script src="js/graph.js"></script>
-
 
 
 </body>
