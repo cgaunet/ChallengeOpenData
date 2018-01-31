@@ -18,6 +18,7 @@ function openTab(evt, tapType) {
   document.getElementById(tapType).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
 document.getElementById("defaultOpen").click();
 
 
@@ -58,7 +59,7 @@ document.getElementById("defaultOpen").click();
 
 
   function déroulerObésité(){
-    
+
   }
 
 
