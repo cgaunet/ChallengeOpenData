@@ -199,7 +199,7 @@ function Personne(age, bmi, entrerep, mfruit, bonalim, tele, mvian, mpois, fastf
     this.aptotal_hebdo = aptotal_hebdo;
     this.region = region;
 }
-
+var wto;
 $(".slider").change(function(){
     var valuesApTotal = $("#slider-aptotalhebdo").attr("data-value").split(",");
     criteres["aptotal_hebdo"] = {min : valuesApTotal[0], max : valuesApTotal[1]}
@@ -213,12 +213,14 @@ $(".slider").change(function(){
     criteres["fastfood"] = {min : valuesFastFood[0], max : valuesFastFood[1]}
     $("#textSliderFastfood").empty();
     $("#textSliderFastfood").append("<b>" + valuesFastFood[0] + ":" + valuesFastFood[1] + "</b>");
-    if (mustMakeAverage){
-      loadData(reduceDataForLineChart);
-    }else{
-      loadData(reduceDataForScatterChart);
-    }
-
+    clearTimeout(wto);
+    wto = setTimeout(function() {
+        if (mustMakeAverage){
+          loadData(reduceDataForLineChart);
+        }else{
+          loadData(reduceDataForScatterChart);
+        }
+    }, 500);
 });
 
 $(":checkbox").change(function(){
