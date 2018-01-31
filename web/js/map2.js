@@ -1,6 +1,5 @@
 var map = creerMap()
 
-var tabCouleur = ["#adccff","#77aaff","#478cff","#0562ff", "#001e82"];
 
 function ajoutData(data, categorie) {
   map[data.region]["nombreIndividus"].total += 1
@@ -163,6 +162,15 @@ function pourcentageFastFood(numeroRegion) {
             +map[numeroRegion]["fastfood"].total[5].compteur
             )/ map[numeroRegion]["nombreIndividus"].total)*100).toFixedDown(2)
 }
+
+function pourcentageTele(numeroRegion) {
+  return (((map[numeroRegion]["tele"].total)/ map[numeroRegion]["nombreIndividus"].total)).toFixedDown(2)
+}
+
+function pourcentageActivite(numeroRegion) {
+  return (((map[numeroRegion]["aptotal_hebdo"].total)/ map[numeroRegion]["nombreIndividus"].total)).toFixedDown(2)
+}
+
 
 Number.prototype.toFixedDown = function(digits) {
   var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),

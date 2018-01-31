@@ -80,7 +80,7 @@ document.getElementById("defaultOpen").click();
   function choixViande(){
     titredeCarte = "la consommation de viande"
     updateTitreCarte();
-    htmlFuncMouseOver = function (numeroRegion, nomRegion) {return htmlViande(numeroRegion, nomRegion)}
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlViande(numeroRegion, nomRegion)}
     couleurCarte = function (numeroRegion, nomRegion) {return couleurViande(numeroRegion, nomRegion)}
     updateCouleurCarte();
 
@@ -95,12 +95,25 @@ document.getElementById("defaultOpen").click();
   function choixFruit(){
     titredeCarte = "la consommation de fruits"
     updateTitreCarte();
-    htmlFuncMouseOver = function (numeroRegion, nomRegion) {return htmlFruit(numeroRegion, nomRegion)}
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlFruit(numeroRegion, nomRegion)}
     couleurCarte = function (numeroRegion, nomRegion) {return couleurFruit(numeroRegion, nomRegion)}
     updateCouleurCarte();
   }
+  function choixTele(){
+    titredeCarte = "temps passé devant la télévision"
+    updateTitreCarte();
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlTele(numeroRegion, nomRegion)}
+    couleurCarte = function (numeroRegion, nomRegion) {return couleurTele(numeroRegion, nomRegion)}
+    updateCouleurCarte();
+  }
 
-
+  function choixActivite(){
+    titredeCarte = "l'activité sportive"
+    updateTitreCarte();
+    htmlMouseOver = function (numeroRegion, nomRegion) {return htmlActivite(numeroRegion, nomRegion)}
+    couleurCarte = function (numeroRegion, nomRegion) {return couleurActivite(numeroRegion, nomRegion)}
+    updateCouleurCarte();
+  }
 
   function updateTitreCarte(){
     var text = "";
@@ -128,7 +141,10 @@ document.getElementById("defaultOpen").click();
     //     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     // });
 
-
+    $('ul li').on('click', function() {
+    	$('li').removeClass('active');
+    	$(this).addClass('active');
+    });
     console.log(document.getElementById("titreCarte").innerHTML);
 
     personnes = [];
