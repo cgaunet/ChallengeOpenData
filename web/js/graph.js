@@ -3,6 +3,8 @@ var criteres = {};
 var counterDatasets = 0;
 var backgroundColor = [window.chartColors.green, window.chartColors.bordeaux, window.chartColors.blue, window.chartColors.purple]
 var mustMakeAverage = true;
+var maxDatasets = 2;
+var counterDatasetsOfWholeTime = 0;
 
 /***
 * Function to initialize the criteres array to its default values.
@@ -88,9 +90,9 @@ function reduceDataForLineChart(){
     }
 
     var newDataset = {
-        label: 'Courbe suivant les critères',// + (counterDatasets+1).toString(),
-        backgroundColor: backgroundColor[counterDatasets%4],
-        borderColor: backgroundColor[counterDatasets%4],
+        label: 'Courbe suivant les critères n°' + (counterDatasetsOfWholeTime+1).toString(),
+        backgroundColor: backgroundColor[counterDatasetsOfWholeTime%4],
+        borderColor: backgroundColor[counterDatasetsOfWholeTime%4],
         data: ordonnees,
         fill: false
     };
@@ -113,9 +115,9 @@ function reduceDataForScatterChart(){
   personnes = personnesTemp;
 
   var newDataset = {
-      label: 'Courbe suivant les critères',// + (counterDatasets+1).toString(),
-      backgroundColor: backgroundColor[counterDatasets%4],
-      borderColor: backgroundColor[counterDatasets%4],
+      label: 'Courbe suivant les critères n°' + (counterDatasetsOfWholeTime+1).toString(),
+      backgroundColor: backgroundColor[counterDatasetsOfWholeTime%4],
+      borderColor: backgroundColor[counterDatasetsOfWholeTime%4],
       data: convertDatasetPersonnesToScatterDataset(personnes),
       fill: false
   };
@@ -129,10 +131,19 @@ function reduceDataForScatterChart(){
 function updateChart(newDataset){
   window.myScatter.config.data.datasets.push(newDataset);
   counterDatasets++;
-  if (counterDatasets >= 3){
-      window.myScatter.config.data.datasets.splice(1,1);
-  }
+  counterDatasetsOfWholeTime++;
+  removeDatasetIfNeeded();
   window.myScatter.update();
+}
+
+/***
+*
+***/
+function removeDatasetIfNeeded(){
+    if (counterDatasets >= maxDatasets + 1){
+        window.myScatter.config.data.datasets.splice(1,1);
+        counterDatasets--;
+    }
 }
 
 /***
@@ -448,3 +459,24 @@ function createNewScatterChart(){
   counterDatasets = 1;
   window.myScatter.update();
 }
+
+
+/***
+* Functions to update the number maxDatasets if the minus or the plus button is clicked.
+***/
+
+$("#removeDataset").click(function(){
+    if (maxDatasets > 2){
+        maxDatasets--;
+        removeDatasetIfNeeded();
+        window.myScatter.update();
+        $("#nbMaxGraph").empty();
+        $("#nbMaxGraph").append("<b>" + maxDatasets + "</b>");
+    }
+});
+
+$("#addDataset").click(function(){
+    maxDatasets++;
+    $("#nbMaxGraph").empty();
+    $("#nbMaxGraph").append("<b>" + maxDatasets + "</b>");
+});
